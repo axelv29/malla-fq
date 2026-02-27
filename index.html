@@ -3,324 +3,835 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Malla QF · Fac. Química UDELAR</title>
+<title>Malla QF · PE2015 · UDELAR</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
+/* ══════════════════════════════════════════════════════
+   VARIABLES & RESET
+══════════════════════════════════════════════════════ */
 :root {
-  --card-w:88px;--card-h:96px;
-  --bg:#0F172A;--surface:#1E293B;--surface2:#334155;
-  --text:#F1F5F9;--text2:#94A3B8;--text3:#64748B;
-  --radius:6px;
+  /* Colores vivos por área */
+  --cfm-vivid:#1D4ED8; --cfm-light:#DBEAFE; --cfm-mid:#93C5FD; --cfm-text:#1E3A8A;
+  --cq-vivid: #15803D; --cq-light: #DCFCE7; --cq-mid: #86EFAC; --cq-text: #14532D;
+  --cbb-vivid:#C2410C; --cbb-light:#FFEDD5; --cbb-mid: #FDBA74; --cbb-text: #7C2D12;
+  --cfa-vivid:#7C3AED; --cfa-light:#EDE9FE; --cfa-mid: #C4B5FD; --cfa-text: #4C1D95;
+  --pro-vivid:#374151; --pro-light:#F3F4F6; --pro-mid: #9CA3AF; --pro-text: #1F2937;
+  --ope-vivid:#BE185D; --ope-light:#FCE7F3; --ope-mid: #F9A8D4; --ope-text: #831843;
+
+  --bg:      #F8F9FB;
+  --surface: #FFFFFF;
+  --border:  #E2E8F0;
+  --border2: #CBD5E1;
+  --text:    #0F172A;
+  --text2:   #475569;
+  --text3:   #94A3B8;
+  --shadow:  0 2px 8px rgba(0,0,0,.07), 0 0 1px rgba(0,0,0,.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  --shadow-hover: 0 12px 30px rgba(0,0,0,.16), 0 2px 8px rgba(0,0,0,.08);
+
+  --card-w: 96px;
+  --card-h: 108px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
-header{background:var(--surface);border-bottom:1px solid var(--surface2);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100}
-.header-title h1{font-size:1.1rem;font-weight:700;letter-spacing:.5px}
-.header-title p{font-size:.75rem;color:var(--text2);margin-top:2px}
-.creditos-global{display:flex;align-items:center;gap:10px}
-.creditos-global .total{font-size:1.5rem;font-weight:800}
-.creditos-global .meta{font-size:.7rem;color:var(--text2)}
-.progress-bar-wrap{width:140px;height:6px;background:var(--surface2);border-radius:9999px;overflow:hidden}
-.progress-bar-fill{height:100%;background:#22D3EE;border-radius:9999px;transition:width .4s}
-.areas-legend{display:flex;gap:6px;flex-wrap:wrap;padding:8px 24px;background:var(--surface);border-bottom:1px solid var(--surface2)}
-.area-badge{display:flex;align-items:center;gap:5px;padding:3px 8px;border-radius:9999px;font-size:.68rem;font-weight:600;border:1px solid transparent}
-.area-badge .dot{width:8px;height:8px;border-radius:50%}
-.area-progress-section{padding:12px 24px;display:flex;gap:10px;flex-wrap:wrap}
-.area-prog-item{flex:1 1 150px;background:var(--surface);border:1px solid var(--surface2);border-radius:8px;padding:10px 12px}
-.area-prog-label{font-size:.65rem;font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between}
-.area-prog-bar{height:5px;background:var(--surface2);border-radius:9999px;overflow:hidden}
-.area-prog-fill{height:100%;border-radius:9999px;transition:width .4s}
-main{padding:20px;overflow-x:auto}
-.semestres-wrap{display:flex;gap:12px;min-width:max-content}
-.semestre-col{display:flex;flex-direction:column;gap:6px;width:var(--card-w)}
-.semestre-label{text-align:center;font-size:.62rem;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;padding-bottom:4px;border-bottom:1px solid var(--surface2);margin-bottom:2px}
-.materia-card{width:var(--card-w);min-height:var(--card-h);border-radius:var(--radius);border:1.5px solid;padding:5px 4px 4px;cursor:pointer;position:relative;transition:transform .15s,box-shadow .15s,opacity .2s;display:flex;flex-direction:column;user-select:none}
-.materia-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:10}
-.materia-card.pendiente{opacity:.5}
-.materia-card.aprobada{opacity:.85}
-.materia-card.exonerada{opacity:1}
-.card-numero{font-size:.6rem;font-weight:700;text-align:right;line-height:1;opacity:.7}
-.card-simbolo{font-size:.9rem;font-weight:800;text-align:center;margin:3px 0;line-height:1.1}
-.card-nombre{font-size:.5rem;text-align:center;line-height:1.2;margin-top:auto;opacity:.85}
-.card-estado{position:absolute;top:3px;left:3px;width:10px;height:10px;border-radius:50%}
-.estado-exonerada{background:#4ADE80;box-shadow:0 0 5px #4ADE80}
-.estado-aprobada{background:#FACC15;box-shadow:0 0 5px #FACC15}
-.estado-pendiente{display:none}
-.hemi-tag{position:absolute;bottom:3px;right:3px;font-size:.45rem;background:rgba(255,255,255,.12);border-radius:3px;padding:1px 3px;line-height:1}
-.area-CFM{background:#172554;border-color:#1D4ED8;color:#BAE6FD}
-.area-CQ{background:#14532D;border-color:#15803D;color:#BBF7D0}
-.area-CBB{background:#431407;border-color:#C2410C;color:#FED7AA}
-.area-CFA{background:#3B0764;border-color:#7E22CE;color:#E9D5FF}
-.area-PRO{background:#111827;border-color:#6B7280;color:#D1D5DB}
-.materia-card.highlight-pre{outline:2px solid #FACC15;outline-offset:2px;opacity:1!important}
-.materia-card.highlight-post{outline:2px solid #4ADE80;outline-offset:2px;opacity:1!important}
-.materia-card.highlight-self{outline:2px solid #38BDF8;outline-offset:2px;opacity:1!important}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center}
-.modal-overlay.open{display:flex}
-.modal{background:var(--surface);border:1px solid var(--surface2);border-radius:12px;width:min(480px,92vw);max-height:82vh;overflow-y:auto;padding:24px}
-.modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:12px}
-.modal-titulo{font-size:1rem;font-weight:700}
-.modal-codigo{font-size:.72rem;color:var(--text2);margin-top:3px}
-.modal-close{background:none;border:none;color:var(--text2);font-size:1.2rem;cursor:pointer;padding:2px 6px;border-radius:4px}
-.modal-close:hover{background:var(--surface2)}
-.modal-info{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.info-item label{display:block;font-size:.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
-.info-item span{font-size:.85rem;font-weight:600}
-.previas-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.previas-titulo{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;font-weight:700}
-.previa-tag{font-size:.72rem;padding:3px 8px;border-radius:9999px;border:1px solid;cursor:pointer;transition:opacity .15s}
-.previa-tag:hover{opacity:.8}
-.modal-estado-btns{display:flex;gap:8px;margin-top:14px}
-.btn-estado{flex:1;padding:8px;border-radius:8px;border:1.5px solid;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;background:transparent}
-.btn-pendiente{border-color:var(--text3);color:var(--text3)}
-.btn-aprobada{border-color:#FACC15;color:#FACC15}
-.btn-exonerada{border-color:#4ADE80;color:#4ADE80}
-.btn-estado.activo.btn-pendiente{background:var(--text3);color:#000}
-.btn-estado.activo.btn-aprobada{background:#FACC15;color:#000}
-.btn-estado.activo.btn-exonerada{background:#4ADE80;color:#000}
-.modal-notas{margin-top:12px;font-size:.75rem;color:var(--text2);background:var(--surface2);border-radius:6px;padding:8px 10px;line-height:1.5}
-.highlight-legend{padding:6px 24px;display:flex;gap:16px;font-size:.68rem;color:var(--text3);background:var(--bg)}
-.highlight-legend span{display:flex;align-items:center;gap:5px}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════════════ */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  position: sticky;
+  top: 0; z-index: 200;
+  box-shadow: var(--shadow);
+}
+.header-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.header-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, #7C3AED, #2563EB);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(124,58,237,.3);
+}
+.header-brand h1 {
+  font-size: .95rem; font-weight: 700; letter-spacing: -.2px;
+}
+.header-brand p {
+  font-size: .72rem; color: var(--text3); margin-top: 1px;
+}
+
+/* Créditos globales */
+.creditos-wrap {
+  display: flex; align-items: center; gap: 14px;
+}
+.cr-total-box {
+  text-align: right;
+}
+.cr-num {
+  font-size: 1.6rem; font-weight: 800; line-height: 1;
+  color: var(--text); letter-spacing: -1px;
+}
+.cr-num span { font-size: .85rem; font-weight: 400; color: var(--text3); }
+.cr-label { font-size: .65rem; color: var(--text3); margin-top: 2px; }
+.progress-outer {
+  width: 120px; height: 6px;
+  background: var(--border2); border-radius: 999px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7C3AED, #2563EB);
+  border-radius: 999px;
+  transition: width .5s cubic-bezier(.34,1.56,.64,1);
+  width: 0%;
+}
+.cr-pct { font-size: .65rem; color: var(--text3); margin-top: 3px; }
+
+/* View toggle */
+.view-toggle {
+  display: flex; background: var(--bg); border: 1px solid var(--border2);
+  border-radius: 8px; overflow: hidden;
+}
+.view-btn {
+  padding: 6px 14px; border: none; background: none; cursor: pointer;
+  font-family: var(--font); font-size: .75rem; font-weight: 500;
+  color: var(--text3); transition: all .2s; display: flex; align-items: center; gap: 5px;
+}
+.view-btn.active {
+  background: var(--surface); color: var(--text);
+  box-shadow: var(--shadow);
+}
+.view-btn svg { width: 13px; height: 13px; }
+
+/* ══════════════════════════════════════════════════════
+   TOOLBAR
+══════════════════════════════════════════════════════ */
+.toolbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 28px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.toolbar-label { font-size: .72rem; font-weight: 600; color: var(--text3); }
+.area-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.area-pill {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 999px;
+  font-size: .7rem; font-weight: 600; cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.area-pill .dot { width: 7px; height: 7px; border-radius: 50%; }
+.area-pill .cr-mini { font-size: .6rem; opacity: .7; font-weight: 500; }
+.area-pill:hover { transform: translateY(-1px); }
+
+/* Año filter */
+.sem-filter { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.sem-btn {
+  padding: 4px 10px; border-radius: 6px; border: 1.5px solid var(--border2);
+  background: var(--surface); font-family: var(--font); font-size: .7rem;
+  font-weight: 500; color: var(--text2); cursor: pointer; transition: all .2s;
+}
+.sem-btn:hover { border-color: var(--text3); }
+.sem-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+/* ══════════════════════════════════════════════════════
+   ÁREA PROGRESS BAR SECTION
+══════════════════════════════════════════════════════ */
+.area-progress-section {
+  padding: 14px 28px 0;
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.area-prog {
+  flex: 1 1 140px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 10px 12px; transition: box-shadow .2s;
+}
+.area-prog:hover { box-shadow: var(--shadow); }
+.area-prog-header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 6px;
+}
+.area-prog-name { font-size: .65rem; font-weight: 700; }
+.area-prog-cr { font-size: .62rem; color: var(--text3); font-family: var(--mono); }
+.area-prog-bar { height: 4px; background: var(--border2); border-radius: 999px; overflow: hidden; }
+.area-prog-fill { height: 100%; border-radius: 999px; transition: width .5s; width: 0%; }
+
+/* ══════════════════════════════════════════════════════
+   HIGHLIGHT LEGEND
+══════════════════════════════════════════════════════ */
+.legend-bar {
+  padding: 6px 28px; display: flex; gap: 16px;
+  font-size: .67rem; color: var(--text3); align-items: center;
+  border-bottom: 1px solid var(--border); background: var(--bg);
+}
+.legend-bar span { display: flex; align-items: center; gap: 5px; }
+.legend-bar .lg-dot {
+  width: 10px; height: 10px; border-radius: 3px; border: 2px solid;
+}
+
+/* ══════════════════════════════════════════════════════
+   VISTA SEMESTRAL
+══════════════════════════════════════════════════════ */
+#view-semestral { padding: 20px 28px; overflow-x: auto; }
+.sems-wrap {
+  display: flex; gap: 10px; min-width: max-content;
+}
+.sem-col {
+  display: flex; flex-direction: column; gap: 6px;
+  width: var(--card-w);
+}
+.sem-col-header {
+  text-align: center; padding: 5px 4px 8px;
+  border-bottom: 2px solid var(--border2); margin-bottom: 4px;
+}
+.sem-col-num {
+  font-size: .6rem; font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3);
+}
+.sem-col-cr { font-size: .58rem; color: var(--text3); font-family: var(--mono); margin-top: 2px; }
+
+/* ══════════════════════════════════════════════════════
+   TARJETA MATERIA (compartida entre vistas)
+══════════════════════════════════════════════════════ */
+.materia-card {
+  width: var(--card-w);
+  min-height: var(--card-h);
+  border-radius: var(--radius);
+  border: 1.5px solid;
+  padding: 7px 6px 6px;
+  cursor: pointer;
+  position: relative;
+  transition: transform .18s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .18s ease,
+              opacity .2s ease;
+  display: flex; flex-direction: column;
+  user-select: none;
+  background: var(--surface);
+}
+
+/* Estados */
+.materia-card.pendiente {
+  border-color: var(--area-mid);
+  background: var(--area-light);
+  opacity: .72;
+}
+.materia-card.aprobada {
+  border-color: var(--area-vivid);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--area-mid), var(--shadow);
+  opacity: .9;
+}
+.materia-card.exonerada {
+  border-color: var(--area-vivid);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--area-vivid), var(--shadow-lg);
+  opacity: 1;
+}
+.materia-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  opacity: 1 !important;
+  z-index: 5;
+}
+
+/* Colores por área via CSS custom props */
+.area-CFM { --area-vivid:var(--cfm-vivid); --area-light:var(--cfm-light); --area-mid:var(--cfm-mid); --area-text:var(--cfm-text); }
+.area-CQ  { --area-vivid:var(--cq-vivid);  --area-light:var(--cq-light);  --area-mid:var(--cq-mid);  --area-text:var(--cq-text); }
+.area-CBB { --area-vivid:var(--cbb-vivid); --area-light:var(--cbb-light); --area-mid:var(--cbb-mid); --area-text:var(--cbb-text); }
+.area-CFA { --area-vivid:var(--cfa-vivid); --area-light:var(--cfa-light); --area-mid:var(--cfa-mid); --area-text:var(--cfa-text); }
+.area-PRO { --area-vivid:var(--pro-vivid); --area-light:var(--pro-light); --area-mid:var(--pro-mid); --area-text:var(--pro-text); }
+.area-OPE { --area-vivid:var(--ope-vivid); --area-light:var(--ope-light); --area-mid:var(--ope-mid); --area-text:var(--ope-text); }
+
+.card-area-tag {
+  font-size: .5rem; font-weight: 700; letter-spacing: .8px;
+  color: var(--area-vivid); text-transform: uppercase; line-height: 1;
+}
+.card-cr {
+  position: absolute; top: 5px; right: 5px;
+  font-size: .55rem; font-weight: 700; font-family: var(--mono);
+  color: var(--area-text); opacity: .8;
+}
+.card-abrev {
+  font-size: .78rem; font-weight: 700; color: var(--area-text);
+  margin: 5px 0 3px; line-height: 1.2; text-align: center;
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  word-break: break-word;
+}
+.card-nombre {
+  font-size: .48rem; color: var(--area-text); opacity: .7;
+  text-align: center; line-height: 1.3; margin-top: auto;
+}
+.card-codigo {
+  font-size: .46rem; font-family: var(--mono);
+  color: var(--area-vivid); text-align: center; margin-top: 2px; opacity: .8;
+}
+
+/* Indicador de estado */
+.card-estado-dot {
+  position: absolute; bottom: 5px; right: 5px;
+  width: 8px; height: 8px; border-radius: 50%; display: none;
+}
+.aprobada  .card-estado-dot { display: block; background: #F59E0B; box-shadow: 0 0 4px #F59E0B; }
+.exonerada .card-estado-dot { display: block; background: #10B981; box-shadow: 0 0 5px #10B981; }
+
+/* Hemisemestre tag */
+.hemi-tag {
+  position: absolute; top: 5px; left: 5px;
+  font-size: .42rem; font-weight: 700; line-height: 1;
+  background: var(--area-vivid); color: #fff;
+  border-radius: 3px; padding: 1px 3px; opacity: .8;
+}
+
+/* Highlights al hover */
+.materia-card.hl-self  { outline: 2px solid #3B82F6; outline-offset: 2px; opacity:1!important; transform:translateY(-3px); box-shadow:var(--shadow-hover); z-index:5; }
+.materia-card.hl-pre   { outline: 2px solid #F59E0B; outline-offset: 2px; opacity:1!important; }
+.materia-card.hl-post  { outline: 2px solid #10B981; outline-offset: 2px; opacity:1!important; }
+
+/* Filtro semestre — tarjetas del semestre seleccionado se elevan */
+body.sem-filter-on .materia-card { opacity: .35; transform: none; }
+body.sem-filter-on .materia-card.sem-match {
+  opacity: 1; transform: translateY(-4px);
+  box-shadow: var(--shadow-hover); z-index: 5;
+}
+
+/* ══════════════════════════════════════════════════════
+   VISTA TABLA PERIÓDICA
+══════════════════════════════════════════════════════ */
+#view-periodica {
+  display: none;
+  padding: 20px 28px;
+  overflow-x: auto;
+}
+.periodica-wrap {
+  min-width: max-content;
+}
+.periodica-title {
+  font-size: 1.8rem; font-weight: 800; letter-spacing: -1px;
+  color: var(--text); margin-bottom: 4px;
+}
+.periodica-subtitle {
+  font-size: .8rem; color: var(--text3); margin-bottom: 20px;
+}
+.periodica-grid {
+  display: grid;
+  gap: 8px;
+}
+.periodica-row {
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.periodica-group-label {
+  width: 90px; flex-shrink: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-right: 8px; border-right: 2px solid var(--border2);
+  margin-right: 4px; min-height: var(--card-h);
+}
+.periodica-group-name {
+  font-size: .65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px;
+  line-height: 1.3;
+}
+.periodica-group-cr {
+  font-size: .6rem; color: var(--text3); font-family: var(--mono); margin-top: 3px;
+}
+.periodica-cards {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+/* ══════════════════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(15,23,42,.55);
+  backdrop-filter: blur(3px);
+  z-index: 500;
+  align-items: center; justify-content: center;
+  padding: 16px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: min(500px, 100%);
+  max-height: 85vh; overflow-y: auto;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.18);
+  animation: modalIn .2s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modalIn {
+  from { opacity:0; transform:translateY(12px) scale(.97); }
+  to   { opacity:1; transform:none; }
+}
+.modal-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px; margin-bottom: 18px;
+}
+.modal-area-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px; border-radius: 999px; font-size: .65rem; font-weight: 700;
+  margin-bottom: 6px; border: 1.5px solid;
+}
+.modal-nombre { font-size: 1.1rem; font-weight: 800; line-height: 1.3; }
+.modal-codigo { font-size: .72rem; font-family: var(--mono); color: var(--text3); margin-top: 4px; }
+.modal-close {
+  background: var(--bg); border: 1px solid var(--border);
+  width: 30px; height: 30px; border-radius: 8px;
+  cursor: pointer; font-size: 1rem; display: flex;
+  align-items: center; justify-content: center;
+  color: var(--text2); flex-shrink: 0; transition: all .15s;
+}
+.modal-close:hover { background: var(--border2); }
+.modal-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px;
+}
+.modal-stat {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+}
+.modal-stat label { display: block; font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--text3); margin-bottom: 3px; }
+.modal-stat span { font-size: .95rem; font-weight: 700; }
+.previas-section-title {
+  font-size: .65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .5px; color: var(--text3); margin-bottom: 8px;
+}
+.previas-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.previa-chip {
+  display: flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 999px;
+  border: 1.5px solid; font-size: .72rem; font-weight: 500;
+  cursor: pointer; transition: opacity .15s;
+}
+.previa-chip:hover { opacity: .75; }
+.previa-chip.ok  { border-color: #10B981; color: #10B981; background: #F0FDF4; }
+.previa-chip.nok { border-color: #F87171; color: #DC2626; background: #FEF2F2; }
+.estado-btns {
+  display: flex; gap: 8px; margin-top: 16px;
+}
+.btn-estado {
+  flex: 1; padding: 9px; border-radius: 10px;
+  border: 2px solid; font-family: var(--font);
+  font-size: .78rem; font-weight: 600; cursor: pointer;
+  transition: all .15s; background: transparent; letter-spacing: .2px;
+}
+.btn-pendiente  { border-color: var(--border2); color: var(--text3); }
+.btn-aprobada   { border-color: #F59E0B; color: #B45309; }
+.btn-exonerada  { border-color: #10B981; color: #065F46; }
+.btn-estado.activo.btn-pendiente  { background: var(--border2); color: var(--text); }
+.btn-estado.activo.btn-aprobada   { background: #FEF3C7; border-color: #F59E0B; color: #92400E; }
+.btn-estado.activo.btn-exonerada  { background: #D1FAE5; border-color: #10B981; color: #064E3B; }
+.modal-notas {
+  margin-top: 12px; font-size: .75rem; color: var(--text2);
+  background: #FFF7ED; border: 1px solid #FED7AA;
+  border-radius: 8px; padding: 10px 12px; line-height: 1.6;
+}
+.modal-notas::before { content: "ℹ️  "; }
+
+/* ══════════════════════════════════════════════════════
+   EMPTY SLOT (para separación en vista periódica)
+══════════════════════════════════════════════════════ */
+.card-empty {
+  width: var(--card-w); min-height: var(--card-h);
+  pointer-events: none; visibility: hidden;
+}
+
+/* ══════════════════════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 999px; }
 </style>
 </head>
 <body>
 
+<!-- ────────────────────── HEADER ────────────────────── -->
 <header>
-  <div class="header-title">
-    <h1>⚗️ Malla Curricular · Químico Farmacéutico</h1>
-    <p>Facultad de Química · UDELAR · Plan de Estudios 2015</p>
-  </div>
-  <div class="creditos-global">
+  <div class="header-brand">
+    <div class="header-icon">⚗️</div>
     <div>
-      <div class="total"><span id="cr-total">0</span> <span style="font-size:.8rem;color:var(--text2)">/ 450 cr</span></div>
-      <div class="meta">créditos acumulados</div>
+      <h1>Malla Curricular · Químico Farmacéutico</h1>
+      <p>Facultad de Química · UDELAR · Plan de Estudios 2015</p>
     </div>
-    <div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-global" style="width:0%"></div></div>
-      <div class="meta" style="margin-top:3px"><span id="pct-global">0</span>% completado</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <div class="view-toggle">
+      <button class="view-btn active" id="btn-view-sem" onclick="setView('sem')">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="1" width="3" height="14"/><rect x="6" y="1" width="3" height="14"/><rect x="11" y="1" width="4" height="14"/>
+        </svg>
+        Por semestre
+      </button>
+      <button class="view-btn" id="btn-view-per" onclick="setView('per')">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/>
+          <rect x="1" y="9" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/>
+        </svg>
+        Tabla periódica
+      </button>
+    </div>
+    <div class="creditos-wrap">
+      <div class="cr-total-box">
+        <div class="cr-num"><span id="cr-total">0</span><span> / 450</span></div>
+        <div class="cr-label">créditos exonerados</div>
+      </div>
+      <div>
+        <div class="progress-outer"><div class="progress-fill" id="progress-global"></div></div>
+        <div class="cr-pct" id="pct-global">0% completado</div>
+      </div>
     </div>
   </div>
 </header>
 
-<div class="areas-legend" id="areas-legend"></div>
-<div class="area-progress-section" id="area-progress"></div>
-<div class="highlight-legend">
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;outline:2px solid #38BDF8"></span>Seleccionada</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;outline:2px solid #FACC15"></span>Previas</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;outline:2px solid #4ADE80"></span>La necesitan como previa</span>
+<!-- ────────────────────── TOOLBAR ────────────────────── -->
+<div class="toolbar">
+  <span class="toolbar-label">ÁREAS:</span>
+  <div class="area-pills" id="area-pills"></div>
+  <div style="width:1px;height:20px;background:var(--border2);flex-shrink:0"></div>
+  <span class="toolbar-label">FILTRO:</span>
+  <div class="sem-filter" id="sem-filter"></div>
 </div>
 
-<main><div class="semestres-wrap" id="malla"></div></main>
+<!-- ────────────────────── BARRA ÁREA PROGRESS ────────────────────── -->
+<div class="area-progress-section" id="area-progress"></div>
 
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <div class="modal-header">
-      <div>
-        <div class="modal-titulo" id="modal-titulo"></div>
-        <div class="modal-codigo" id="modal-codigo"></div>
-      </div>
-      <button class="modal-close" id="modal-close">✕</button>
-    </div>
-    <div class="modal-info" id="modal-info"></div>
-    <div id="modal-previas"></div>
-    <div class="modal-estado-btns">
-      <button class="btn-estado btn-pendiente" data-estado="pendiente">⬜ Pendiente</button>
-      <button class="btn-estado btn-aprobada"  data-estado="aprobada">🟡 Aprobada</button>
-      <button class="btn-estado btn-exonerada" data-estado="exonerada">🟢 Exonerada</button>
-    </div>
-    <div class="modal-notas" id="modal-notas" style="display:none"></div>
+<!-- ────────────────────── LEGEND ────────────────────── -->
+<div class="legend-bar">
+  <span><span class="lg-dot" style="border-color:#3B82F6"></span>Seleccionada</span>
+  <span><span class="lg-dot" style="border-color:#F59E0B"></span>Previas que necesita</span>
+  <span><span class="lg-dot" style="border-color:#10B981"></span>Materias que la necesitan</span>
+  <span style="margin-left:auto"><span class="lg-dot" style="background:#10B981;border-color:#10B981;border-radius:50%;width:8px;height:8px"></span> Exonerada</span>
+  <span><span class="lg-dot" style="background:#F59E0B;border-color:#F59E0B;border-radius:50%;width:8px;height:8px"></span> Aprobada</span>
+</div>
+
+<!-- ────────────────────── VISTA SEMESTRAL ────────────────────── -->
+<div id="view-semestral">
+  <div class="sems-wrap" id="malla-sems"></div>
+</div>
+
+<!-- ────────────────────── VISTA TABLA PERIÓDICA ────────────────────── -->
+<div id="view-periodica">
+  <div class="periodica-wrap">
+    <div class="periodica-title">Tabla Periódica de Materias</div>
+    <div class="periodica-subtitle">Químico Farmacéutico · PE2015 · Fac. Química UDELAR</div>
+    <div class="periodica-grid" id="malla-per"></div>
   </div>
 </div>
 
+<!-- ────────────────────── MODAL ────────────────────── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div style="flex:1">
+        <div class="modal-area-pill" id="modal-area-pill"></div>
+        <div class="modal-nombre" id="modal-nombre"></div>
+        <div class="modal-codigo" id="modal-codigo"></div>
+      </div>
+      <button class="modal-close" onclick="cerrarModal()">✕</button>
+    </div>
+    <div class="modal-grid" id="modal-grid"></div>
+    <div id="modal-previas-wrap"></div>
+    <div class="estado-btns">
+      <button class="btn-estado btn-pendiente"  data-e="pendiente">⬜ Pendiente</button>
+      <button class="btn-estado btn-aprobada"   data-e="aprobada">🟡 Aprobada</button>
+      <button class="btn-estado btn-exonerada"  data-e="exonerada">✅ Exonerada</button>
+    </div>
+    <div id="modal-notas-wrap"></div>
+  </div>
+</div>
+
+<!-- ────────────────────── SCRIPT ────────────────────── -->
 <script>
-const areasMeta={
-  CFM:{nombre:"Cs. Físico-Matemáticas",creditosMin:42,color:"#3B82F6"},
-  CQ:{nombre:"Ciencias Químicas",creditosMin:108,color:"#22C55E"},
-  CBB:{nombre:"Cs. Biológicas y Biomédicas",creditosMin:69,color:"#F97316"},
-  CFA:{nombre:"Cs. Farmacéuticas",creditosMin:105,color:"#A855F7"},
-  PRO:{nombre:"Practicantado",creditosMin:55,color:"#6B7280"},
-  OPE:{nombre:"Optativas y Electivas",creditosMin:71,color:"#EC4899"},
+/* ── DATOS ─────────────────────────────────────────────────────────────── */
+const areasMeta = {
+  CFM:{ nombre:"Cs. Físico-Matemáticas",    creditosMin:42,  color:"#1D4ED8", pastel:"#DBEAFE", mid:"#93C5FD", text:"#1E3A8A" },
+  CQ: { nombre:"Ciencias Químicas",          creditosMin:108, color:"#15803D", pastel:"#DCFCE7", mid:"#86EFAC", text:"#14532D" },
+  CBB:{ nombre:"Cs. Biológicas y Biomédicas",creditosMin:69,  color:"#C2410C", pastel:"#FFEDD5", mid:"#FDBA74", text:"#7C2D12" },
+  CFA:{ nombre:"Cs. Farmacéuticas",          creditosMin:105, color:"#7C3AED", pastel:"#EDE9FE", mid:"#C4B5FD", text:"#4C1D95" },
+  PRO:{ nombre:"Practicantado",              creditosMin:55,  color:"#374151", pastel:"#F3F4F6", mid:"#9CA3AF", text:"#1F2937" },
+  OPE:{ nombre:"Optativas y Electivas",      creditosMin:71,  color:"#BE185D", pastel:"#FCE7F3", mid:"#F9A8D4", text:"#831843" },
 };
-const CREDITOS_MIN=450;
-const materias=[
-  {id:"MAT_A",codigo:"01A",nombre:"Matemática A",nombreCorto:"Mat. A",creditos:10,semestre:1,hemisemestre:null,area:"CFM",pre:[],notas:"Análisis I"},
-  {id:"QUI_GEN_I",codigo:"102",nombre:"Química General I",nombreCorto:"Q. Gral I",creditos:7,semestre:1,hemisemestre:null,area:"CQ",pre:[]},
-  {id:"BIO_I",codigo:"103B",nombre:"Introducción a las Ciencias Biológicas I",nombreCorto:"ICB I",creditos:5,semestre:1,hemisemestre:null,area:"CBB",pre:[]},
-  {id:"RIESGOS",codigo:"104A",nombre:"Prevención de Riesgos en el Laboratorio",nombreCorto:"Prev. Riesgos",creditos:4,semestre:1,hemisemestre:2,area:"CQ",pre:[],notas:"2do hemisemestre"},
-  {id:"MAT_B",codigo:"02B",nombre:"Matemática B",nombreCorto:"Mat. B",creditos:6,semestre:2,hemisemestre:1,area:"CFM",pre:["MAT_A"],notas:"1er hemisemestre"},
-  {id:"MAT_C",codigo:"02C",nombre:"Matemática C",nombreCorto:"Mat. C",creditos:8,semestre:2,hemisemestre:null,area:"CFM",pre:["MAT_A"],notas:"Estadística"},
-  {id:"QUI_GEN_II",codigo:"202",nombre:"Química General II",nombreCorto:"Q. Gral II",creditos:8,semestre:2,hemisemestre:null,area:"CQ",pre:["QUI_GEN_I","RIESGOS"]},
-  {id:"BIO_II",codigo:"203A",nombre:"Introducción a las Ciencias Biológicas II",nombreCorto:"ICB II",creditos:5,semestre:2,hemisemestre:null,area:"CBB",pre:["BIO_I","RIESGOS"]},
-  {id:"FIS101",codigo:"205Q",nombre:"Física 101",nombreCorto:"Física 101",creditos:7,semestre:2,hemisemestre:null,area:"CFM",pre:["MAT_A"]},
-  {id:"QO101",codigo:"301",nombre:"Química Orgánica 101",nombreCorto:"Org. 101",creditos:11,semestre:3,hemisemestre:null,area:"CQ",pre:["QUI_GEN_II"]},
-  {id:"QA1",codigo:"302",nombre:"Química Analítica I",nombreCorto:"Q. Anal. I",creditos:10,semestre:3,hemisemestre:null,area:"CQ",pre:["QUI_GEN_II"]},
-  {id:"QI_T",codigo:"303A",nombre:"Química Inorgánica (T)",nombreCorto:"Q. Inorg. T",creditos:6,semestre:3,hemisemestre:null,area:"CQ",pre:["QUI_GEN_II"],notas:"Teórico"},
-  {id:"QI_L",codigo:"303B",nombre:"Laboratorio de Química Inorgánica",nombreCorto:"Q. Inorg. L",creditos:5,semestre:3,hemisemestre:null,area:"CQ",pre:["QUI_GEN_II"],notas:"Laboratorio"},
-  {id:"FIS102",codigo:"304Q",nombre:"Física 102",nombreCorto:"Física 102",creditos:7,semestre:3,hemisemestre:null,area:"CFM",pre:["FIS101"],notas:"Electromagnetismo"},
-  {id:"FISIO",codigo:"408A",nombre:"Fisiología",nombreCorto:"Fisiología",creditos:7,semestre:3,hemisemestre:null,area:"CBB",pre:["BIO_II"]},
-  {id:"QO102",codigo:"401",nombre:"Química Orgánica 102",nombreCorto:"Org. 102",creditos:6,semestre:4,hemisemestre:null,area:"CQ",pre:["QO101"]},
-  {id:"QA2",codigo:"402A",nombre:"Química Analítica II",nombreCorto:"Q. Anal. II",creditos:7,semestre:4,hemisemestre:null,area:"CQ",pre:["QA1"]},
-  {id:"FQ102",codigo:"508A",nombre:"Fisicoquímica 102",nombreCorto:"FQ 102",creditos:13,semestre:4,hemisemestre:null,area:"CQ",pre:["MAT_B","QA1"]},
-  {id:"FIS003L",codigo:"404",nombre:"Física 003 (L)",nombreCorto:"Física 003L",creditos:4,semestre:4,hemisemestre:1,area:"CFM",pre:["FIS102"],notas:"1er hemisemestre"},
-  {id:"FISIOPAT",codigo:"415C",nombre:"Fisiopatología",nombreCorto:"Fisiopatol.",creditos:7,semestre:4,hemisemestre:null,area:"CBB",pre:["FISIO"]},
-  {id:"INTRO_MED",codigo:"416X",nombre:"Introducción al Medicamento",nombreCorto:"Intro. Med.",creditos:2,semestre:4,hemisemestre:1,area:"CFA",pre:[],notas:"1er hemisemestre"},
-  {id:"QO103L",codigo:"501",nombre:"Química Orgánica 103 (L)",nombreCorto:"Org. 103L",creditos:5,semestre:5,hemisemestre:null,area:"CQ",pre:["QO101","QA1"],notas:"Laboratorio"},
-  {id:"QO104",codigo:"502X",nombre:"Química Orgánica 104",nombreCorto:"Org. 104",creditos:4,semestre:5,hemisemestre:1,area:"CQ",pre:["QO102"],notas:"1er hemisemestre"},
-  {id:"QA3",codigo:"503",nombre:"Química Analítica III",nombreCorto:"Q. Anal. III",creditos:10,semestre:5,hemisemestre:null,area:"CQ",pre:["QA2"],notas:"Análisis Instrumental"},
-  {id:"FQ103",codigo:"520A",nombre:"Fisicoquímica 103",nombreCorto:"FQ 103",creditos:12,semestre:5,hemisemestre:null,area:"CQ",pre:["FQ102"]},
-  {id:"BIOQ",codigo:"190",nombre:"Bioquímica Op. II",nombreCorto:"Bioquímica",creditos:10,semestre:5,hemisemestre:null,area:"CBB",pre:["BIO_I","FQ102","QO102","QA2"],notas:"A partir de 2026"},
-  {id:"FARMACOGNOSIA",codigo:"909",nombre:"Farmacognosia",nombreCorto:"Farmacogn.",creditos:9,semestre:6,hemisemestre:null,area:"CFA",pre:["QO103L","QO104","QA3"]},
-  {id:"BOTANICA",codigo:"908A",nombre:"Botánica",nombreCorto:"Botánica",creditos:4,semestre:6,hemisemestre:1,area:"CFA",pre:["BIO_II","QO103L","QO104","QA3"],notas:"1er hemisemestre"},
-  {id:"MICROBIO_T",codigo:"533T",nombre:"Microbiología General (T)",nombreCorto:"Microbio. T",creditos:6,semestre:6,hemisemestre:null,area:"CBB",pre:["BIO_II","BIOQ"],notas:"Teórico"},
-  {id:"MICROBIO_L",codigo:"533L",nombre:"Laboratorio de Análisis Microbiológico",nombreCorto:"Microbio. L",creditos:6,semestre:6,hemisemestre:null,area:"CBB",pre:["BIO_I","BIOQ"],notas:"Laboratorio"},
-  {id:"INMUNO1",codigo:"506X",nombre:"Inmunología I",nombreCorto:"Inmuno. I",creditos:5,semestre:6,hemisemestre:2,area:"CBB",pre:["BIO_II","BIOQ"],notas:"2do hemisemestre"},
-  {id:"FARMACOKINETICA",codigo:"535X",nombre:"Farmacocinética y Biofarmacia",nombreCorto:"Farmacocin.",creditos:8,semestre:6,hemisemestre:null,area:"CFA",pre:["FISIO","MAT_B"]},
-  {id:"TALLER_INTEG",codigo:"615",nombre:"Taller de Integración Cs. Biológicas y Biomédicas",nombreCorto:"Taller Integ.",creditos:2,semestre:6,hemisemestre:1,area:"CBB",pre:["FISIO","FISIOPAT"],notas:"1er hemisemestre"},
-  {id:"UC_CALIDAD",codigo:"157",nombre:"Sistemas de Gestión",nombreCorto:"Sist. Gestión",creditos:4,semestre:6,hemisemestre:2,area:"CFA",pre:["MAT_C","QA3"],notas:"2do hemisemestre. A partir de 2025."},
-  {id:"QF101",codigo:"700",nombre:"Química Farmacéutica 101 (T)",nombreCorto:"Q.Farm. 101",creditos:8,semestre:7,hemisemestre:null,area:"CFA",pre:["QO102","QO103L","QO104","QA3","FQ102","FARMACOGNOSIA","BIOQ"],notas:"Teórico"},
-  {id:"QF102",codigo:"701X",nombre:"Química Farmacéutica 102 (L)",nombreCorto:"Q.Farm. 102",creditos:6,semestre:7,hemisemestre:null,area:"CFA",pre:["QO102","QO103L","QO104","QA3","FQ102","FQ103","FARMACOGNOSIA","BIOQ"],notas:"Laboratorio"},
-  {id:"FTEC1",codigo:"702X",nombre:"Farmacotecnia I",nombreCorto:"Farmacotec. I",creditos:10,semestre:7,hemisemestre:null,area:"CFA",pre:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"]},
-  {id:"FARMACO",codigo:"703X",nombre:"Farmacología",nombreCorto:"Farmacología",creditos:10,semestre:7,hemisemestre:null,area:"CFA",pre:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"]},
-  {id:"INMUNO2",codigo:"534X",nombre:"Inmunología II",nombreCorto:"Inmuno. II",creditos:7,semestre:7,hemisemestre:null,area:"CBB",pre:["INMUNO1"]},
-  {id:"BROMATO",codigo:"704",nombre:"Bromatología y Nutrición",nombreCorto:"Bromatología",creditos:4,semestre:7,hemisemestre:2,area:"CBB",pre:["BIOQ","MICROBIO_T"],notas:"2do hemisemestre"},
-  {id:"FARMACOTERAPIA",codigo:"803X",nombre:"Farmacoterapia I",nombreCorto:"Farmacoterap.",creditos:8,semestre:8,hemisemestre:null,area:"CFA",pre:["FISIOPAT","FARMACO"]},
-  {id:"FTEC2",codigo:"802X",nombre:"Farmacotecnia II",nombreCorto:"Farmacotec. II",creditos:10,semestre:8,hemisemestre:null,area:"CFA",pre:["FTEC1"]},
-  {id:"CONTROL",codigo:"804X",nombre:"Control de Calidad de Medicamentos I",nombreCorto:"Control Cal.",creditos:12,semestre:8,hemisemestre:null,area:"CFA",pre:["MICROBIO_T","QF101","QF102","FTEC1"]},
-  {id:"TOXICO",codigo:"805",nombre:"Toxicología Fundamental",nombreCorto:"Toxicología",creditos:4,semestre:8,hemisemestre:1,area:"CFA",pre:["QA3","BIOQ"],notas:"1er hemisemestre"},
-  {id:"LEGISLACION",codigo:"809",nombre:"Legislación y Deontología",nombreCorto:"Legislación",creditos:6,semestre:9,hemisemestre:null,area:"CFA",pre:["FTEC2","FARMACOTERAPIA"]},
-  {id:"GESTION",codigo:"410",nombre:"Gestión de Empresas",nombreCorto:"Gestión Emp.",creditos:4,semestre:9,hemisemestre:2,area:"CFA",pre:[],notas:"2do hemisemestre"},
-  {id:"PRACTICA",codigo:"965X",nombre:"Practicantado",nombreCorto:"Practicantado",creditos:55,semestre:10,hemisemestre:null,area:"PRO",pre:[],notas:"Requiere todas las obligatorias aprobadas."},
+const CREDITOS_MIN = 450;
+
+const materias = [
+  {id:"MAT_A",     codigo:"01A", s:1,h:null,nombre:"Matemática A",               abrev:"Mat. A",      area:"CFM",cr:10,pre:[]},
+  {id:"QUI_GEN_I", codigo:"102", s:1,h:null,nombre:"Química General I",           abrev:"Q. Gral. I",  area:"CQ", cr:7, pre:[]},
+  {id:"BIO_I",     codigo:"103B",s:1,h:null,nombre:"Introd. Cs. Biológicas I",    abrev:"ICB I",       area:"CBB",cr:5, pre:[]},
+  {id:"RIESGOS",   codigo:"104A",s:1,h:2,   nombre:"Prev. Riesgos en Lab.",       abrev:"Prev. Riesgos",area:"CQ",cr:4, pre:[],notas:"2do hemisemestre"},
+  {id:"MAT_B",     codigo:"02B", s:2,h:1,   nombre:"Matemática B",                abrev:"Mat. B",      area:"CFM",cr:6, pre:["MAT_A"],notas:"1er hemisemestre"},
+  {id:"MAT_C",     codigo:"02C", s:2,h:null,nombre:"Matemática C",                abrev:"Mat. C",      area:"CFM",cr:8, pre:["MAT_A"],notas:"Estadística"},
+  {id:"QUI_GEN_II",codigo:"202", s:2,h:null,nombre:"Química General II",          abrev:"Q. Gral. II", area:"CQ", cr:8, pre:["QUI_GEN_I","RIESGOS"]},
+  {id:"BIO_II",    codigo:"203A",s:2,h:null,nombre:"Introd. Cs. Biológicas II",   abrev:"ICB II",      area:"CBB",cr:5, pre:["BIO_I","RIESGOS"]},
+  {id:"FIS101",    codigo:"205Q",s:2,h:null,nombre:"Física 101",                  abrev:"Física 101",  area:"CFM",cr:7, pre:["MAT_A"]},
+  {id:"QO101",     codigo:"301", s:3,h:null,nombre:"Química Orgánica 101",        abrev:"Org. 101",    area:"CQ", cr:11,pre:["QUI_GEN_II"]},
+  {id:"QA1",       codigo:"302", s:3,h:null,nombre:"Química Analítica I",         abrev:"Q. Anal. I",  area:"CQ", cr:10,pre:["QUI_GEN_II"]},
+  {id:"QI_T",      codigo:"303A",s:3,h:null,nombre:"Química Inorgánica (T)",      abrev:"Q. Inorg. T", area:"CQ", cr:6, pre:["QUI_GEN_II"],notas:"Teórico"},
+  {id:"QI_L",      codigo:"303B",s:3,h:null,nombre:"Lab. Química Inorgánica",     abrev:"Q. Inorg. L", area:"CQ", cr:5, pre:["QUI_GEN_II"],notas:"Laboratorio"},
+  {id:"FIS102",    codigo:"304Q",s:3,h:null,nombre:"Física 102",                  abrev:"Física 102",  area:"CFM",cr:7, pre:["FIS101"],notas:"Electromagnetismo"},
+  {id:"FISIO",     codigo:"408A",s:3,h:null,nombre:"Fisiología",                  abrev:"Fisiología",  area:"CBB",cr:7, pre:["BIO_II"]},
+  {id:"QO102",     codigo:"401", s:4,h:null,nombre:"Química Orgánica 102",        abrev:"Org. 102",    area:"CQ", cr:6, pre:["QO101"]},
+  {id:"QA2",       codigo:"402A",s:4,h:null,nombre:"Química Analítica II",        abrev:"Q. Anal. II", area:"CQ", cr:7, pre:["QA1"]},
+  {id:"FQ102",     codigo:"508A",s:4,h:null,nombre:"Fisicoquímica 102",           abrev:"FQ 102",      area:"CQ", cr:13,pre:["MAT_B","QA1"]},
+  {id:"FIS003L",   codigo:"404", s:4,h:1,   nombre:"Física 003 (L)",              abrev:"Física 003L", area:"CFM",cr:4, pre:["FIS102"],notas:"Lab. 1er hemisemestre"},
+  {id:"FISIOPAT",  codigo:"415C",s:4,h:null,nombre:"Fisiopatología",              abrev:"Fisiopatol.", area:"CBB",cr:7, pre:["FISIO"]},
+  {id:"INTRO_MED", codigo:"416X",s:4,h:1,   nombre:"Introducción al Medicamento", abrev:"Intro. Med.", area:"CFA",cr:2, pre:[],notas:"1er hemi. Asistencia obligatoria."},
+  {id:"QO103L",    codigo:"501", s:5,h:null,nombre:"Q. Orgánica 103 (L)",         abrev:"Org. 103L",   area:"CQ", cr:5, pre:["QO101","QA1"],notas:"Laboratorio"},
+  {id:"QO104",     codigo:"502X",s:5,h:1,   nombre:"Química Orgánica 104",        abrev:"Org. 104",    area:"CQ", cr:4, pre:["QO102"],notas:"1er hemisemestre"},
+  {id:"QA3",       codigo:"503", s:5,h:null,nombre:"Química Analítica III",       abrev:"Q. Anal. III",area:"CQ", cr:10,pre:["QA2"],notas:"Análisis Instrumental"},
+  {id:"FQ103",     codigo:"520A",s:5,h:null,nombre:"Fisicoquímica 103",           abrev:"FQ 103",      area:"CQ", cr:12,pre:["FQ102"]},
+  {id:"BIOQ",      codigo:"190", s:5,h:null,nombre:"Bioquímica Op. II",           abrev:"Bioquímica",  area:"CBB",cr:10,pre:["BIO_I","FQ102","QO102","QA2"],notas:"Cód. 190, a partir de 2026"},
+  {id:"FARMACOGNOSIA",  codigo:"909", s:6,h:null,nombre:"Farmacognosia",          abrev:"Farmacogn.",  area:"CFA",cr:9, pre:["QO103L","QO104","QA3"]},
+  {id:"BOTANICA",       codigo:"908A",s:6,h:1,   nombre:"Botánica",               abrev:"Botánica",    area:"CFA",cr:4, pre:["BIO_II","QO103L","QO104","QA3"],notas:"1er hemisemestre"},
+  {id:"MICROBIO_T",     codigo:"533T",s:6,h:null,nombre:"Microbiología Gral. (T)",abrev:"Microbio. T", area:"CBB",cr:6, pre:["BIO_II","BIOQ"],notas:"Teórico"},
+  {id:"MICROBIO_L",     codigo:"533L",s:6,h:null,nombre:"Lab. Análisis Microbiol.",abrev:"Microbio. L",area:"CBB",cr:6, pre:["BIO_I","BIOQ"],notas:"Laboratorio"},
+  {id:"INMUNO1",        codigo:"506X",s:6,h:2,   nombre:"Inmunología I",          abrev:"Inmuno. I",   area:"CBB",cr:5, pre:["BIO_II","BIOQ"],notas:"2do hemisemestre"},
+  {id:"FARMACOKINETICA",codigo:"535X",s:6,h:null,nombre:"Farmacocinética y Biofarmacia",abrev:"Farmacocin.",area:"CFA",cr:8,pre:["FISIO","MAT_B"]},
+  {id:"TALLER_INTEG",   codigo:"615", s:6,h:1,   nombre:"Taller Integ. Cs. Bio. y Biomed.",abrev:"Taller Integ.",area:"CBB",cr:2,pre:["FISIO","FISIOPAT"],notas:"1er hemi"},
+  {id:"UC_CALIDAD",     codigo:"157", s:6,h:2,   nombre:"Sistemas de Gestión",    abrev:"Sist. Gestión",area:"CFA",cr:4,pre:["MAT_C","QA3"],notas:"2do hemi. Desde 2025."},
+  {id:"QF101",     codigo:"700", s:7,h:null,nombre:"Q. Farmacéutica 101 (T)",     abrev:"Q. Farm. 101",area:"CFA",cr:8, pre:["QO102","QO103L","QO104","QA3","FQ102","FARMACOGNOSIA","BIOQ"],notas:"Teórico"},
+  {id:"QF102",     codigo:"701X",s:7,h:null,nombre:"Q. Farmacéutica 102 (L)",     abrev:"Q. Farm. 102",area:"CFA",cr:6, pre:["QO102","QO103L","QO104","QA3","FQ102","FQ103","FARMACOGNOSIA","BIOQ"],notas:"Laboratorio"},
+  {id:"FTEC1",     codigo:"702X",s:7,h:null,nombre:"Farmacotecnia I",             abrev:"Farmacotec. I",area:"CFA",cr:10,pre:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"]},
+  {id:"FARMACO",   codigo:"703X",s:7,h:null,nombre:"Farmacología",                abrev:"Farmacología",area:"CFA",cr:10,pre:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"]},
+  {id:"INMUNO2",   codigo:"534X",s:7,h:null,nombre:"Inmunología II",              abrev:"Inmuno. II",  area:"CBB",cr:7, pre:["INMUNO1"]},
+  {id:"BROMATO",   codigo:"704", s:7,h:2,   nombre:"Bromatología y Nutrición",    abrev:"Bromatología",area:"CBB",cr:4, pre:["BIOQ","MICROBIO_T"],notas:"2do hemisemestre"},
+  {id:"FARMACOTERAPIA",codigo:"803X",s:8,h:null,nombre:"Farmacoterapia I",        abrev:"Farmacoterap.",area:"CFA",cr:8,pre:["FISIOPAT","FARMACO"]},
+  {id:"FTEC2",     codigo:"802X",s:8,h:null,nombre:"Farmacotecnia II",            abrev:"Farmacotec. II",area:"CFA",cr:10,pre:["FTEC1"]},
+  {id:"CONTROL",   codigo:"804X",s:8,h:null,nombre:"Control de Calidad Medic. I", abrev:"Control Cal.", area:"CFA",cr:12,pre:["MICROBIO_T","QF101","QF102","FTEC1"]},
+  {id:"TOXICO",    codigo:"805", s:8,h:1,   nombre:"Toxicología Fundamental",     abrev:"Toxicología",  area:"CFA",cr:4, pre:["QA3","BIOQ"],notas:"1er hemisemestre"},
+  {id:"LEGISLACION",codigo:"809",s:9,h:null,nombre:"Legislación y Deontología",   abrev:"Legislación",  area:"CFA",cr:6, pre:["FTEC2","FARMACOTERAPIA"]},
+  {id:"GESTION",   codigo:"410", s:9,h:2,   nombre:"Gestión de Empresas",         abrev:"Gestión Emp.", area:"CFA",cr:4, pre:[],notas:"2do hemi. Asistencia controlada."},
+  {id:"PRACTICA",  codigo:"965X",s:10,h:null,nombre:"Practicantado",              abrev:"Practicantado",area:"PRO",cr:55,pre:[],notas:"Requiere todas las obligatorias aprobadas."},
 ];
 
-const idx=Object.fromEntries(materias.map(m=>[m.id,m]));
-const STORAGE_KEY="qf_malla_pe2015_v1";
-function cargarEstado(){try{const r=localStorage.getItem(STORAGE_KEY);return r?JSON.parse(r):{}}catch{return{}}}
-function guardarEstado(e){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(e))}catch{}}
-let estado=cargarEstado();
-function getEstado(id){return estado[id]||"pendiente"}
-function setEstado(id,val){estado[id]=val;guardarEstado(estado);renderMalla();actualizarCreditos();if(modalId===id)abrirModal(id)}
+const idx = Object.fromEntries(materias.map(m=>[m.id,m]));
 
-function calcCreditos(){
-  const t={total:0};
-  for(const a in areasMeta)t[a]=0;
-  for(const m of materias)if(getEstado(m.id)==="exonerada"){t[m.area]=(t[m.area]||0)+m.creditos;t.total+=m.creditos}
+/* ── ESTADO ─────────────────────────────────────────────────────────────── */
+const SK = "qf_pe2015_v2";
+let estado = (() => { try{ return JSON.parse(localStorage.getItem(SK))||{};} catch{return{};} })();
+const getE = id => estado[id]||"pendiente";
+const setE = (id,v) => { estado[id]=v; try{localStorage.setItem(SK,JSON.stringify(estado));}catch{} refresh(); if(modalId===id) abrirModal(id); };
+
+/* ── CÁLCULO CRÉDITOS ───────────────────────────────────────────────────── */
+function calcCr() {
+  const t = {total:0};
+  for(const a in areasMeta) t[a]=0;
+  for(const m of materias) if(getE(m.id)==="exonerada"){ t[m.area]+=m.cr; t.total+=m.cr; }
   return t;
 }
 
-function actualizarCreditos(){
-  const cr=calcCreditos();
-  document.getElementById("cr-total").textContent=cr.total;
-  const pct=Math.min(100,Math.round(cr.total/CREDITOS_MIN*100));
-  document.getElementById("progress-global").style.width=pct+"%";
-  document.getElementById("pct-global").textContent=pct;
-  for(const[k,a]of Object.entries(areasMeta)){
-    const f=document.getElementById("fill-"+k);
-    const l=document.getElementById("label-cr-"+k);
-    if(!f)continue;
-    const got=cr[k]||0;
-    const pa=Math.min(100,Math.round(got/a.creditosMin*100));
-    f.style.width=pa+"%";f.style.background=a.color;
-    if(l)l.textContent=got+" / "+a.creditosMin+" cr";
+/* ── RENDER ÁREA PILLS ──────────────────────────────────────────────────── */
+function renderPills() {
+  const c = document.getElementById("area-pills"); c.innerHTML="";
+  for(const [k,a] of Object.entries(areasMeta)){
+    const p = document.createElement("div"); p.className="area-pill";
+    p.style.cssText=`background:${a.pastel};border-color:${a.mid};color:${a.text}`;
+    p.innerHTML=`<span class="dot" style="background:${a.color}"></span>${a.nombre}<span class="cr-mini">(mín. ${a.creditosMin})</span>`;
+    c.appendChild(p);
   }
 }
 
-function renderLeyenda(){
-  const c=document.getElementById("areas-legend");c.innerHTML="";
-  for(const[k,a]of Object.entries(areasMeta)){
-    const b=document.createElement("div");b.className="area-badge";
-    b.style.cssText=`background:${a.color}18;border-color:${a.color}55;color:${a.color}`;
-    b.innerHTML=`<span class="dot" style="background:${a.color}"></span>${a.nombre} <span style="opacity:.7;font-size:.62rem">(mín. ${a.creditosMin} cr)</span>`;
+/* ── RENDER SEM FILTER ──────────────────────────────────────────────────── */
+let semFilter = null;
+function renderSemFilter() {
+  const c = document.getElementById("sem-filter"); c.innerHTML="";
+  // "Todos"
+  const all = document.createElement("button"); all.className="sem-btn"+(semFilter===null?" active":"");
+  all.textContent="Todos"; all.onclick=()=>{semFilter=null;renderSemFilter();applyFilter();};
+  c.appendChild(all);
+  // años 1-5
+  const years = [{label:"1° año",sems:[1,2]},{label:"2° año",sems:[3,4]},{label:"3° año",sems:[5,6]},{label:"4° año",sems:[7,8]},{label:"5° año",sems:[9,10]}];
+  for(const y of years){
+    const b = document.createElement("button"); b.className="sem-btn"+(semFilter===y.label?" active":"");
+    b.textContent=y.label;
+    b.onclick=()=>{semFilter=y.label;renderSemFilter();applyFilter();};
     c.appendChild(b);
   }
 }
+function applyFilter() {
+  if(semFilter===null){ document.body.classList.remove("sem-filter-on"); document.querySelectorAll(".materia-card").forEach(c=>c.classList.remove("sem-match")); return; }
+  const years = {"1° año":[1,2],"2° año":[3,4],"3° año":[5,6],"4° año":[7,8],"5° año":[9,10]};
+  const sems = years[semFilter]||[];
+  document.body.classList.add("sem-filter-on");
+  document.querySelectorAll(".materia-card").forEach(c=>{
+    const id=c.dataset.id; const m=idx[id]; if(!m) return;
+    c.classList.toggle("sem-match", sems.includes(m.s));
+  });
+}
 
-function renderAreaProgress(){
-  const c=document.getElementById("area-progress");c.innerHTML="";
-  for(const[k,a]of Object.entries(areasMeta)){
-    const d=document.createElement("div");d.className="area-prog-item";
-    d.innerHTML=`<div class="area-prog-label"><span style="color:${a.color}">${a.nombre}</span><span id="label-cr-${k}" style="color:var(--text2)">0 / ${a.creditosMin} cr</span></div><div class="area-prog-bar"><div class="area-prog-fill" id="fill-${k}" style="width:0%;background:${a.color}"></div></div>`;
+/* ── RENDER ÁREA PROGRESS ────────────────────────────────────────────────── */
+function renderAreaProgress() {
+  const c = document.getElementById("area-progress"); c.innerHTML="";
+  for(const [k,a] of Object.entries(areasMeta)){
+    const d = document.createElement("div"); d.className="area-prog";
+    d.innerHTML=`<div class="area-prog-header"><span class="area-prog-name" style="color:${a.color}">${a.nombre}</span><span class="area-prog-cr" id="cr-label-${k}">0 / ${a.creditosMin} cr</span></div><div class="area-prog-bar"><div class="area-prog-fill" id="cr-fill-${k}" style="background:${a.color}"></div></div>`;
     c.appendChild(d);
   }
 }
 
-function simbolo(m){
-  const p=m.nombreCorto.replace(/[().]/g,"").trim().split(/\s+/);
-  if(p.length>=2)return(p[0][0]+p[1][0]).toUpperCase();
-  return m.nombreCorto.slice(0,2).toUpperCase();
-}
-
-function renderMalla(){
-  const wrap=document.getElementById("malla");wrap.innerHTML="";
-  const sems=[...new Set(materias.map(m=>m.semestre))].sort((a,b)=>a-b);
-  for(const s of sems){
-    const col=document.createElement("div");col.className="semestre-col";
-    const lbl=document.createElement("div");lbl.className="semestre-label";
-    lbl.textContent="Sem. "+s;col.appendChild(lbl);
-    for(const m of materias.filter(x=>x.semestre===s)){
-      const est=getEstado(m.id);
-      const card=document.createElement("div");
-      card.className=`materia-card area-${m.area} ${est}`;
-      card.dataset.id=m.id;
-      card.innerHTML=`
-        <span class="card-estado estado-${est}"></span>
-        <div class="card-numero">${m.creditos} cr</div>
-        <div class="card-simbolo">${simbolo(m)}</div>
-        <div class="card-nombre">${m.nombreCorto}</div>
-        ${m.hemisemestre?`<span class="hemi-tag">${m.hemisemestre}° hemi</span>`:""}
-      `;
-      card.addEventListener("click",()=>abrirModal(m.id));
-      card.addEventListener("mouseenter",()=>highlightPrevias(m.id));
-      card.addEventListener("mouseleave",clearHighlight);
-      col.appendChild(card);
-    }
-    wrap.appendChild(col);
+/* ── ACTUALIZAR CRÉDITOS ─────────────────────────────────────────────────── */
+function updateCr() {
+  const cr = calcCr();
+  document.getElementById("cr-total").textContent = cr.total;
+  const pct = Math.min(100,Math.round(cr.total/CREDITOS_MIN*100));
+  document.getElementById("progress-global").style.width = pct+"%";
+  document.getElementById("pct-global").textContent = pct+"% completado";
+  for(const [k,a] of Object.entries(areasMeta)){
+    const got=cr[k]||0; const pa=Math.min(100,Math.round(got/a.creditosMin*100));
+    const f=document.getElementById("cr-fill-"+k); if(f) f.style.width=pa+"%";
+    const l=document.getElementById("cr-label-"+k); if(l) l.textContent=got+" / "+a.creditosMin+" cr";
   }
 }
 
-function highlightPrevias(id){
-  clearHighlight();
-  const el=document.querySelector(`[data-id="${id}"]`);
-  if(el)el.classList.add("highlight-self");
-  const m=idx[id];if(!m)return;
-  for(const pid of m.pre){const e=document.querySelector(`[data-id="${pid}"]`);if(e)e.classList.add("highlight-pre")}
-  for(const om of materias)if(om.pre.includes(id)){const e=document.querySelector(`[data-id="${om.id}"]`);if(e)e.classList.add("highlight-post")}
-}
-function clearHighlight(){document.querySelectorAll(".highlight-pre,.highlight-post,.highlight-self").forEach(e=>e.classList.remove("highlight-pre","highlight-post","highlight-self"))}
-
-let modalId=null;
-function abrirModal(id){
-  modalId=id;
-  const m=idx[id];const est=getEstado(id);
-  document.getElementById("modal-titulo").textContent=m.nombre;
-  document.getElementById("modal-codigo").textContent=`Código: ${m.codigo} · Semestre ${m.semestre}${m.hemisemestre?" ("+m.hemisemestre+"° hemi)":""} · ${areasMeta[m.area].nombre}`;
-  document.getElementById("modal-info").innerHTML=`
-    <div class="info-item"><label>Créditos</label><span>${m.creditos}</span></div>
-    <div class="info-item"><label>Área</label><span style="color:${areasMeta[m.area].color}">${m.area}</span></div>
-    <div class="info-item"><label>Semestre</label><span>${m.semestre}</span></div>
-    <div class="info-item"><label>Estado</label><span>${est.charAt(0).toUpperCase()+est.slice(1)}</span></div>
+/* ── CREAR TARJETA ──────────────────────────────────────────────────────── */
+function makeCard(m) {
+  const est = getE(m.id);
+  const div = document.createElement("div");
+  div.className=`materia-card area-${m.area} ${est}`;
+  div.dataset.id = m.id;
+  div.innerHTML=`
+    ${m.h ? `<span class="hemi-tag">${m.h}°</span>` : ""}
+    <div class="card-area-tag">${m.area}</div>
+    <div class="card-cr">${m.cr} cr</div>
+    <div class="card-abrev">${m.abrev}</div>
+    <div class="card-nombre">${m.nombre}</div>
+    <div class="card-codigo">${m.codigo}</div>
+    <div class="card-estado-dot"></div>
   `;
-  const pd=document.getElementById("modal-previas");
+  div.addEventListener("click", ()=>abrirModal(m.id));
+  div.addEventListener("mouseenter", ()=>hlPrevias(m.id));
+  div.addEventListener("mouseleave", clearHl);
+  return div;
+}
+
+/* ── HIGHLIGHTS ─────────────────────────────────────────────────────────── */
+function hlPrevias(id) {
+  clearHl();
+  document.querySelector(`[data-id="${id}"]`)?.classList.add("hl-self");
+  const m = idx[id]; if(!m) return;
+  for(const p of m.pre) document.querySelector(`[data-id="${p}"]`)?.classList.add("hl-pre");
+  for(const o of materias) if(o.pre.includes(id)) document.querySelector(`[data-id="${o.id}"]`)?.classList.add("hl-post");
+}
+function clearHl() {
+  document.querySelectorAll(".hl-self,.hl-pre,.hl-post").forEach(e=>e.classList.remove("hl-self","hl-pre","hl-post"));
+}
+
+/* ── RENDER VISTA SEMESTRAL ──────────────────────────────────────────────── */
+function renderSemestral() {
+  const wrap = document.getElementById("malla-sems"); wrap.innerHTML="";
+  const sems = [...new Set(materias.map(m=>m.s))].sort((a,b)=>a-b);
+  for(const s of sems){
+    const col = document.createElement("div"); col.className="sem-col";
+    const crSem = materias.filter(m=>m.s===s&&getE(m.id)==="exonerada").reduce((a,m)=>a+m.cr,0);
+    col.innerHTML=`<div class="sem-col-header"><div class="sem-col-num">Sem. ${s}</div><div class="sem-col-cr">${crSem} cr</div></div>`;
+    for(const m of materias.filter(m=>m.s===s)) col.appendChild(makeCard(m));
+    wrap.appendChild(col);
+  }
+  applyFilter();
+}
+
+/* ── RENDER VISTA TABLA PERIÓDICA ─────────────────────────────────────────── */
+function renderPeriodica() {
+  const wrap = document.getElementById("malla-per"); wrap.innerHTML="";
+  for(const [k,a] of Object.entries(areasMeta)){
+    if(k==="OPE") continue; // sólo obligatorias
+    const mats = materias.filter(m=>m.area===k);
+    if(!mats.length) continue;
+    const row = document.createElement("div"); row.className="periodica-row";
+    const lbl = document.createElement("div"); lbl.className="periodica-group-label";
+    lbl.innerHTML=`<div class="periodica-group-name" style="color:${a.color}">${a.nombre}</div><div class="periodica-group-cr">${a.creditosMin} cr mín.</div>`;
+    const cards = document.createElement("div"); cards.className="periodica-cards";
+    for(const m of mats) cards.appendChild(makeCard(m));
+    row.appendChild(lbl); row.appendChild(cards);
+    wrap.appendChild(row);
+  }
+  applyFilter();
+}
+
+/* ── VIEWS ───────────────────────────────────────────────────────────────── */
+let currentView = "sem";
+function setView(v) {
+  currentView = v;
+  document.getElementById("view-semestral").style.display = v==="sem"?"block":"none";
+  document.getElementById("view-periodica").style.display  = v==="per"?"block":"none";
+  document.getElementById("btn-view-sem").classList.toggle("active", v==="sem");
+  document.getElementById("btn-view-per").classList.toggle("active", v==="per");
+}
+
+/* ── MODAL ───────────────────────────────────────────────────────────────── */
+let modalId = null;
+function abrirModal(id) {
+  modalId = id;
+  const m = idx[id]; const est = getE(id);
+  const a = areasMeta[m.area];
+  const pill = document.getElementById("modal-area-pill");
+  pill.textContent = m.area;
+  pill.style.cssText=`background:${a.pastel};border-color:${a.mid};color:${a.text}`;
+  document.getElementById("modal-nombre").textContent = m.nombre;
+  document.getElementById("modal-codigo").textContent = `Código: ${m.codigo}  ·  Semestre ${m.s}${m.h?" ("+m.h+"° hemi)":""}`;
+  document.getElementById("modal-grid").innerHTML=`
+    <div class="modal-stat"><label>Créditos</label><span>${m.cr}</span></div>
+    <div class="modal-stat"><label>Área</label><span style="color:${a.color}">${m.area}</span></div>
+    <div class="modal-stat"><label>Estado</label><span>${est.charAt(0).toUpperCase()+est.slice(1)}</span></div>
+  `;
+  const pw = document.getElementById("modal-previas-wrap");
   if(m.pre.length){
-    pd.innerHTML=`<div class="previas-titulo">Previas requeridas</div><div class="previas-list">${
-      m.pre.map(pid=>{const pm=idx[pid];const ok=getEstado(pid)==="exonerada";
-        return`<span class="previa-tag" style="border-color:${ok?"#4ADE80":"#F87171"};color:${ok?"#4ADE80":"#F87171"}" onclick="cerrarModal();setTimeout(()=>abrirModal('${pid}'),50)">${pm?pm.nombreCorto:pid} ${ok?"✓":"✗"}</span>`
+    pw.innerHTML=`<div class="previas-section-title">Previas requeridas (exoneradas)</div><div class="previas-list">${
+      m.pre.map(pid=>{const pm=idx[pid];const ok=getE(pid)==="exonerada";
+        return`<span class="previa-chip ${ok?"ok":"nok"}" onclick="redir('${pid}')">${pm?pm.abrev:pid} ${ok?"✓":"✗"}</span>`
       }).join("")
     }</div>`;
   } else {
-    pd.innerHTML=`<p style="font-size:.75rem;color:var(--text3);margin-bottom:12px">Sin previas requeridas.</p>`;
+    pw.innerHTML=`<p style="font-size:.75rem;color:var(--text3);margin-bottom:12px">Sin previas requeridas.</p>`;
   }
-  document.querySelectorAll(".btn-estado").forEach(b=>b.classList.toggle("activo",b.dataset.estado===est));
-  const ne=document.getElementById("modal-notas");
-  if(m.notas){ne.textContent="ℹ️ "+m.notas;ne.style.display="block"}else{ne.style.display="none"}
+  document.querySelectorAll(".btn-estado").forEach(b=>b.classList.toggle("activo",b.dataset.e===est));
+  const nw = document.getElementById("modal-notas-wrap");
+  nw.innerHTML = m.notas ? `<div class="modal-notas">${m.notas}</div>` : "";
   document.getElementById("modal-overlay").classList.add("open");
 }
-function cerrarModal(){document.getElementById("modal-overlay").classList.remove("open");modalId=null;clearHighlight()}
+function redir(id){ cerrarModal(); setTimeout(()=>abrirModal(id),80); }
+function cerrarModal(){ document.getElementById("modal-overlay").classList.remove("open"); modalId=null; clearHl(); }
 
-document.getElementById("modal-close").addEventListener("click",cerrarModal);
-document.getElementById("modal-overlay").addEventListener("click",e=>{if(e.target.id==="modal-overlay")cerrarModal()});
-document.querySelectorAll(".btn-estado").forEach(b=>b.addEventListener("click",()=>{if(modalId)setEstado(modalId,b.dataset.estado)}));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrarModal()});
+/* ── REFRESH ALL ─────────────────────────────────────────────────────────── */
+function refresh() {
+  renderSemestral();
+  renderPeriodica();
+  updateCr();
+}
 
-renderLeyenda();renderAreaProgress();renderMalla();actualizarCreditos();
+/* ── EVENTOS ─────────────────────────────────────────────────────────────── */
+document.getElementById("modal-overlay").addEventListener("click", e=>{ if(e.target.id==="modal-overlay") cerrarModal(); });
+document.querySelectorAll(".btn-estado").forEach(b=>b.addEventListener("click",()=>{ if(modalId) setE(modalId,b.dataset.e); }));
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") cerrarModal(); });
+
+/* ── INIT ─────────────────────────────────────────────────────────────────── */
+renderPills();
+renderSemFilter();
+renderAreaProgress();
+refresh();
+setView("sem");
 </script>
 </body>
 </html>
