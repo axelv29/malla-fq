@@ -18,7 +18,7 @@
   --sh:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
   --sh-hov:0 14px 35px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07);
   --cw:108px; --ch:118px;   /* semestral */
-  --pw:80px;  --ph:92px;   /* periódica */
+  --pw:88px;  --ph:98px;   /* periódica (estilo tabla periódica) */
   --font:'Outfit',sans-serif; --mono:'DM Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -96,6 +96,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .materia-card.aprobada  {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 16%,transparent),var(--sh)}
 .materia-card.exonerada {background:var(--surface);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 22%,transparent),var(--sh)}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}
+.card-area{display:none;font-size:.5rem;font-weight:800;letter-spacing:.5px;color:var(--at);opacity:.9}
 .card-cr{font-size:.6rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.85}
 .card-hemi{font-size:.49rem;font-weight:800;background:var(--av);color:#fff;border-radius:3px;padding:1px 4px;line-height:1.4;opacity:.9}
 .card-abrev{font-size:.88rem;font-weight:800;color:var(--at);text-align:center;line-height:1.15;flex:1;display:flex;align-items:center;justify-content:center;word-break:break-word;hyphens:auto;padding:2px 0}
@@ -165,21 +166,25 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   align-items: start;
 }
 
-/* Tarjeta periódica — override de tamaño */
+/* Tarjeta periódica — estilo diagrama: área izq, créditos der, nombre centro, código abajo */
 .p-card{
   width:var(--pw)!important;
   min-height:var(--ph)!important;
   border-radius:8px!important;
   padding:5px 5px 4px!important;
 }
-.p-card .card-abrev{font-size:.76rem!important}
-.p-card .card-nombre{font-size:.43rem!important}
-.p-card .card-cod{font-size:.4rem!important}
-.p-card .card-cr{font-size:.52rem!important}
-.p-card .card-hemi{font-size:.43rem!important;padding:1px 3px!important}
+.p-card .card-area{display:block!important}
+.p-card .card-top{flex-wrap:wrap;gap:2px 0}
+.p-card .card-top .card-cr{margin-left:auto}
+.p-card .card-top .card-hemi{margin-left:2px}
+.p-card .card-abrev{font-size:.7rem!important;font-weight:800;line-height:1.2}
+.p-card .card-nombre{font-size:.4rem!important;line-height:1.25}
+.p-card .card-cod{font-size:.38rem!important;margin-top:1px}
+.p-card .card-cr{font-size:.5rem!important}
+.p-card .card-hemi{font-size:.4rem!important;padding:1px 2px!important}
 .p-card .card-dot{width:6px!important;height:6px!important;bottom:4px!important;right:4px!important}
 
-/* ── FILA DE ETIQUETAS (mismo grid) ── */
+/* ── FILA DE ETIQUETAS bajo cada grupo (estilo diagrama) ── */
 .per-labels{
   display: grid;
   grid-template-columns:
@@ -189,11 +194,12 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
     var(--pw) var(--pw)
   ;
   gap: 0 4px;
-  margin-top: 12px;
+  margin-top: 14px;
   align-items: start;
 }
-.per-lbl{font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3}
-.per-lbl-sub{font-size:.62rem;font-weight:500;opacity:.65;margin-top:2px;font-family:var(--mono)}
+.per-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.25px;line-height:1.25;color:var(--text2)}
+.per-lbl-sub{font-size:.58rem;font-weight:500;opacity:.7;margin-top:3px;font-family:var(--mono);color:var(--text3)}
+.per-lbl-wrap{min-height:2.5em}
 
 /* ══════════════════════════════════
    MODAL
@@ -412,8 +418,8 @@ const materias=[
   {id:"INMUNO2",      cod:"534X",s:7,h:null,n:"Inmunología II",           ab:"Inmuno. II",   a:"CBB",cr:7, pre_exo:["INMUNO1"],                     pre_apr:[],           prow:4,pcol:11},
   {id:"BROMATO",      cod:"704", s:7,h:2,   n:"Bromatología y Nutrición", ab:"Bromatología", a:"CBB",cr:4, pre_exo:["BIOQ","MICROBIO_T"],           pre_apr:[],           prow:5,pcol:7,notas:"2do hemi"},
 
-  /* ─ PRO (col 12) ─ */
-  {id:"PRACTICA", cod:"965X",s:10,h:null,n:"Practicantado",              ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],                              pre_apr:[],           prow:2,pcol:12,notas:"Requiere todas las obligatorias aprobadas."},
+  /* ─ PRO (col 12) — bloque superior central como en diagrama ─ */
+  {id:"PRACTICA", cod:"965X",s:10,h:null,n:"Practicantado",              ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],                              pre_apr:[],           prow:1,pcol:12,notas:"Requiere todas las obligatorias aprobadas."},
 
   /* ─ CFA (cols 14,15) ─
      Col 14 = izquierda, col 15 = derecha (como en imagen)
@@ -492,6 +498,7 @@ function mkCard(m,extraCls=""){
   d.dataset.id=m.id;
   d.innerHTML=`
     <div class="card-top">
+      <span class="card-area">${m.a}</span>
       <span class="card-cr">${m.cr} cr</span>
       ${m.h?`<span class="card-hemi">${m.h}°</span>`:""}
     </div>
@@ -615,39 +622,24 @@ function renderPer(){
     grid.appendChild(card);
   }
 
-  /* Fila de etiquetas debajo del grid */
+  /* Fila de etiquetas bajo cada grupo (como en el diagrama) */
   const lbl=document.getElementById("per-labels");lbl.innerHTML="";
-  const lblS=`font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3`;
-  const subS=`font-size:.62rem;font-weight:500;opacity:.62;margin-top:2px;font-family:var(--mono)`;
 
-  // CFM: col 1
-  const lCFM=document.createElement("div");lCFM.style.gridColumn="1";
-  lCFM.innerHTML=`<div style="${lblS};color:${AM.CFM.c}">Cs. Físico-<br>Matemáticas</div><div style="${subS}">${AM.CFM.cMin} cr mín.</div>`;
-  lbl.appendChild(lCFM);
+  function mkLbl(col, colSpan, title, crMin, color){
+    const d=document.createElement("div");d.className="per-lbl-wrap";
+    d.style.gridColumn=colSpan?`${col} / span ${colSpan}`:col;
+    d.innerHTML=`<div class="per-lbl" style="color:${color}">${title}</div><div class="per-lbl-sub">${crMin} cr mín.</div>`;
+    lbl.appendChild(d);
+  }
 
-  // gap col 2 — empty div
-  const g1=document.createElement("div");g1.style.gridColumn="2";lbl.appendChild(g1);
-
-  // CQ: cols 3-5
-  const lCQ=document.createElement("div");lCQ.style.cssText=`grid-column:3/6`;
-  lCQ.innerHTML=`<div style="${lblS};color:${AM.CQ.c}">Ciencias Químicas</div><div style="${subS}">${AM.CQ.cMin} cr mín.</div>`;
-  lbl.appendChild(lCQ);
-
-  // gap col 6
-  const g2=document.createElement("div");g2.style.gridColumn="6";lbl.appendChild(g2);
-
-  // CBB + PRO: cols 7-12
-  const lCBB=document.createElement("div");lCBB.style.cssText=`grid-column:7/13`;
-  lCBB.innerHTML=`<div style="${lblS};color:${AM.CBB.c}">Cs. Biológicas y Biomédicas</div><div style="${subS}">${AM.CBB.cMin} cr mín. <span style="color:${AM.PRO.c}">· Practicantado: ${AM.PRO.cMin} cr mín.</span></div>`;
-  lbl.appendChild(lCBB);
-
-  // gap col 13
-  const g3=document.createElement("div");g3.style.gridColumn="13";lbl.appendChild(g3);
-
-  // CFA: cols 14-15
-  const lCFA=document.createElement("div");lCFA.style.cssText=`grid-column:14/16`;
-  lCFA.innerHTML=`<div style="${lblS};color:${AM.CFA.c}">Cs. Farmacéuticas</div><div style="${subS}">${AM.CFA.cMin} cr mín.</div>`;
-  lbl.appendChild(lCFA);
+  mkLbl(1,1,"Cs. Físico-Matemáticas",AM.CFM.cMin,AM.CFM.c);
+  lbl.appendChild(document.createElement("div")); // gap 2
+  mkLbl(3,3,"Ciencias Químicas",AM.CQ.cMin,AM.CQ.c);
+  lbl.appendChild(document.createElement("div")); // gap 6
+  mkLbl(7,5,"Cs. Biológicas y Biomédicas",AM.CBB.cMin,AM.CBB.c);
+  mkLbl(12,1,"Practicantado",AM.PRO.cMin,AM.PRO.c);
+  lbl.appendChild(document.createElement("div")); // gap 13
+  mkLbl(14,2,"Cs. Farmacéuticas",AM.CFA.cMin,AM.CFA.c);
 
   applyFilter();
 }
