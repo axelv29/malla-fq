@@ -17,8 +17,8 @@
   --sh-sm:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
   --sh:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
   --sh-hov:0 14px 35px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07);
-  --cw:108px; --ch:118px;   /* semestral */
-  --pw:102px; --ph:108px;  /* periódica: más ancho para aprovechar página */
+  --cw:108px; --ch:108px;   /* semestral: cuadradas */
+  --pw:102px; --ph:108px;   /* periódica */
   --font:'Outfit',sans-serif; --mono:'DM Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -73,9 +73,6 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 
 /* ══════════════════════════════════
    TARJETA BASE
-   Top: créditos izq | hemi badge der
-   Centro: nombre abreviado grande
-   Abajo: nombre completo · código
 ══════════════════════════════════ */
 .materia-card{
   border-radius:10px; border:2px solid;
@@ -106,8 +103,8 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .aprobada  .card-dot{display:block;background:#3B82F6;box-shadow:0 0 5px rgba(59,130,246,.5)}
 .exonerada .card-dot{display:block;background:#10B981;box-shadow:0 0 5px rgba(16,185,129,.5)}
 .materia-card.hl-self{outline:2.5px solid #3B82F6;outline-offset:2px;opacity:1!important;transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:20}
-.materia-card.hl-pre {outline:2.5px solid #F59E0B;outline-offset:2px;opacity:1!important}
-.materia-card.hl-post{outline:2.5px solid #10B981;outline-offset:2px;opacity:1!important}
+.materia-card.hl-pre {outline:2.5px solid #F59E0B;outline-offset:2px;opacity:1!important;z-index:15;position:relative}
+.materia-card.hl-post{outline:2.5px solid #10B981;outline-offset:2px;opacity:1!important;z-index:15;position:relative}
 body.yr-on .materia-card{opacity:.18;transform:none;box-shadow:none!important}
 body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shadow:var(--sh-hov)!important;z-index:4}
 
@@ -123,32 +120,21 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 
 /* ══════════════════════════════════
    VISTA TABLA PERIÓDICA
-   Layout continuo tipo tabla periódica: sin espacios entre elementos.
-   Grupos distinguidos solo por color. Columnas: 1=CFM, 2-4=CQ, 5-9=CBB, 10=PRO, 11-12=CFA
 ══════════════════════════════════ */
 #view-per{display:none;padding:18px 22px;overflow-x:auto;overflow-y:visible;justify-content:center;align-items:flex-start}
 .per-wrap{display:inline-block;min-width:max-content;padding-bottom:20px}
-
 .per-legend{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;justify-content:center}
 .per-leg-item{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.67rem;font-weight:600;border:1.5px solid;white-space:nowrap}
 .per-leg-dot{width:7px;height:7px;border-radius:50%}
 
-/* ── Grid continuo: 10 columnas, sin gaps. Columnas pueden mezclar áreas (CQ/CBB/CFA). ── */
 .per-grid{
-  display: grid;
-  grid-template-columns: repeat(10, var(--pw));
-  grid-auto-rows: var(--ph);
-  gap: 0;
-  align-items: start;
+  display:grid;
+  grid-template-columns:repeat(10,var(--pw));
+  grid-auto-rows:var(--ph);
+  gap:7px;
+  align-items:start;
 }
-
-/* Tarjeta periódica: créditos izq (sin área), hemi der; nombre y código más legibles */
-.p-card{
-  width:var(--pw)!important;
-  min-height:var(--ph)!important;
-  border-radius:4px!important;
-  padding:5px 5px 4px!important;
-}
+.p-card{width:var(--pw)!important;min-height:var(--ph)!important;border-radius:4px!important;padding:5px 5px 4px!important}
 .p-card .card-area{display:none!important}
 .p-card .card-top{flex-wrap:wrap;gap:2px 0}
 .p-card .card-top .card-cr{margin-left:0}
@@ -160,21 +146,20 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .p-card .card-hemi{font-size:.4rem!important;padding:1px 2px!important}
 .p-card .card-dot{width:6px!important;height:6px!important;bottom:4px!important;right:4px!important}
 
-/* ── Etiquetas bajo cada grupo (10 columnas) ── */
 .per-labels{
-  display: grid;
-  grid-template-columns: repeat(10, var(--pw));
-  gap: 0;
-  margin-top: 12px;
-  margin-bottom: 4px;
-  align-items: start;
+  display:grid;
+  grid-template-columns:repeat(10,var(--pw));
+  gap:7px;
+  margin-top:12px;
+  margin-bottom:4px;
+  align-items:start;
 }
 .per-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.25px;line-height:1.25;color:var(--text2)}
 .per-lbl-sub{font-size:.58rem;font-weight:500;opacity:.7;margin-top:3px;font-family:var(--mono);color:var(--text3)}
 .per-lbl-wrap{min-height:2.5em}
 
 /* ══════════════════════════════════
-   MODAL
+   MODAL MATERIA
 ══════════════════════════════════ */
 .overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:16px}
 .overlay.open{display:flex}
@@ -206,6 +191,10 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .btn-e.activo.btn-apr {background:#EFF6FF;border-color:#3B82F6;color:#1E40AF}
 .btn-e.activo.btn-exon{background:#ECFDF5;border-color:#10B981;color:#064E3B}
 .m-nota{margin-top:10px;font-size:.72rem;color:var(--text2);background:#FFFBEB;border:1px solid #FDE68A;border-radius:7px;padding:8px 11px;line-height:1.5}
+
+/* ══════════════════════════════════
+   CONFIRM RESET
+══════════════════════════════════ */
 .confirm-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);z-index:600;align-items:center;justify-content:center;padding:16px}
 .confirm-overlay.open{display:flex}
 .confirm-box{background:var(--surface);border-radius:13px;padding:24px;max-width:300px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.18);animation:mIn .2s cubic-bezier(.34,1.56,.64,1)}
@@ -217,6 +206,27 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .cbtn-cancel:hover{background:var(--border2)}
 .cbtn-confirm{border-color:#DC2626;color:#DC2626;background:#FEF2F2}
 .cbtn-confirm:hover{background:#FEE2E2}
+
+/* ══════════════════════════════════
+   MODAL BIENVENIDA
+══════════════════════════════════ */
+.welcome-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(6px);z-index:700;align-items:center;justify-content:center;padding:16px}
+.welcome-overlay.open{display:flex}
+.welcome-box{background:var(--surface);border-radius:18px;width:min(520px,100%);max-height:90vh;overflow-y:auto;padding:28px 28px 24px;box-shadow:0 30px 80px rgba(0,0,0,.2);animation:mIn .25s cubic-bezier(.34,1.56,.64,1)}
+.welcome-icon{width:52px;height:52px;background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:16px;box-shadow:0 6px 18px rgba(124,58,237,.3)}
+.welcome-box h2{font-size:1.25rem;font-weight:900;letter-spacing:-.4px;margin-bottom:4px}
+.welcome-box .w-sub{font-size:.8rem;color:var(--text3);margin-bottom:22px}
+.w-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.w-step{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:12px 14px}
+.w-step-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px}
+.w-step-text strong{display:block;font-size:.82rem;font-weight:800;margin-bottom:2px;color:var(--text)}
+.w-step-text span{font-size:.75rem;color:var(--text2);line-height:1.5}
+.w-divider{height:1px;background:var(--border);margin-bottom:14px}
+.w-footer{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.w-footer label{display:flex;align-items:center;gap:7px;font-size:.73rem;color:var(--text3);cursor:pointer}
+.w-footer input[type=checkbox]{width:14px;height:14px;cursor:pointer;accent-color:#7C3AED}
+.btn-welcome-ok{padding:10px 24px;border-radius:10px;border:none;background:linear-gradient(135deg,#7C3AED,#2563EB);color:#fff;font-family:var(--font);font-size:.82rem;font-weight:800;cursor:pointer;transition:opacity .18s;box-shadow:0 4px 14px rgba(124,58,237,.3)}
+.btn-welcome-ok:hover{opacity:.88}
 </style>
 </head>
 <body>
@@ -286,7 +296,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL MATERIA -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-top">
@@ -299,6 +309,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
     </div>
     <div class="m-stats" id="m-stats"></div>
     <div id="m-pre"></div>
+    <div id="m-post"></div>
     <div class="estado-btns">
       <button class="btn-e btn-pend" data-e="pendiente">Pendiente</button>
       <button class="btn-e btn-apr"  data-e="aprobada">Aprobada</button>
@@ -308,6 +319,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   </div>
 </div>
 
+<!-- CONFIRM RESET -->
 <div class="confirm-overlay" id="confirm-overlay">
   <div class="confirm-box">
     <h3>⚠️ Reiniciar progreso</h3>
@@ -319,9 +331,59 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   </div>
 </div>
 
+<!-- MODAL BIENVENIDA -->
+<div class="welcome-overlay" id="welcome-overlay">
+  <div class="welcome-box">
+    <div class="welcome-icon">⚗️</div>
+    <h2>Bienvenido a tu Malla Curricular</h2>
+    <p class="w-sub">Químico Farmacéutico · UDELAR · Plan 2015 — Seguí tu progreso fácilmente.</p>
+
+    <div class="w-steps">
+      <div class="w-step">
+        <div class="w-step-icon">👆</div>
+        <div class="w-step-text">
+          <strong>Click rápido → cambia el estado</strong>
+          <span>Cada click corto avanza la materia: <b>Pendiente → Aprobada → Exonerada</b>. El sistema verifica que tengas las previas necesarias antes de avanzar.</span>
+        </div>
+      </div>
+      <div class="w-step">
+        <div class="w-step-icon">🖱️</div>
+        <div class="w-step-text">
+          <strong>Click largo → ver detalles</strong>
+          <span>Mantenés el click (o toque en móvil) por un momento para abrir el detalle: créditos, previas requeridas, materias que la necesitan y notas.</span>
+        </div>
+      </div>
+      <div class="w-step">
+        <div class="w-step-icon">🔍</div>
+        <div class="w-step-text">
+          <strong>Pasar el cursor resalta dependencias</strong>
+          <span>Al pasar el mouse sobre una materia se destacan en <b style="color:#F59E0B">amarillo</b> sus previas y en <b style="color:#10B981">verde</b> las que la necesitan.</span>
+        </div>
+      </div>
+      <div class="w-step">
+        <div class="w-step-icon">🗂️</div>
+        <div class="w-step-text">
+          <strong>Dos vistas disponibles</strong>
+          <span>Usá <b>Por semestre</b> para una vista cronológica, o <b>Tabla periódica</b> para ver todas las áreas de un vistazo. Filtrá por año o semestre desde la barra superior.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-divider"></div>
+    <p style="font-size:.72rem;color:var(--text3);margin-bottom:16px">Tu progreso se guarda automáticamente en el navegador.</p>
+
+    <div class="w-footer">
+      <label>
+        <input type="checkbox" id="welcome-no-show"> No volver a mostrar
+      </label>
+      <button class="btn-welcome-ok" onclick="cerrarWelcome()">¡Entendido!</button>
+    </div>
+  </div>
+</div>
+
 <script src="materias.js"></script>
 <script>
-/* Índice por id (materias definidas en materias.js) */
+/* ══════════ ÍNDICE ══════════ */
 const IDX = Object.fromEntries(materias.map(m => [m.id, m]));
 
 /* ══════════ VALIDACIÓN PREVIAS ══════════ */
@@ -344,6 +406,19 @@ function sE(id,v){E[id]=v;try{localStorage.setItem(SK,JSON.stringify(E))}catch{}
 function pedirReset(){document.getElementById("confirm-overlay").classList.add("open")}
 function cerrarConfirm(){document.getElementById("confirm-overlay").classList.remove("open")}
 function confirmarReset(){E={};try{localStorage.setItem(SK,"{}")}catch{}cerrarConfirm();refresh()}
+
+/* ══════════ BIENVENIDA ══════════ */
+const WK="qf_welcome_v1";
+function mostrarWelcome(){
+  if(localStorage.getItem(WK)==="1")return;
+  document.getElementById("welcome-overlay").classList.add("open");
+}
+function cerrarWelcome(){
+  if(document.getElementById("welcome-no-show").checked){
+    try{localStorage.setItem(WK,"1")}catch{}
+  }
+  document.getElementById("welcome-overlay").classList.remove("open");
+}
 
 /* ══════════ TOAST ══════════ */
 let _hintDone=localStorage.getItem("qf_h7")==="1";
@@ -476,15 +551,8 @@ function renderSem(){
   applyFilter();
 }
 
-/* ══════════ VISTA TABLA PERIÓDICA ══════════
-   Usa CSS grid con posicionamiento explícito.
-   Cada tarjeta ocupa la celda [prow, pcol] del grid.
-   Las columnas de gap (cols 2,6,13) son automáticamente
-   vacías — solo las tarjetas ocupan su espacio.
-   Todos los elementos comparten el mismo sistema de filas → "mismo piso".
-══════════════════════════════════════════════ */
+/* ══════════ VISTA TABLA PERIÓDICA ══════════ */
 function renderPer(){
-  /* Leyenda */
   const leg=document.getElementById("per-legend");leg.innerHTML="";
   for(const [k,a]of Object.entries(AM)){
     const d=document.createElement("div");d.className="per-leg-item";
@@ -492,8 +560,6 @@ function renderPer(){
     d.innerHTML=`<span class="per-leg-dot" style="background:${a.c}"></span>${a.n}<span style="opacity:.5;font-size:.58rem;font-family:var(--mono);margin-left:4px">${a.cMin} cr mín.</span>`;
     leg.appendChild(d);
   }
-
-  /* Grid de tarjetas */
   const grid=document.getElementById("per-grid");grid.innerHTML="";
   for(const m of materias){
     const card=mkCard(m,"p-card");
@@ -501,24 +567,19 @@ function renderPer(){
     card.style.gridColumn=m.pcol;
     grid.appendChild(card);
   }
-
-  /* Fila de etiquetas (10 columnas) */
   const lbl=document.getElementById("per-labels");lbl.innerHTML="";
-
-  function mkLbl(col, colSpan, title, crMin, color){
+  function mkLbl(col,colSpan,title,crMin,color){
     const d=document.createElement("div");d.className="per-lbl-wrap";
     d.style.gridColumn=colSpan?`${col} / span ${colSpan}`:String(col);
     d.innerHTML=`<div class="per-lbl" style="color:${color}">${title}</div><div class="per-lbl-sub">${crMin} cr mín.</div>`;
     lbl.appendChild(d);
   }
-
   mkLbl(1,1,"Cs. Físico-Matemáticas",AM.CFM.cMin,AM.CFM.c);
   mkLbl(2,3,"Ciencias Químicas",AM.CQ.cMin,AM.CQ.c);
   mkLbl(5,2,"Cs. Biológicas y Biomédicas",AM.CBB.cMin,AM.CBB.c);
   (function(){const e=document.createElement("div");e.className="per-lbl-wrap";e.style.gridColumn="7";lbl.appendChild(e);})();
   mkLbl(8,1,"Practicantado",AM.PRO.cMin,AM.PRO.c);
   mkLbl(9,2,"Cs. Farmacéuticas",AM.CFA.cMin,AM.CFA.c);
-
   applyFilter();
 }
 
@@ -532,7 +593,7 @@ function setView(v){
   document.getElementById("btn-per").classList.toggle("active",v==="per");
 }
 
-/* ══════════ MODAL ══════════ */
+/* ══════════ MODAL MATERIA ══════════ */
 let mId=null;
 function abrirM(id){
   mId=id;const m=IDX[id];const est=gE(id);const a=AM[m.a];
@@ -555,6 +616,19 @@ function abrirM(id){
       }).join("")
     }</div>`;
   }else{pw.innerHTML=`<p style="font-size:.72rem;color:var(--text3);margin-bottom:10px">Sin previas requeridas.</p>`}
+
+  const postMats=materias.filter(o=>[...o.pre_exo,...o.pre_apr].includes(id));
+  const postW=document.getElementById("m-post");
+  if(postMats.length){
+    postW.innerHTML=`<div class="pre-title" style="margin-top:4px">La necesitan</div><div class="pre-chips">${
+      postMats.map(pm=>{
+        const pe=gE(pm.id);
+        const clr=pe==="pendiente"?"nok":"ok";
+        return`<span class="pre-chip ${clr}" onclick="redir('${pm.id}')">${pm.ab}<span class="pre-tipo">S${pm.s}</span></span>`
+      }).join("")
+    }</div>`;
+  }else{postW.innerHTML="";}
+
   document.querySelectorAll(".btn-e").forEach(b=>b.classList.toggle("activo",b.dataset.e===est));
   document.getElementById("m-nota").innerHTML=m.notas?`<div class="m-nota">${m.notas}</div>`:"";
   document.getElementById("overlay").classList.add("open");
@@ -568,13 +642,14 @@ function refresh(){renderSem();renderPer();updCr()}
 /* ══════════ EVENTOS ══════════ */
 document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")cerrar()});
 document.getElementById("confirm-overlay").addEventListener("click",e=>{if(e.target.id==="confirm-overlay")cerrarConfirm()});
+document.getElementById("welcome-overlay").addEventListener("click",e=>{if(e.target.id==="welcome-overlay")cerrarWelcome()});
 document.querySelectorAll(".btn-e").forEach(b=>b.addEventListener("click",()=>{
   if(!mId)return;
   const next=b.dataset.e;
   if(next!=="pendiente"){const fl=chkPrevias(mId,next);if(fl.length){showMsg("⚠️ Falta: "+fl.map(f=>(IDX[f.id]?IDX[f.id].ab:f.id)+" ("+(f.tipo==="exo"?"exonerar":"aprobar")+")").join(", "));return}}
   sE(mId,next);
 }));
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){cerrar();cerrarConfirm()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){cerrar();cerrarConfirm();cerrarWelcome()}});
 
 /* ══════════ INIT ══════════ */
 renderAP();
@@ -582,6 +657,7 @@ renderFilterBtns("yr-btns",YEARS,"year");
 renderFilterBtns("sem-btns",SEMS,"sem");
 refresh();
 setView("sem");
+mostrarWelcome();
 </script>
 </body>
 </html>
