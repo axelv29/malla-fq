@@ -7,24 +7,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --cfm-c:#2563EB;--cfm-p:#EFF6FF;--cfm-m:#93C5FD;--cfm-t:#1E3A8A;--cfm-b:#BFDBFE;
-  --cq-c: #16A34A;--cq-p: #F0FDF4;--cq-m: #86EFAC;--cq-t: #14532D;--cq-b: #BBF7D0;
-  --cbb-c:#EA580C;--cbb-p:#FFF7ED;--cbb-m:#FDBA74;--cbb-t:#7C2D12;--cbb-b:#FED7AA;
-  --cfa-c:#7C3AED;--cfa-p:#F5F3FF;--cfa-m:#C4B5FD;--cfa-t:#4C1D95;--cfa-b:#DDD6FE;
-  --pro-c:#374151;--pro-p:#F9FAFB;--pro-m:#9CA3AF;--pro-t:#1F2937;--pro-b:#E5E7EB;
+  --cfm-c:#2563EB;--cfm-p:#EFF6FF;--cfm-t:#1E3A8A;--cfm-b:#BFDBFE;
+  --cq-c: #16A34A;--cq-p: #F0FDF4;--cq-t: #14532D;--cq-b: #BBF7D0;
+  --cbb-c:#EA580C;--cbb-p:#FFF7ED;--cbb-t:#7C2D12;--cbb-b:#FED7AA;
+  --cfa-c:#7C3AED;--cfa-p:#F5F3FF;--cfa-t:#4C1D95;--cfa-b:#DDD6FE;
+  --pro-c:#374151;--pro-p:#F9FAFB;--pro-t:#1F2937;--pro-b:#E5E7EB;
   --bg:#F8FAFC;--surface:#FFFFFF;--border:#E2E8F0;--border2:#CBD5E1;
   --text:#0F172A;--text2:#334155;--text3:#94A3B8;
   --sh-sm:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
   --sh:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
-  --sh-lg:0 10px 28px rgba(0,0,0,.11),0 4px 8px rgba(0,0,0,.05);
   --sh-hov:0 14px 35px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07);
+  /* tarjeta normal */
   --cw:108px;--ch:118px;
+  /* tarjeta periódica — compacta */
+  --pw:78px;--ph:88px;
   --font:'Outfit',sans-serif;--mono:'DM Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
 
-/* ── HEADER ── */
+/* HEADER */
 header{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:200;box-shadow:var(--sh-sm)}
 .brand{display:flex;align-items:center;gap:11px}
 .brand-icon{width:38px;height:38px;background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;box-shadow:0 3px 10px rgba(124,58,237,.28)}
@@ -32,7 +34,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .brand p{font-size:.72rem;color:var(--text3);margin-top:1px}
 .hdr-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .view-toggle{display:flex;background:var(--bg);border:1.5px solid var(--border2);border-radius:8px;overflow:hidden}
-.view-btn{padding:6px 14px;border:none;background:none;cursor:pointer;font-family:var(--font);font-size:.78rem;font-weight:600;color:var(--text3);transition:all .18s;display:flex;align-items:center;gap:5px}
+.view-btn{padding:6px 14px;border:none;background:none;cursor:pointer;font-family:var(--font);font-size:.78rem;font-weight:600;color:var(--text3);transition:all .18s;display:flex;align-items:center;gap:6px}
 .view-btn.active{background:var(--surface);color:var(--text);box-shadow:var(--sh-sm)}
 .cr-box{text-align:right}
 .cr-num{font-size:1.5rem;font-weight:900;letter-spacing:-1.5px;color:var(--text);line-height:1}
@@ -44,7 +46,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .btn-reset{padding:6px 13px;border-radius:7px;border:1.5px solid #FCA5A5;background:#FEF2F2;color:#DC2626;font-family:var(--font);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap}
 .btn-reset:hover{background:#FEE2E2}
 
-/* ── TOOLBAR ── */
+/* TOOLBAR */
 .toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:9px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tlbl{font-size:.7rem;font-weight:700;color:var(--text3);white-space:nowrap}
 .dv{width:1px;height:20px;background:var(--border2);flex-shrink:0}
@@ -53,7 +55,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .f-btn:hover{border-color:var(--text3);background:var(--bg)}
 .f-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
 
-/* ── AREA PROGRESS ── */
+/* AREA PROGRESS */
 .ap-sec{padding:12px 24px 0;display:flex;gap:7px;flex-wrap:wrap}
 .ap-item{flex:1 1 120px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:9px 12px}
 .ap-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
@@ -62,54 +64,58 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .ap-bar{height:4px;background:var(--border2);border-radius:999px;overflow:hidden}
 .ap-fill{height:100%;border-radius:999px;transition:width .5s;width:0%}
 
-/* ── LEYENDA ── */
+/* LEYENDA */
 .leg-bar{padding:7px 24px;display:flex;gap:16px;font-size:.68rem;color:var(--text3);align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--surface)}
 .leg-bar span{display:flex;align-items:center;gap:5px}
 .lg-sq{width:10px;height:10px;border-radius:3px;border:2px solid}
 .lg-dot{width:8px;height:8px;border-radius:50%}
 
-/* ── HINT TOAST ── */
+/* HINT TOAST */
 .hint-toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(15,23,42,.88);color:#fff;padding:9px 18px;border-radius:999px;font-size:.76rem;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s;opacity:0;z-index:9999;white-space:nowrap;backdrop-filter:blur(4px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
 .hint-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* ══════════════════════════════════════════════════════
-   TARJETA — estilo de la imagen de referencia
-   Layout: área+créditos arriba, abrev grande centro, nombre+código abajo
-══════════════════════════════════════════════════════ */
+/* ══ TARJETA BASE ══
+   Top row: créditos izq + hemi badge der
+   Abrev centro grande
+   Nombre completo abajo pequeño
+   Código abajo
+*/
 .materia-card{
-  width:var(--cw);min-height:var(--ch);
   border-radius:10px;border:2px solid;
-  padding:7px 7px 6px;
+  padding:6px 6px 5px;
   cursor:pointer;position:relative;
   display:flex;flex-direction:column;
-  user-select:none;
+  user-select:none;flex-shrink:0;
   transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease,opacity .2s;
-  flex-shrink:0;
+  /* Tamaño semestral */
+  width:var(--cw);min-height:var(--ch);
 }
 .materia-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:10;opacity:1!important}
-.area-CFM{--av:var(--cfm-c);--ap:var(--cfm-p);--am:var(--cfm-m);--at:var(--cfm-t);--ab:var(--cfm-b)}
-.area-CQ {--av:var(--cq-c); --ap:var(--cq-p); --am:var(--cq-m); --at:var(--cq-t); --ab:var(--cq-b)}
-.area-CBB{--av:var(--cbb-c);--ap:var(--cbb-p);--am:var(--cbb-m);--at:var(--cbb-t);--ab:var(--cbb-b)}
-.area-CFA{--av:var(--cfa-c);--ap:var(--cfa-p);--am:var(--cfa-m);--at:var(--cfa-t);--ab:var(--cfa-b)}
-.area-PRO{--av:var(--pro-c);--ap:var(--pro-p);--am:var(--pro-m);--at:var(--pro-t);--ab:var(--pro-b)}
-.materia-card.pendiente {background:var(--ap);border-color:var(--ab)}
-.materia-card.aprobada  {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 18%,transparent),var(--sh)}
-.materia-card.exonerada {background:var(--surface);border-color:var(--av);box-shadow:0 4px 16px color-mix(in srgb,var(--av) 22%,transparent),var(--sh)}
 
-/* Top row: área tag izq + créditos der */
-.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-.card-area-tag{font-size:.56rem;font-weight:800;letter-spacing:.5px;color:var(--av);text-transform:uppercase}
-.card-cr-tag{font-size:.6rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.8}
-/* Hemi badge — esquina sup der sobre card-top */
-.card-hemi{font-size:.52rem;font-weight:800;background:var(--av);color:#fff;border-radius:4px;padding:1px 4px;line-height:1.3;opacity:.85}
-/* Nombre abreviado central */
-.card-abrev{font-size:.88rem;font-weight:800;color:var(--at);text-align:center;line-height:1.2;flex:1;display:flex;align-items:center;justify-content:center;word-break:break-word;hyphens:auto;padding:2px 0}
-/* Nombre completo pequeño */
+/* Colores por área */
+.area-CFM{--av:var(--cfm-c);--ap:var(--cfm-p);--at:var(--cfm-t);--ab:var(--cfm-b)}
+.area-CQ {--av:var(--cq-c); --ap:var(--cq-p); --at:var(--cq-t); --ab:var(--cq-b)}
+.area-CBB{--av:var(--cbb-c);--ap:var(--cbb-p);--at:var(--cbb-t);--ab:var(--cbb-b)}
+.area-CFA{--av:var(--cfa-c);--ap:var(--cfa-p);--at:var(--cfa-t);--ab:var(--cfa-b)}
+.area-PRO{--av:var(--pro-c);--ap:var(--pro-p);--at:var(--pro-t);--ab:var(--pro-b)}
+
+/* Estados */
+.materia-card.pendiente {background:var(--ap);border-color:var(--ab);opacity:.72}
+.materia-card.aprobada  {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 16%,transparent),var(--sh);opacity:1}
+.materia-card.exonerada {background:var(--surface);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 20%,transparent),var(--sh);opacity:1}
+
+/* Fila superior: créditos izq, hemi der */
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px;min-height:16px}
+.card-cr{font-size:.62rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.85;line-height:1}
+.card-hemi{font-size:.5rem;font-weight:800;background:var(--av);color:#fff;border-radius:3px;padding:1px 4px;line-height:1.4;opacity:.9;white-space:nowrap}
+/* Abrev central */
+.card-abrev{font-size:.9rem;font-weight:800;color:var(--at);text-align:center;line-height:1.15;flex:1;display:flex;align-items:center;justify-content:center;word-break:break-word;hyphens:auto;padding:1px 0}
+/* Nombre completo */
 .card-nombre{font-size:.5rem;font-weight:500;color:var(--at);opacity:.65;text-align:center;line-height:1.3;margin-top:auto}
 /* Código */
-.card-cod{font-size:.48rem;font-family:var(--mono);color:var(--av);text-align:center;margin-top:2px;opacity:.75}
-/* Estado dot */
-.card-dot{width:8px;height:8px;border-radius:50%;position:absolute;bottom:6px;right:6px;display:none}
+.card-cod{font-size:.46rem;font-family:var(--mono);color:var(--av);text-align:center;margin-top:2px;opacity:.7}
+/* Dot estado */
+.card-dot{width:8px;height:8px;border-radius:50%;position:absolute;bottom:5px;right:5px;display:none}
 .aprobada  .card-dot{display:block;background:#3B82F6;box-shadow:0 0 5px rgba(59,130,246,.55)}
 .exonerada .card-dot{display:block;background:#10B981;box-shadow:0 0 5px rgba(16,185,129,.55)}
 
@@ -118,13 +124,11 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .materia-card.hl-pre {outline:2.5px solid #F59E0B;outline-offset:2px;opacity:1!important}
 .materia-card.hl-post{outline:2.5px solid #10B981;outline-offset:2px;opacity:1!important}
 
-/* Filtro semestre/año */
-body.yr-on .materia-card{opacity:.22;transform:none;box-shadow:none!important}
+/* Filtro */
+body.yr-on .materia-card{opacity:.2;transform:none;box-shadow:none!important}
 body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shadow:var(--sh-hov)!important;z-index:4}
 
-/* ══════════════════════════════════════════════════════
-   VISTA SEMESTRAL
-══════════════════════════════════════════════════════ */
+/* ══ VISTA SEMESTRAL ══ */
 #view-sem{padding:20px 24px;overflow-x:auto}
 .sems-wrap{display:flex;gap:10px;min-width:max-content}
 .sem-col{display:flex;flex-direction:column;gap:6px;width:var(--cw)}
@@ -132,55 +136,77 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .sem-hdr-num{font-size:.68rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
 .sem-hdr-cr{font-size:.6rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
 
-/* ══════════════════════════════════════════════════════
-   VISTA TABLA PERIÓDICA
-   Replicando exactamente la imagen de referencia:
-   - Grid de columnas fijas
-   - CFM col 1, CQ cols 2-4, espacio, CBB cols 6-10, espacio, CFA cols 12-13
-   - Cada fila = posición específica por materia
-   - Nombres de área abajo de cada "bloque"
-   - Filtro de semestre resalta las tarjetas
-══════════════════════════════════════════════════════ */
-#view-per{display:none;padding:20px 24px;overflow:auto;min-height:400px}
-.per-outer{min-width:max-content;padding-bottom:40px}
+/* ══ VISTA TABLA PERIÓDICA ══
+   La tabla se construye como FILAS DE BLOQUES flex, no como grid posicionado.
+   Cada "fila periódica" es un div flex con las tarjetas del bloque principal
+   y las del bloque CFA a la derecha, separadas por un gap.
+   Sin celdas fantasma, sin espacios en blanco.
+   Estructura:
+     Bloque principal: [CFM cols] + gap + [CQ cols] + gap + [CBB+PRO cols]
+     Bloque CFA: separado a la derecha en cada fila
 
-/* Leyenda de colores */
-.per-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+   Las materias se agrupan en FILAS que yo defino explícitamente en JS,
+   una lista de {cfm:[], cq:[], cbb:[], cfa:[]} por cada fila periódica.
+*/
+#view-per{display:none;padding:20px 24px;overflow:auto}
+.per-wrap{min-width:max-content;padding-bottom:40px}
+.per-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .per-leg-item{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:.7rem;font-weight:600;border:1.5px solid;white-space:nowrap}
 .per-leg-dot{width:8px;height:8px;border-radius:50%}
 
-/* Filtros semestre dentro de vista periódica */
-.per-filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+/* Tarjeta periódica — 74×84px, compacta, sin espacios */
+.materia-card.p-card{
+  width:74px!important;
+  min-height:84px!important;
+  border-radius:7px!important;
+  padding:5px 5px 4px!important;
+}
+.p-card .card-abrev{font-size:.72rem!important}
+.p-card .card-nombre{font-size:.42rem!important}
+.p-card .card-cod{font-size:.4rem!important}
+.p-card .card-cr{font-size:.52rem!important}
+.p-card .card-hemi{font-size:.42rem!important;padding:1px 3px!important}
+.p-card .card-dot{width:6px!important;height:6px!important;bottom:4px!important;right:4px!important}
 
-/* El grid de la tabla periódica */
-.per-grid{
-  display:grid;
-  /* 13 columnas: CFM(3) + gap(1) + CBB(5) + gap(1) + CFA(3) */
-  /* Ajustado para el layout real de materias */
-  grid-template-columns:repeat(13, var(--cw));
-  gap:6px;
-  position:relative;
+/* Fila de la tabla periódica */
+.per-row{
+  display:flex;
+  align-items:flex-start;
+  gap:0;
+  margin-bottom:4px;
+}
+/* Bloque dentro de cada fila (CFM, CQ, CBB, CFA) */
+.per-block{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:4px;
+  align-items:flex-start;
+}
+/* Separador visual entre bloques principales */
+.per-sep{width:16px;flex-shrink:0}
+/* Separador grande antes del bloque CFA */
+.per-sep-cfa{flex:1;min-width:20px}
+
+/* Etiquetas de área debajo */
+.per-labels-row{
+  display:flex;
+  align-items:flex-start;
+  gap:0;
+  margin-top:12px;
+}
+.per-area-label{
+  display:flex;flex-direction:column;
+}
+.per-area-label-name{font-size:.82rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3}
+.per-area-label-sub{font-size:.66rem;font-weight:500;opacity:.65;margin-top:2px;font-family:var(--mono)}
+
+/* Separator line between main table and CFA block (lanthanide style) */
+.per-lant-sep{
+  border:none;border-top:1px dashed var(--border2);
+  margin:8px 0 6px;
 }
 
-/* Celda vacía — placeholder transparente */
-.per-empty{width:var(--cw);min-height:var(--ch);visibility:hidden;pointer-events:none}
-
-/* Etiquetas de grupo debajo del grid — absolutas */
-.per-group-labels{
-  display:grid;
-  grid-template-columns:repeat(13, var(--cw));
-  gap:6px;
-  margin-top:14px;
-}
-.per-glabel{
-  font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;
-  line-height:1.3;
-}
-.per-glabel-sub{font-size:.68rem;font-weight:500;opacity:.7;margin-top:2px;font-family:var(--mono)}
-
-/* ══════════════════════════════════════════════════════
-   MODAL
-══════════════════════════════════════════════════════ */
+/* ══ MODAL ══ */
 .overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:16px}
 .overlay.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:min(490px,100%);max-height:88vh;overflow-y:auto;padding:24px;box-shadow:0 24px 70px rgba(0,0,0,.16);animation:mIn .2s cubic-bezier(.34,1.56,.64,1)}
@@ -212,7 +238,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .btn-e.activo.btn-exon{background:#ECFDF5;border-color:#10B981;color:#064E3B}
 .m-nota{margin-top:12px;font-size:.74rem;color:var(--text2);background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:9px 12px;line-height:1.6}
 
-/* CONFIRM RESET */
+/* CONFIRM */
 .confirm-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);z-index:600;align-items:center;justify-content:center;padding:16px}
 .confirm-overlay.open{display:flex}
 .confirm-box{background:var(--surface);border-radius:14px;padding:26px;max-width:320px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.18);animation:mIn .2s cubic-bezier(.34,1.56,.64,1)}
@@ -241,11 +267,11 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   <div class="hdr-right">
     <div class="view-toggle">
       <button class="view-btn active" id="btn-sem" onclick="setView('sem')">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 13 13"><rect x=".5" y=".5" width="2" height="12"/><rect x="4" y=".5" width="2" height="12"/><rect x="7.5" y=".5" width="2" height="12"/><rect x="11" y=".5" width="2" height="12"/></svg>
+        <svg width="15" height="13" viewBox="0 0 15 13" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="1.5" y1="0.5" x2="1.5" y2="12.5"/><line x1="5.5" y1="0.5" x2="5.5" y2="12.5"/><line x1="9.5" y1="0.5" x2="9.5" y2="12.5"/><line x1="13.5" y1="0.5" x2="13.5" y2="12.5"/></svg>
         Por semestre
       </button>
       <button class="view-btn" id="btn-per" onclick="setView('per')">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 13 13"><rect x=".5" y=".5" width="5" height="5"/><rect x="7.5" y=".5" width="5" height="5"/><rect x=".5" y="7.5" width="5" height="5"/><rect x="7.5" y="7.5" width="5" height="5"/></svg>
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x=".5" y=".5" width="5" height="5" rx="1"/><rect x="7.5" y=".5" width="5" height="5" rx="1"/><rect x=".5" y="7.5" width="5" height="5" rx="1"/><rect x="7.5" y="7.5" width="5" height="5" rx="1"/></svg>
         Tabla periódica
       </button>
     </div>
@@ -256,7 +282,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
       </div>
       <div>
         <div class="prog-outer"><div class="prog-fill" id="prog"></div></div>
-        <div class="cr-pct" id="pct">0% completado</div>
+        <div class="cr-pct" id="pct">0%</div>
       </div>
     </div>
     <button class="btn-reset" onclick="pedirReset()">↺ Reiniciar</button>
@@ -281,21 +307,15 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   <span><span class="lg-dot" style="background:#10B981"></span> Exonerada</span>
 </div>
 
-<!-- VISTA SEMESTRAL -->
-<div id="view-sem">
-  <div class="sems-wrap" id="malla-sem"></div>
-</div>
+<div id="view-sem"><div class="sems-wrap" id="malla-sem"></div></div>
 
-<!-- VISTA TABLA PERIÓDICA -->
 <div id="view-per">
-  <div class="per-outer">
+  <div class="per-wrap">
     <div class="per-legend" id="per-legend"></div>
-    <div class="per-grid" id="per-grid"></div>
-    <div class="per-group-labels" id="per-glabels"></div>
+    <div id="per-table"></div>
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-top">
@@ -330,159 +350,137 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 
 <script>
 /* ══════════════════════════════════════════════════════════════════════════
-   DATOS
-   pre_exo: deben estar EXONERADAS
-   pre_apr: alcanza con APROBADA
-   
-   TABLA PERIÓDICA — layout en grid de 13 columnas:
-   Col  1-2 : CFM (Matemáticas/Física)   ← izquierda
-   Col  3   : vacía (gap visual)
-   Col  4-8 : CQ  (Química)
-   Col  9   : vacía (gap visual)
-   Col 10-12: CBB (Biológicas)
-   Col 13   : CFA (Farmacéuticas) ← primera col derecha
-   + columnas extra CFA a la derecha si es necesario
-   
-   row/col definen la posición en el grid periódico (1-indexed)
+   ÁREAS
 ══════════════════════════════════════════════════════════════════════════ */
 const AM={
-  CFM:{n:"Cs. Físico-Matemáticas",  cMin:42,  c:"#2563EB",p:"#EFF6FF",m:"#93C5FD",t:"#1E3A8A",b:"#BFDBFE"},
-  CQ: {n:"Ciencias Químicas",        cMin:108, c:"#16A34A",p:"#F0FDF4",m:"#86EFAC",t:"#14532D",b:"#BBF7D0"},
-  CBB:{n:"Cs. Biológicas y Biomédicas",cMin:69,c:"#EA580C",p:"#FFF7ED",m:"#FDBA74",t:"#7C2D12",b:"#FED7AA"},
-  CFA:{n:"Cs. Farmacéuticas",        cMin:105, c:"#7C3AED",p:"#F5F3FF",m:"#C4B5FD",t:"#4C1D95",b:"#DDD6FE"},
-  PRO:{n:"Practicantado",            cMin:55,  c:"#374151",p:"#F9FAFB",m:"#9CA3AF",t:"#1F2937",b:"#E5E7EB"},
+  CFM:{n:"Cs. Físico-Matemáticas",  cMin:42,  c:"#2563EB",p:"#EFF6FF",t:"#1E3A8A",b:"#BFDBFE"},
+  CQ: {n:"Ciencias Químicas",        cMin:108, c:"#16A34A",p:"#F0FDF4",t:"#14532D",b:"#BBF7D0"},
+  CBB:{n:"Cs. Biológicas y Biomédicas",cMin:69,c:"#EA580C",p:"#FFF7ED",t:"#7C2D12",b:"#FED7AA"},
+  CFA:{n:"Cs. Farmacéuticas",        cMin:105, c:"#7C3AED",p:"#F5F3FF",t:"#4C1D95",b:"#DDD6FE"},
+  PRO:{n:"Practicantado",            cMin:55,  c:"#374151",p:"#F9FAFB",t:"#1F2937",b:"#E5E7EB"},
 };
 const CMIN=450;
 
-/*
-  LAYOUT DE LA TABLA PERIÓDICA (imagen de referencia):
-  
-  Columnas del grid:
-   1    = CFM (Mat/Fis) — bloque izquierdo
-   2    = CFM col 2
-   3    = GAP (vacío)
-   4    = CQ col 1
-   5    = CQ col 2
-   6    = CQ col 3
-   7    = CQ col 4 (Lab)
-   8    = GAP (vacío)
-   9    = CBB col 1
-   10   = CBB col 2
-   11   = CBB col 3
-   12   = CBB col 4
-   13   = CBB col 5
-   14   = GAP
-   15   = CFA col 1
-   16   = CFA col 2
-
-  Filas del grid corresponden a posiciones verticales donde
-  cada fila puede tener materias de distintos semestres mezcladas.
-  Las materias se posicionan según la imagen de referencia:
-  en general siguen la "escalera" característica de la tabla periódica.
-*/
-
+/* ══════════════════════════════════════════════════════════════════════════
+   MATERIAS
+   pre_exo: deben estar EXONERADAS
+   pre_apr: alcanza con estar APROBADAS
+══════════════════════════════════════════════════════════════════════════ */
 const materias=[
-  // ─── CFM ────────────────────────────────────────────────────────────────
-  // Mat A — col 1, fila 1 (arriba solo, como H en tabla periódica)
-  {id:"MAT_A",     cod:"01A", s:1,h:null,n:"Matemática A",              ab:"Mat. A",       a:"CFM",cr:10,pre_exo:[],                              pre_apr:[],row:1,col:1},
-  // Fila 2: Mat B (1er hemi)
-  {id:"MAT_B",     cod:"02B", s:2,h:1,   n:"Matemática B",              ab:"Mat. B",       a:"CFM",cr:6, pre_exo:["MAT_A"],                        pre_apr:[],row:2,col:1,notas:"1er hemi"},
-  // Fila 3: Mat C
-  {id:"MAT_C",     cod:"02C", s:2,h:null,n:"Matemática C",              ab:"Mat. C",       a:"CFM",cr:8, pre_exo:["MAT_A"],                        pre_apr:[],row:3,col:1,notas:"Estadística"},
-  // Fila 4: Física 101
-  {id:"FIS101",    cod:"205Q",s:2,h:null,n:"Física 101",                ab:"Física 101",   a:"CFM",cr:7, pre_exo:["MAT_A"],                        pre_apr:[],row:4,col:1},
-  // Fila 5: Física 102
-  {id:"FIS102",    cod:"304Q",s:3,h:null,n:"Física 102",                ab:"Física 102",   a:"CFM",cr:7, pre_exo:["FIS101"],                       pre_apr:[],row:5,col:1,notas:"Electromagnetismo"},
-  // Fila 6: Física 003L
-  {id:"FIS003L",   cod:"404", s:4,h:1,   n:"Física 003 (L)",            ab:"Física 003L",  a:"CFM",cr:4, pre_exo:["FIS102"],                       pre_apr:[],row:6,col:1,notas:"Lab. 1er hemi"},
-
-  // ─── CQ (col 4-7) ───────────────────────────────────────────────────────
-  // Fila 2: Q. Gral I, Prev Riesgos, Q. Gral II (van avanzando semestres)
-  {id:"QUI_GEN_I", cod:"102", s:1,h:null,n:"Química General I",         ab:"Q. Gral. I",   a:"CQ", cr:7, pre_exo:[],                              pre_apr:[],row:2,col:4},
-  {id:"RIESGOS",   cod:"104A",s:1,h:2,   n:"Prev. Riesgos en Lab.",     ab:"Prev. Riesgos",a:"CQ", cr:4, pre_exo:[],                              pre_apr:[],row:2,col:5,notas:"2do hemi"},
-  {id:"QUI_GEN_II",cod:"202", s:2,h:null,n:"Química General II",        ab:"Q. Gral. II",  a:"CQ", cr:8, pre_exo:["QUI_GEN_I","RIESGOS"],         pre_apr:[],row:2,col:6},
-  // Fila 3: Q. Anal I, Q. Inorg T, Q. Inorg L
-  {id:"QA1",       cod:"302", s:3,h:null,n:"Química Analítica I",       ab:"Q. Anal. I",   a:"CQ", cr:10,pre_exo:["QUI_GEN_II"],                  pre_apr:[],row:3,col:4},
-  {id:"QI_T",      cod:"303A",s:3,h:null,n:"Química Inorgánica (T)",    ab:"Q. Inorg. T",  a:"CQ", cr:6, pre_exo:["QUI_GEN_II"],                  pre_apr:[],row:3,col:5,notas:"Teórico"},
-  {id:"QI_L",      cod:"303B",s:3,h:null,n:"Lab. Q. Inorgánica",        ab:"Q. Inorg. L",  a:"CQ", cr:5, pre_exo:["QUI_GEN_II"],                  pre_apr:[],row:3,col:6,notas:"Lab."},
-  // Fila 4: QA2, FQ102
-  {id:"QA2",       cod:"402A",s:4,h:null,n:"Química Analítica II",      ab:"Q. Anal. II",  a:"CQ", cr:7, pre_exo:["QA1"],                         pre_apr:[],row:4,col:4},
-  {id:"FQ102",     cod:"508A",s:4,h:null,n:"Fisicoquímica 102",         ab:"FQ 102",       a:"CQ", cr:13,pre_exo:["MAT_B","QA1"],                 pre_apr:[],row:4,col:5},
-  // Fila 5: QO101, QO102, QO103L, QO104
-  {id:"QO101",     cod:"301", s:3,h:null,n:"Química Orgánica 101",      ab:"Org. 101",     a:"CQ", cr:11,pre_exo:["QUI_GEN_II"],                  pre_apr:[],row:5,col:4},
-  {id:"QO102",     cod:"401", s:4,h:null,n:"Química Orgánica 102",      ab:"Org. 102",     a:"CQ", cr:6, pre_exo:["QO101"],                       pre_apr:[],row:5,col:5},
-  {id:"QO103L",    cod:"501", s:5,h:null,n:"Q. Orgánica 103 (L)",       ab:"Org. 103L",    a:"CQ", cr:5, pre_exo:["QO101","QA1"],                 pre_apr:[],row:5,col:6,notas:"Lab."},
-  {id:"QO104",     cod:"502X",s:5,h:1,   n:"Química Orgánica 104",      ab:"Org. 104",     a:"CQ", cr:4, pre_exo:["QO102"],                       pre_apr:[],row:5,col:7,notas:"1er hemi"},
-  // Fila 6: QA3, FQ103
-  {id:"QA3",       cod:"503", s:5,h:null,n:"Química Analítica III",     ab:"Q. Anal. III", a:"CQ", cr:10,pre_exo:["QA2"],                         pre_apr:[],row:6,col:4,notas:"Análisis Instr."},
-  {id:"FQ103",     cod:"520A",s:5,h:null,n:"Fisicoquímica 103",         ab:"FQ 103",       a:"CQ", cr:12,pre_exo:["FQ102"],                       pre_apr:[],row:6,col:5},
-
-  // ─── CBB (cols 9-13) ────────────────────────────────────────────────────
-  // Fila 2: BIO I, BIO II  (arrancan en col 9)
-  {id:"BIO_I",     cod:"103B",s:1,h:null,n:"Introd. Cs. Biológicas I",  ab:"ICB I",        a:"CBB",cr:5, pre_exo:[],                              pre_apr:[],row:2,col:9},
-  {id:"BIO_II",    cod:"203A",s:2,h:null,n:"Introd. Cs. Biológicas II", ab:"ICB II",       a:"CBB",cr:5, pre_exo:["BIO_I","RIESGOS"],             pre_apr:[],row:2,col:10},
-  // Fila 3: Fisiología, Fisiopatología, Bioquímica
-  {id:"FISIO",     cod:"408A",s:3,h:null,n:"Fisiología",                ab:"Fisiología",   a:"CBB",cr:7, pre_exo:["BIO_II"],                      pre_apr:[],row:3,col:9},
-  {id:"FISIOPAT",  cod:"415C",s:4,h:null,n:"Fisiopatología",            ab:"Fisiopatol.",  a:"CBB",cr:7, pre_exo:["FISIO"],                       pre_apr:[],row:3,col:10},
-  {id:"BIOQ",      cod:"190", s:5,h:null,n:"Bioquímica Op. II",         ab:"Bioquímica",   a:"CBB",cr:10,pre_exo:["BIO_I","FQ102","QO102","QA2"], pre_apr:[],row:3,col:11,notas:"Desde 2026"},
-  // Fila 4: Microbio T, Microbio L, Inmuno I, Taller Integ, Inmuno II
-  {id:"MICROBIO_T",cod:"533T",s:6,h:null,n:"Microbiología Gral. (T)",  ab:"Microbio. T",  a:"CBB",cr:6, pre_exo:["BIO_II","BIOQ"],               pre_apr:[],row:4,col:9,notas:"Teórico"},
-  {id:"MICROBIO_L",cod:"533L",s:6,h:null,n:"Lab. Análisis Microbiol.", ab:"Microbio. L",  a:"CBB",cr:6, pre_exo:["BIO_I","BIOQ"],                pre_apr:[],row:4,col:10,notas:"Lab."},
-  {id:"INMUNO1",   cod:"506X",s:6,h:2,   n:"Inmunología I",            ab:"Inmuno. I",    a:"CBB",cr:5, pre_exo:["BIO_II","BIOQ"],               pre_apr:[],row:4,col:11,notas:"2do hemi"},
-  {id:"TALLER_INTEG",cod:"615",s:6,h:1,  n:"Taller Integ. Cs. Bio.",   ab:"Taller Integ.",a:"CBB",cr:2, pre_exo:["FISIO","FISIOPAT"],            pre_apr:[],row:4,col:12,notas:"1er hemi"},
-  {id:"INMUNO2",   cod:"534X",s:7,h:null,n:"Inmunología II",           ab:"Inmuno. II",   a:"CBB",cr:7, pre_exo:["INMUNO1"],                     pre_apr:[],row:4,col:13},
-  // Fila 5: Bromatología
-  {id:"BROMATO",   cod:"704", s:7,h:2,   n:"Bromatología y Nutrición", ab:"Bromatología", a:"CBB",cr:4, pre_exo:["BIOQ","MICROBIO_T"],           pre_apr:[],row:5,col:9,notas:"2do hemi"},
-
-  // ─── Practicantado — col 13, fila 2 (esquina derecha alta, solo) ─────────
-  {id:"PRACTICA",  cod:"965X",s:10,h:null,n:"Practicantado",            ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],                              pre_apr:[],row:2,col:13,notas:"Requiere todas las obligatorias aprobadas."},
-
-  // ─── CFA (cols 15-16 — bloque derecho, estilo lantánidos) ──────────────
-  // Fila 1: Farmacognosia sola arriba (como en imagen de referencia)
-  {id:"FARMACOGNOSIA",cod:"909",s:6,h:null,n:"Farmacognosia",           ab:"Farmacogn.",   a:"CFA",cr:9, pre_exo:["QO103L","QO104","QA3"],        pre_apr:[],row:1,col:15},
-  // Fila 2: Botánica, Farmacocinética
-  {id:"BOTANICA",     cod:"908A",s:6,h:1, n:"Botánica",                 ab:"Botánica",     a:"CFA",cr:4, pre_exo:["BIO_II","QO103L","QO104","QA3"],pre_apr:[],row:2,col:15,notas:"1er hemi"},
-  {id:"FARMACOKINETICA",cod:"535X",s:6,h:null,n:"Farmacocinética y Biofarmacia",ab:"Farmacocin.",a:"CFA",cr:8,pre_exo:["FISIO","MAT_B"],          pre_apr:[],row:2,col:16},
-  // Fila 3: Sist. Gestión, Q. Farm. 101
-  {id:"UC_CALIDAD",  cod:"157", s:6,h:2,  n:"Sistemas de Gestión",      ab:"Sist. Gestión",a:"CFA",cr:4, pre_exo:["MAT_C","QA3"],                 pre_apr:[],row:3,col:15,notas:"2do hemi. Desde 2025."},
-  {id:"QF101",       cod:"700", s:7,h:null,n:"Q. Farmacéutica 101 (T)", ab:"Q. Farm. 101", a:"CFA",cr:8, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FARMACOGNOSIA","BIOQ"],pre_apr:[],row:3,col:16,notas:"Teórico"},
-  // Fila 4: Intro Med, Q. Farm. 102
-  {id:"INTRO_MED",   cod:"416X",s:4,h:1,  n:"Introd. al Medicamento",   ab:"Intro. Med.",  a:"CFA",cr:2, pre_exo:[],                              pre_apr:[],row:4,col:16,notas:"1er hemi"},
-  {id:"QF102",       cod:"701X",s:7,h:null,n:"Q. Farmacéutica 102 (L)", ab:"Q. Farm. 102", a:"CFA",cr:6, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FQ103","FARMACOGNOSIA","BIOQ"],pre_apr:[],row:4,col:15,notas:"Lab."},
-  // Fila 5: Farmacotecnia I, Farmacología
-  {id:"FTEC1",       cod:"702X",s:7,h:null,n:"Farmacotecnia I",          ab:"Farmacotec. I",a:"CFA",cr:10,pre_exo:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"],pre_apr:[],row:5,col:15},
-  {id:"FARMACO",     cod:"703X",s:7,h:null,n:"Farmacología",             ab:"Farmacología", a:"CFA",cr:10,pre_exo:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"],pre_apr:[],row:5,col:16},
-  // Fila 6: Farmacoterapia, Farmacotecnia II
-  {id:"FARMACOTERAPIA",cod:"803X",s:8,h:null,n:"Farmacoterapia I",      ab:"Farmacoterap.",a:"CFA",cr:8, pre_exo:["FISIOPAT","FARMACO"],          pre_apr:[],row:6,col:15},
-  {id:"FTEC2",       cod:"802X",s:8,h:null,n:"Farmacotecnia II",         ab:"Farmacotec. II",a:"CFA",cr:10,pre_exo:["FTEC1"],                     pre_apr:[],row:6,col:16},
-  // Fila 7: Control, Toxico
-  {id:"CONTROL",     cod:"804X",s:8,h:null,n:"Control Calidad Medic. I",ab:"Control Cal.", a:"CFA",cr:12,pre_exo:["MICROBIO_T","QF101","QF102","FTEC1"],pre_apr:[],row:7,col:15},
-  {id:"TOXICO",      cod:"805", s:8,h:1,   n:"Toxicología Fundamental",  ab:"Toxicología",  a:"CFA",cr:4, pre_exo:["QA3","BIOQ"],                 pre_apr:[],row:7,col:16,notas:"1er hemi"},
-  // Fila 8: Legislación, Gestión
-  {id:"LEGISLACION", cod:"809", s:9,h:null,n:"Legislación y Deontología",ab:"Legislación",  a:"CFA",cr:6, pre_exo:["FTEC2","FARMACOTERAPIA"],     pre_apr:[],row:8,col:15},
-  {id:"GESTION",     cod:"410", s:9,h:2,   n:"Gestión de Empresas",      ab:"Gestión Emp.", a:"CFA",cr:4, pre_exo:[],                              pre_apr:[],row:8,col:16,notas:"2do hemi"},
+  // S1
+  {id:"MAT_A",     cod:"01A", s:1,h:null,n:"Matemática A",              ab:"Mat. A",       a:"CFM",cr:10,pre_exo:[],pre_apr:[]},
+  {id:"QUI_GEN_I", cod:"102", s:1,h:null,n:"Química General I",          ab:"Q. Gral. I",   a:"CQ", cr:7, pre_exo:[],pre_apr:[]},
+  {id:"BIO_I",     cod:"103B",s:1,h:null,n:"Introd. Cs. Biológicas I",   ab:"ICB I",        a:"CBB",cr:5, pre_exo:[],pre_apr:[]},
+  {id:"RIESGOS",   cod:"104A",s:1,h:2,   n:"Prev. Riesgos en Lab.",      ab:"Prev. Riesgos",a:"CQ", cr:4, pre_exo:[],pre_apr:[],notas:"2do hemisemestre"},
+  // S2
+  {id:"MAT_B",     cod:"02B", s:2,h:1,   n:"Matemática B",               ab:"Mat. B",       a:"CFM",cr:6, pre_exo:["MAT_A"],pre_apr:[],notas:"1er hemi"},
+  {id:"MAT_C",     cod:"02C", s:2,h:null,n:"Matemática C",               ab:"Mat. C",       a:"CFM",cr:8, pre_exo:["MAT_A"],pre_apr:[],notas:"Estadística"},
+  {id:"FIS101",    cod:"205Q",s:2,h:null,n:"Física 101",                  ab:"Física 101",   a:"CFM",cr:7, pre_exo:["MAT_A"],pre_apr:[]},
+  {id:"QUI_GEN_II",cod:"202", s:2,h:null,n:"Química General II",          ab:"Q. Gral. II",  a:"CQ", cr:8, pre_exo:["QUI_GEN_I","RIESGOS"],pre_apr:[]},
+  {id:"BIO_II",    cod:"203A",s:2,h:null,n:"Introd. Cs. Biológicas II",   ab:"ICB II",       a:"CBB",cr:5, pre_exo:["BIO_I","RIESGOS"],pre_apr:[]},
+  // S3
+  {id:"QO101",     cod:"301", s:3,h:null,n:"Química Orgánica 101",        ab:"Org. 101",     a:"CQ", cr:11,pre_exo:["QUI_GEN_II"],pre_apr:[]},
+  {id:"QA1",       cod:"302", s:3,h:null,n:"Química Analítica I",         ab:"Q. Anal. I",   a:"CQ", cr:10,pre_exo:["QUI_GEN_II"],pre_apr:[]},
+  {id:"QI_T",      cod:"303A",s:3,h:null,n:"Química Inorgánica (T)",      ab:"Q. Inorg. T",  a:"CQ", cr:6, pre_exo:["QUI_GEN_II"],pre_apr:[],notas:"Teórico"},
+  {id:"QI_L",      cod:"303B",s:3,h:null,n:"Lab. Q. Inorgánica",          ab:"Q. Inorg. L",  a:"CQ", cr:5, pre_exo:["QUI_GEN_II"],pre_apr:[],notas:"Lab."},
+  {id:"FIS102",    cod:"304Q",s:3,h:null,n:"Física 102",                  ab:"Física 102",   a:"CFM",cr:7, pre_exo:["FIS101"],pre_apr:[],notas:"Electromagnetismo"},
+  {id:"FISIO",     cod:"408A",s:3,h:null,n:"Fisiología",                  ab:"Fisiología",   a:"CBB",cr:7, pre_exo:["BIO_II"],pre_apr:[]},
+  // S4
+  {id:"QO102",     cod:"401", s:4,h:null,n:"Química Orgánica 102",        ab:"Org. 102",     a:"CQ", cr:6, pre_exo:["QO101"],pre_apr:[]},
+  {id:"QA2",       cod:"402A",s:4,h:null,n:"Química Analítica II",        ab:"Q. Anal. II",  a:"CQ", cr:7, pre_exo:["QA1"],pre_apr:[]},
+  {id:"FQ102",     cod:"508A",s:4,h:null,n:"Fisicoquímica 102",           ab:"FQ 102",       a:"CQ", cr:13,pre_exo:["MAT_B","QA1"],pre_apr:[]},
+  {id:"FIS003L",   cod:"404", s:4,h:1,   n:"Física 003 (L)",              ab:"Física 003L",  a:"CFM",cr:4, pre_exo:["FIS102"],pre_apr:[],notas:"Lab. 1er hemi"},
+  {id:"FISIOPAT",  cod:"415C",s:4,h:null,n:"Fisiopatología",              ab:"Fisiopatol.",  a:"CBB",cr:7, pre_exo:["FISIO"],pre_apr:[]},
+  {id:"INTRO_MED", cod:"416X",s:4,h:1,   n:"Introd. al Medicamento",      ab:"Intro. Med.",  a:"CFA",cr:2, pre_exo:[],pre_apr:[],notas:"1er hemi. Asistencia obligatoria."},
+  // S5
+  {id:"QO103L",    cod:"501", s:5,h:null,n:"Q. Orgánica 103 (L)",         ab:"Org. 103L",    a:"CQ", cr:5, pre_exo:["QO101","QA1"],pre_apr:[],notas:"Lab."},
+  {id:"QO104",     cod:"502X",s:5,h:1,   n:"Química Orgánica 104",        ab:"Org. 104",     a:"CQ", cr:4, pre_exo:["QO102"],pre_apr:[],notas:"1er hemi"},
+  {id:"QA3",       cod:"503", s:5,h:null,n:"Química Analítica III",       ab:"Q. Anal. III", a:"CQ", cr:10,pre_exo:["QA2"],pre_apr:[],notas:"Análisis Instr."},
+  {id:"FQ103",     cod:"520A",s:5,h:null,n:"Fisicoquímica 103",           ab:"FQ 103",       a:"CQ", cr:12,pre_exo:["FQ102"],pre_apr:[]},
+  {id:"BIOQ",      cod:"190", s:5,h:null,n:"Bioquímica Op. II",           ab:"Bioquímica",   a:"CBB",cr:10,pre_exo:["BIO_I","FQ102","QO102","QA2"],pre_apr:[],notas:"Desde 2026"},
+  // S6
+  {id:"FARMACOGNOSIA",  cod:"909", s:6,h:null,n:"Farmacognosia",          ab:"Farmacogn.",   a:"CFA",cr:9, pre_exo:["QO103L","QO104","QA3"],pre_apr:[]},
+  {id:"BOTANICA",       cod:"908A",s:6,h:1,   n:"Botánica",               ab:"Botánica",     a:"CFA",cr:4, pre_exo:["BIO_II","QO103L","QO104","QA3"],pre_apr:[],notas:"1er hemi"},
+  {id:"MICROBIO_T",     cod:"533T",s:6,h:null,n:"Microbiología Gral. (T)",ab:"Microbio. T",  a:"CBB",cr:6, pre_exo:["BIO_II","BIOQ"],pre_apr:[],notas:"Teórico"},
+  {id:"MICROBIO_L",     cod:"533L",s:6,h:null,n:"Lab. Análisis Microbiol.",ab:"Microbio. L", a:"CBB",cr:6, pre_exo:["BIO_I","BIOQ"],pre_apr:[],notas:"Lab."},
+  {id:"INMUNO1",        cod:"506X",s:6,h:2,   n:"Inmunología I",          ab:"Inmuno. I",    a:"CBB",cr:5, pre_exo:["BIO_II","BIOQ"],pre_apr:[],notas:"2do hemi"},
+  {id:"FARMACOKINETICA",cod:"535X",s:6,h:null,n:"Farmacocinética y Biofarmacia",ab:"Farmacocin.",a:"CFA",cr:8,pre_exo:["FISIO","MAT_B"],pre_apr:[]},
+  {id:"TALLER_INTEG",   cod:"615", s:6,h:1,   n:"Taller Integ. Cs. Bio.", ab:"Taller Integ.",a:"CBB",cr:2, pre_exo:["FISIO","FISIOPAT"],pre_apr:[],notas:"1er hemi"},
+  {id:"UC_CALIDAD",     cod:"157", s:6,h:2,   n:"Sistemas de Gestión",    ab:"Sist. Gestión",a:"CFA",cr:4, pre_exo:["MAT_C","QA3"],pre_apr:[],notas:"2do hemi. Desde 2025."},
+  // S7
+  {id:"QF101",     cod:"700", s:7,h:null,n:"Q. Farmacéutica 101 (T)",     ab:"Q. Farm. 101", a:"CFA",cr:8, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FARMACOGNOSIA","BIOQ"],pre_apr:[],notas:"Teórico"},
+  {id:"QF102",     cod:"701X",s:7,h:null,n:"Q. Farmacéutica 102 (L)",     ab:"Q. Farm. 102", a:"CFA",cr:6, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FQ103","FARMACOGNOSIA","BIOQ"],pre_apr:[],notas:"Lab."},
+  {id:"FTEC1",     cod:"702X",s:7,h:null,n:"Farmacotecnia I",             ab:"Farmacotec. I",a:"CFA",cr:10,pre_exo:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"],pre_apr:[]},
+  {id:"FARMACO",   cod:"703X",s:7,h:null,n:"Farmacología",                ab:"Farmacología", a:"CFA",cr:10,pre_exo:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"],pre_apr:[]},
+  {id:"INMUNO2",   cod:"534X",s:7,h:null,n:"Inmunología II",              ab:"Inmuno. II",   a:"CBB",cr:7, pre_exo:["INMUNO1"],pre_apr:[]},
+  {id:"BROMATO",   cod:"704", s:7,h:2,   n:"Bromatología y Nutrición",    ab:"Bromatología", a:"CBB",cr:4, pre_exo:["BIOQ","MICROBIO_T"],pre_apr:[],notas:"2do hemi"},
+  // S8
+  {id:"FARMACOTERAPIA",cod:"803X",s:8,h:null,n:"Farmacoterapia I",        ab:"Farmacoterap.",a:"CFA",cr:8, pre_exo:["FISIOPAT","FARMACO"],pre_apr:[]},
+  {id:"FTEC2",     cod:"802X",s:8,h:null,n:"Farmacotecnia II",            ab:"Farmacotec. II",a:"CFA",cr:10,pre_exo:["FTEC1"],pre_apr:[]},
+  {id:"CONTROL",   cod:"804X",s:8,h:null,n:"Control Calidad Medic. I",    ab:"Control Cal.", a:"CFA",cr:12,pre_exo:["MICROBIO_T","QF101","QF102","FTEC1"],pre_apr:[]},
+  {id:"TOXICO",    cod:"805", s:8,h:1,   n:"Toxicología Fundamental",     ab:"Toxicología",  a:"CFA",cr:4, pre_exo:["QA3","BIOQ"],pre_apr:[],notas:"1er hemi"},
+  // S9
+  {id:"LEGISLACION",cod:"809",s:9,h:null,n:"Legislación y Deontología",   ab:"Legislación",  a:"CFA",cr:6, pre_exo:["FTEC2","FARMACOTERAPIA"],pre_apr:[]},
+  {id:"GESTION",   cod:"410", s:9,h:2,   n:"Gestión de Empresas",         ab:"Gestión Emp.", a:"CFA",cr:4, pre_exo:[],pre_apr:[],notas:"2do hemi. Asistencia controlada."},
+  // S10
+  {id:"PRACTICA",  cod:"965X",s:10,h:null,n:"Practicantado",              ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],pre_apr:[],notas:"Requiere todas las obligatorias aprobadas."},
 ];
 
 const IDX=Object.fromEntries(materias.map(m=>[m.id,m]));
 
-/* ══════════ VALIDACIÓN PREVIAS ══════════ */
-function chkPrevias(id,targetEstado){
+/* ══════════════════════════════════════════════════════════════════════════
+   LAYOUT DE LA TABLA PERIÓDICA
+   Definimos manualmente cada fila de la tabla como arrays de IDs por bloque.
+   Filas del bloque principal: {cfm:[], cq:[], cbb:[]}
+   Filas del bloque CFA (lantánidos): arrays de IDs
+   El PRO va integrado en el bloque CBB en la fila que corresponda.
+══════════════════════════════════════════════════════════════════════════ */
+const PER_LAYOUT = {
+  // Filas del bloque principal (tabla de arriba)
+  // Cada fila: {cfm:[ids], cq:[ids], cbb:[ids]}
+  main: [
+    // Fila 1 — solo MAT_A sola (como H en la tabla periódica real)
+    { cfm:["MAT_A"],      cq:[],                                     cbb:[]              },
+    // Fila 2
+    { cfm:["MAT_B"],      cq:["QUI_GEN_I","RIESGOS","QUI_GEN_II"],   cbb:["BIO_I","BIO_II"]},
+    // Fila 3
+    { cfm:["MAT_C"],      cq:["QA1","QI_T","QI_L"],                   cbb:["FISIO","FISIOPAT","BIOQ"]},
+    // Fila 4
+    { cfm:["FIS101"],     cq:["QO101","QO102","QO103L","QO104"],      cbb:["MICROBIO_T","MICROBIO_L","INMUNO1","TALLER_INTEG","INMUNO2"]},
+    // Fila 5
+    { cfm:["FIS102"],     cq:["QA2","FQ102","QA3","FQ103"],           cbb:["BROMATO"]},
+    // Fila 6
+    { cfm:["FIS003L"],    cq:[],                                     cbb:["PRACTICA"]},
+  ],
+  // Bloque CFA (debajo, como lantánidos) — filas de IDs
+  cfa: [
+    ["FARMACOGNOSIA","BOTANICA","FARMACOKINETICA","UC_CALIDAD","INTRO_MED"],
+    ["QF101","QF102","FTEC1","FARMACO","FARMACOTERAPIA","FTEC2"],
+    ["CONTROL","TOXICO","LEGISLACION","GESTION"],
+  ]
+};
+
+/* ══════════════════════════════════════════════════════════════════════════
+   VALIDACIÓN PREVIAS
+══════════════════════════════════════════════════════════════════════════ */
+function chkPrevias(id,target){
   const m=IDX[id];if(!m)return[];
   const fl=[];
   for(const p of m.pre_exo){
     const pe=gE(p);
-    if(targetEstado==="aprobada"&&pe==="pendiente") fl.push({id:p,tipo:"exo",pe});
-    if(targetEstado==="exonerada"&&pe!=="exonerada") fl.push({id:p,tipo:"exo",pe});
+    if(target==="aprobada"&&pe==="pendiente") fl.push({id:p,tipo:"exo"});
+    if(target==="exonerada"&&pe!=="exonerada") fl.push({id:p,tipo:"exo"});
   }
   for(const p of m.pre_apr){
-    const pe=gE(p);
-    if(pe==="pendiente") fl.push({id:p,tipo:"apr",pe});
+    if(gE(p)==="pendiente") fl.push({id:p,tipo:"apr"});
   }
   return fl;
 }
 
-/* ══════════ ESTADO ══════════ */
-const SK="qf_pe2015_v5";
+/* ══════════════════════════════════════════════════════════════════════════
+   ESTADO
+══════════════════════════════════════════════════════════════════════════ */
+const SK="qf_pe2015_v6";
 let E=(()=>{try{return JSON.parse(localStorage.getItem(SK))||{}}catch{return{}}})();
 const gE=id=>E[id]||"pendiente";
 function sE(id,v){E[id]=v;try{localStorage.setItem(SK,JSON.stringify(E))}catch{}refresh();if(mId===id)abrirM(id)}
@@ -490,21 +488,24 @@ function pedirReset(){document.getElementById("confirm-overlay").classList.add("
 function cerrarConfirm(){document.getElementById("confirm-overlay").classList.remove("open")}
 function confirmarReset(){E={};try{localStorage.setItem(SK,"{}")}catch{}cerrarConfirm();refresh()}
 
-/* ══════════ HINT ══════════ */
-let hintShown=localStorage.getItem("qf_hint3")==="1";
-function showHint(){if(hintShown)return;hintShown=true;localStorage.setItem("qf_hint3","1");showMsg("💡 Toque rápido → cambia estado  ·  Toque largo → ver detalles",5000)}
+/* ══════════════════════════════════════════════════════════════════════════
+   HINT / TOAST
+══════════════════════════════════════════════════════════════════════════ */
+let hintShown=localStorage.getItem("qf_hint4")==="1";
+function showHint(){if(hintShown)return;hintShown=true;localStorage.setItem("qf_hint4","1");showMsg("💡 Toque rápido → cambia estado  ·  Toque largo → ver detalles",5000)}
 function showMsg(msg,dur=3500){
-  const t=document.getElementById("hint-toast");
-  t.textContent=msg;t.classList.add("show");
-  clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove("show"),dur);
+  const t=document.getElementById("hint-toast");t.textContent=msg;t.classList.add("show");
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),dur);
 }
 
-/* ══════════ PRESS ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   PRESS CORTO / LARGO
+══════════════════════════════════════════════════════════════════════════ */
 const ESTADOS=["pendiente","aprobada","exonerada"];
 let pTimer=null,pMoved=false;
-function onPS(e,id){pMoved=false;pTimer=setTimeout(()=>{pTimer=null;abrirM(id)},380)}
+function onPS(id){pMoved=false;pTimer=setTimeout(()=>{pTimer=null;abrirM(id)},380)}
 function onPM(){pMoved=true;clearTimeout(pTimer);pTimer=null}
-function onPE(e,id){
+function onPE(id){
   if(pTimer!==null&&!pMoved){
     clearTimeout(pTimer);pTimer=null;
     showHint();
@@ -517,7 +518,9 @@ function onPE(e,id){
   }
 }
 
-/* ══════════ TARJETA ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   CREAR TARJETA
+══════════════════════════════════════════════════════════════════════════ */
 function mkCard(m,extraCls=""){
   const est=gE(m.id);
   const d=document.createElement("div");
@@ -525,184 +528,229 @@ function mkCard(m,extraCls=""){
   d.dataset.id=m.id;
   d.innerHTML=`
     <div class="card-top">
-      <span class="card-area-tag">${m.a}</span>
-      ${m.h?`<span class="card-hemi">${m.h}°</span>`:`<span class="card-cr-tag">${m.cr} cr</span>`}
+      <span class="card-cr">${m.cr} cr</span>
+      ${m.h?`<span class="card-hemi">${m.h}°</span>`:""}
     </div>
-    ${m.h?`<div style="text-align:right;margin-top:-2px"><span class="card-cr-tag">${m.cr} cr</span></div>`:""}
     <div class="card-abrev">${m.ab}</div>
     <div class="card-nombre">${m.n}</div>
     <div class="card-cod">${m.cod}</div>
     <div class="card-dot"></div>
   `;
-  d.addEventListener("mousedown",e=>{if(e.button===0)onPS(e,m.id)});
-  d.addEventListener("mousemove",onPM);
-  d.addEventListener("mouseup",  e=>{if(e.button===0)onPE(e,m.id)});
-  d.addEventListener("touchstart",e=>onPS(e,m.id),{passive:true});
+  d.addEventListener("mousedown", e=>{if(e.button===0)onPS(m.id)});
+  d.addEventListener("mousemove", onPM);
+  d.addEventListener("mouseup",   e=>{if(e.button===0)onPE(m.id)});
+  d.addEventListener("touchstart",()=>onPS(m.id),{passive:true});
   d.addEventListener("touchmove", onPM,{passive:true});
-  d.addEventListener("touchend",  e=>onPE(e,m.id));
+  d.addEventListener("touchend",  ()=>onPE(m.id));
   d.addEventListener("mouseenter",()=>hlPre(m.id));
   d.addEventListener("mouseleave",clrHl);
   return d;
 }
 
-/* ══════════ HIGHLIGHTS ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   HIGHLIGHTS
+══════════════════════════════════════════════════════════════════════════ */
 function hlPre(id){
   clrHl();
   document.querySelectorAll(`[data-id="${id}"]`).forEach(e=>e.classList.add("hl-self"));
   const m=IDX[id];if(!m)return;
-  const allP=[...m.pre_exo,...m.pre_apr];
-  for(const p of allP)document.querySelectorAll(`[data-id="${p}"]`).forEach(e=>e.classList.add("hl-pre"));
-  for(const o of materias)if([...o.pre_exo,...o.pre_apr].includes(id))document.querySelectorAll(`[data-id="${o.id}"]`).forEach(e=>e.classList.add("hl-post"));
+  for(const p of [...m.pre_exo,...m.pre_apr])
+    document.querySelectorAll(`[data-id="${p}"]`).forEach(e=>e.classList.add("hl-pre"));
+  for(const o of materias)
+    if([...o.pre_exo,...o.pre_apr].includes(id))
+      document.querySelectorAll(`[data-id="${o.id}"]`).forEach(e=>e.classList.add("hl-post"));
 }
 function clrHl(){document.querySelectorAll(".hl-self,.hl-pre,.hl-post").forEach(e=>e.classList.remove("hl-self","hl-pre","hl-post"))}
 
-/* ══════════ CRÉDITOS ══════════ */
-function calcCr(){const t={total:0};for(const k in AM)t[k]=0;for(const m of materias)if(gE(m.id)==="exonerada"){t[m.a]=(t[m.a]||0)+m.cr;t.total+=m.cr}return t}
+/* ══════════════════════════════════════════════════════════════════════════
+   CRÉDITOS
+══════════════════════════════════════════════════════════════════════════ */
+function calcCr(){
+  const t={total:0};for(const k in AM)t[k]=0;
+  for(const m of materias)if(gE(m.id)==="exonerada"){t[m.a]=(t[m.a]||0)+m.cr;t.total+=m.cr}
+  return t;
+}
 function updCr(){
   const cr=calcCr();
   document.getElementById("cr-n").textContent=cr.total;
   const pct=Math.min(100,Math.round(cr.total/CMIN*100));
   document.getElementById("prog").style.width=pct+"%";
-  document.getElementById("pct").textContent=pct+"% completado";
-  for(const k of Object.keys(AM)){const got=cr[k]||0,pa=Math.min(100,Math.round(got/AM[k].cMin*100));const f=document.getElementById("apf-"+k);if(f)f.style.width=pa+"%";const l=document.getElementById("apl-"+k);if(l)l.textContent=got+" / "+AM[k].cMin+" cr"}
+  document.getElementById("pct").textContent=pct+"%";
+  for(const k of Object.keys(AM)){
+    const got=cr[k]||0,pa=Math.min(100,Math.round(got/AM[k].cMin*100));
+    const f=document.getElementById("apf-"+k);if(f)f.style.width=pa+"%";
+    const l=document.getElementById("apl-"+k);if(l)l.textContent=got+" / "+AM[k].cMin+" cr";
+  }
 }
 
-/* ══════════ AREA PROGRESS ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   AREA PROGRESS
+══════════════════════════════════════════════════════════════════════════ */
 function renderAP(){
   const c=document.getElementById("ap-sec");c.innerHTML="";
-  for(const [k,a]of Object.entries(AM)){const d=document.createElement("div");d.className="ap-item";d.innerHTML=`<div class="ap-head"><span class="ap-name" style="color:${a.c}">${a.n}</span><span class="ap-cr" id="apl-${k}">0 / ${a.cMin} cr</span></div><div class="ap-bar"><div class="ap-fill" id="apf-${k}" style="background:${a.c}"></div></div>`;c.appendChild(d)}
+  for(const [k,a]of Object.entries(AM)){
+    const d=document.createElement("div");d.className="ap-item";
+    d.innerHTML=`<div class="ap-head"><span class="ap-name" style="color:${a.c}">${a.n}</span><span class="ap-cr" id="apl-${k}">0 / ${a.cMin} cr</span></div><div class="ap-bar"><div class="ap-fill" id="apf-${k}" style="background:${a.c}"></div></div>`;
+    c.appendChild(d);
+  }
 }
 
-/* ══════════ FILTROS ══════════ */
-let activeFilter={type:null,value:null}; // type: 'year'|'sem', value: sems array
-
+/* ══════════════════════════════════════════════════════════════════════════
+   FILTROS
+══════════════════════════════════════════════════════════════════════════ */
+let AF={type:null,value:null};
 const YEARS=[{l:"Todos",s:null},{l:"1° año",s:[1,2]},{l:"2° año",s:[3,4]},{l:"3° año",s:[5,6]},{l:"4° año",s:[7,8]},{l:"5° año",s:[9,10]}];
-const SEM_LIST=[{l:"Todos",s:null},{l:"S1",s:[1]},{l:"S2",s:[2]},{l:"S3",s:[3]},{l:"S4",s:[4]},{l:"S5",s:[5]},{l:"S6",s:[6]},{l:"S7",s:[7]},{l:"S8",s:[8]},{l:"S9",s:[9]},{l:"S10",s:[10]}];
+const SEMS=[{l:"Todos",s:null},...[1,2,3,4,5,6,7,8,9,10].map(i=>({l:"S"+i,s:[i]}))];
 
-function renderFilterBtns(containerId,list,type){
-  const c=document.getElementById(containerId);c.innerHTML="";
+function renderFilterBtns(cid,list,type){
+  const c=document.getElementById(cid);c.innerHTML="";
   for(const y of list){
+    const active=AF.type===type&&JSON.stringify(AF.value)===JSON.stringify(y.s);
     const b=document.createElement("button");
-    const isActive=activeFilter.type===type&&JSON.stringify(activeFilter.value)===JSON.stringify(y.s);
-    b.className="f-btn"+(isActive?" active":"");
-    b.textContent=y.l;
+    b.className="f-btn"+(active?" active":"");b.textContent=y.l;
     b.onclick=()=>{
-      if(isActive){activeFilter={type:null,value:null}}
-      else{activeFilter={type,value:y.s}}
+      AF=active?{type:null,value:null}:{type,value:y.s};
       renderFilterBtns("yr-btns",YEARS,"year");
-      renderFilterBtns("sem-btns",SEM_LIST,"sem");
+      renderFilterBtns("sem-btns",SEMS,"sem");
       applyFilter();
     };
     c.appendChild(b);
   }
 }
-
 function applyFilter(){
-  const s=activeFilter.value;
+  const s=AF.value;
   if(!s){document.body.classList.remove("yr-on");document.querySelectorAll(".materia-card").forEach(c=>c.classList.remove("yr-match"));return}
   document.body.classList.add("yr-on");
   document.querySelectorAll(".materia-card").forEach(c=>{const m=IDX[c.dataset.id];c.classList.toggle("yr-match",!!m&&s.includes(m.s))});
 }
 
-/* ══════════ VISTA SEMESTRAL ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   VISTA SEMESTRAL
+══════════════════════════════════════════════════════════════════════════ */
 function renderSem(){
   const wrap=document.getElementById("malla-sem");wrap.innerHTML="";
   const sems=[...new Set(materias.map(m=>m.s))].sort((a,b)=>a-b);
   for(const s of sems){
     const col=document.createElement("div");col.className="sem-col";
-    const crSem=materias.filter(m=>m.s===s&&gE(m.id)==="exonerada").reduce((a,m)=>a+m.cr,0);
-    col.innerHTML=`<div class="sem-hdr"><div class="sem-hdr-num">Sem. ${s}</div><div class="sem-hdr-cr">${crSem} cr</div></div>`;
+    const crS=materias.filter(m=>m.s===s&&gE(m.id)==="exonerada").reduce((a,m)=>a+m.cr,0);
+    col.innerHTML=`<div class="sem-hdr"><div class="sem-hdr-num">Sem. ${s}</div><div class="sem-hdr-cr">${crS} cr</div></div>`;
     for(const m of materias.filter(m=>m.s===s))col.appendChild(mkCard(m));
     wrap.appendChild(col);
   }
   applyFilter();
 }
 
-/* ══════════ VISTA TABLA PERIÓDICA ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   VISTA TABLA PERIÓDICA
+   Estrategia: CSS Grid de 3 columnas (CFM | CQ | CBB) para alinear bloques.
+   Cada celda del grid contiene las tarjetas de esa fila pegadas sin ancho fijo.
+   Tarjetas más chicas (p-card). CFA separado debajo como lantánidos.
+══════════════════════════════════════════════════════════════════════════ */
 function renderPer(){
-  // Leyenda
   const leg=document.getElementById("per-legend");leg.innerHTML="";
   for(const [k,a]of Object.entries(AM)){
     const d=document.createElement("div");d.className="per-leg-item";
     d.style.cssText=`background:${a.p};border-color:${a.b};color:${a.t}`;
-    d.innerHTML=`<span class="per-leg-dot" style="background:${a.c}"></span>${a.n} <span style="opacity:.6;font-size:.6rem;font-family:var(--mono)">(mín. ${a.cMin} cr)</span>`;
+    d.innerHTML=`<span class="per-leg-dot" style="background:${a.c}"></span>${a.n}<span style="opacity:.55;font-size:.6rem;font-family:var(--mono);margin-left:4px">${a.cMin} cr mín.</span>`;
     leg.appendChild(d);
   }
 
-  const grid=document.getElementById("per-grid");grid.innerHTML="";
+  const table=document.getElementById("per-table");table.innerHTML="";
+  const G=4; // gap entre tarjetas px
 
-  /*
-    Grid de 16 columnas:
-    1-2  : CFM
-    3    : GAP (invisible)
-    4-7  : CQ
-    8    : GAP
-    9-13 : CBB + PRO
-    14   : GAP
-    15-16: CFA (bloque separado, como lantánidos)
-    
-    Filas: 1-8
-  */
-  const COLS=16;
-  const ROWS=8;
-
-  // Configurar grid CSS
-  // Col 3, 8, 14 son gaps menores (20px), el resto son var(--cw)
-  const colDefs=[];
-  for(let c=1;c<=COLS;c++){
-    if(c===3||c===8||c===14) colDefs.push("18px");
-    else colDefs.push("var(--cw)");
-  }
-  grid.style.gridTemplateColumns=colDefs.join(" ");
-  grid.style.gridTemplateRows=`repeat(${ROWS}, var(--ch))`;
-
-  // Mapa de ocupación
-  const occ={};
-  for(const m of materias){occ[`${m.row},${m.col}`]=m}
-
-  // Colocar tarjetas en el grid
-  for(const m of materias){
-    const card=mkCard(m);
-    card.style.gridRow=m.row;
-    card.style.gridColumn=m.col;
-    grid.appendChild(card);
+  /* Crea fila de tarjetas compactas */
+  function makeRow(ids){
+    const b=document.createElement("div");
+    b.style.cssText=`display:flex;gap:${G}px;align-items:flex-start;flex-shrink:0`;
+    for(const id of ids){const m=IDX[id];if(m)b.appendChild(mkCard(m,"p-card"))}
+    return b;
   }
 
-  // Celdas vacías para mantener el layout (sólo necesarias en filas que tienen hueco)
-  // El grid CSS se encarga de esto automáticamente si las tarjetas tienen row/col explícitos
+  /* ── Tabla principal: grid 3 cols con gap visual entre grupos ── */
+  // Calculamos cuántas tarjetas como máximo tiene cada columna para fijar width
+  const maxCFM=Math.max(...PER_LAYOUT.main.map(r=>r.cfm.length));
+  const maxCQ =Math.max(...PER_LAYOUT.main.map(r=>r.cq.length));
+  const maxCBB=Math.max(...PER_LAYOUT.main.map(r=>r.cbb.length));
+  const PW=74, GAP=14; // tarjeta periódica px, gap entre bloques
 
-  // Etiquetas de grupo DEBAJO
-  const glabels=document.getElementById("per-glabels");glabels.innerHTML="";
-  glabels.style.gridTemplateColumns=colDefs.join(" ");
+  const colW=n=>n*(PW+G)-G; // ancho exacto de n tarjetas con gap entre ellas
 
-  // CFM: cols 1-2
-  const lCFM=document.createElement("div");
-  lCFM.style.cssText=`grid-column:1/3;`;
-  lCFM.innerHTML=`<div class="per-glabel" style="color:${AM.CFM.c}">${AM.CFM.n.toUpperCase()}</div><div class="per-glabel-sub">${AM.CFM.cMin} cr mín.</div>`;
-  glabels.appendChild(lCFM);
+  // Grid wrapper: 3 columnas con ancho fijo por bloque
+  const mainGrid=document.createElement("div");
+  mainGrid.style.cssText=`
+    display:grid;
+    grid-template-columns:${colW(maxCFM)}px ${GAP}px ${colW(maxCQ)}px ${GAP}px ${colW(maxCBB)}px;
+    grid-auto-rows:auto;
+    gap:${G}px 0;
+  `;
 
-  // CQ: cols 4-7
-  const lCQ=document.createElement("div");
-  lCQ.style.cssText=`grid-column:4/8;`;
-  lCQ.innerHTML=`<div class="per-glabel" style="color:${AM.CQ.c}">${AM.CQ.n.toUpperCase()}</div><div class="per-glabel-sub">${AM.CQ.cMin} cr mín.</div>`;
-  glabels.appendChild(lCQ);
+  for(const row of PER_LAYOUT.main){
+    // col CFM
+    const cCFM=document.createElement("div");
+    cCFM.style.cssText=`display:flex;align-items:flex-start`;
+    if(row.cfm.length)cCFM.appendChild(makeRow(row.cfm));
+    mainGrid.appendChild(cCFM);
 
-  // CBB: cols 9-13
-  const lCBB=document.createElement("div");
-  lCBB.style.cssText=`grid-column:9/14;`;
-  lCBB.innerHTML=`<div class="per-glabel" style="color:${AM.CBB.c}">${AM.CBB.n.toUpperCase()}</div><div class="per-glabel-sub">${AM.CBB.cMin} cr mín.</div>`;
-  glabels.appendChild(lCBB);
+    // gap col
+    mainGrid.appendChild(document.createElement("div"));
 
-  // CFA: cols 15-16
+    // col CQ
+    const cCQ=document.createElement("div");
+    cCQ.style.cssText=`display:flex;align-items:flex-start`;
+    if(row.cq.length)cCQ.appendChild(makeRow(row.cq));
+    mainGrid.appendChild(cCQ);
+
+    // gap col
+    mainGrid.appendChild(document.createElement("div"));
+
+    // col CBB
+    const cCBB=document.createElement("div");
+    cCBB.style.cssText=`display:flex;align-items:flex-start`;
+    if(row.cbb.length)cCBB.appendChild(makeRow(row.cbb));
+    mainGrid.appendChild(cCBB);
+  }
+  table.appendChild(mainGrid);
+
+  // Etiquetas debajo del bloque principal
+  const lblRow=document.createElement("div");
+  lblRow.style.cssText=`display:grid;grid-template-columns:${colW(maxCFM)}px ${GAP}px ${colW(maxCQ)}px ${GAP}px ${colW(maxCBB)}px;margin-top:10px;margin-bottom:10px`;
+  const lblStyle=`font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3`;
+  const subStyle=`font-size:.62rem;font-weight:500;opacity:.65;margin-top:1px;font-family:var(--mono)`;
+  lblRow.innerHTML=`
+    <div><div style="${lblStyle};color:${AM.CFM.c}">${AM.CFM.n}</div><div style="${subStyle}">${AM.CFM.cMin} cr mín.</div></div>
+    <div></div>
+    <div><div style="${lblStyle};color:${AM.CQ.c}">${AM.CQ.n}</div><div style="${subStyle}">${AM.CQ.cMin} cr mín.</div></div>
+    <div></div>
+    <div><div style="${lblStyle};color:${AM.CBB.c}">${AM.CBB.n}</div><div style="${subStyle};color:${AM.PRO.c}">${AM.CBB.cMin} cr mín. · Practicantado: ${AM.PRO.cMin} cr</div></div>
+  `;
+  table.appendChild(lblRow);
+
+  /* ── Línea separadora estilo lantánidos ── */
+  const cfaIndent=colW(maxCFM)+GAP+colW(maxCQ)+GAP; // empieza bajo bloque CQ+CBB
+  const sep=document.createElement("div");
+  sep.style.cssText=`height:1px;background:var(--border2);margin:4px 0 8px;margin-left:${cfaIndent}px`;
+  table.appendChild(sep);
+
+  /* ── Bloque CFA (lantánidos): pegado a la derecha, indentado ── */
+  for(const row of PER_LAYOUT.cfa){
+    const rowEl=document.createElement("div");
+    rowEl.style.cssText=`display:flex;gap:${G}px;margin-left:${cfaIndent}px;margin-bottom:${G}px`;
+    for(const id of row){const m=IDX[id];if(m)rowEl.appendChild(mkCard(m,"p-card"))}
+    table.appendChild(rowEl);
+  }
+
+  // Etiqueta CFA
   const lCFA=document.createElement("div");
-  lCFA.style.cssText=`grid-column:15/17;`;
-  lCFA.innerHTML=`<div class="per-glabel" style="color:${AM.CFA.c}">${AM.CFA.n.toUpperCase()}</div><div class="per-glabel-sub">${AM.CFA.cMin} cr mín.</div>`;
-  glabels.appendChild(lCFA);
+  lCFA.style.cssText=`margin-left:${cfaIndent}px;margin-top:8px`;
+  lCFA.innerHTML=`<div style="${lblStyle};color:${AM.CFA.c}">${AM.CFA.n}</div><div style="${subStyle}">${AM.CFA.cMin} cr mín.</div>`;
+  table.appendChild(lCFA);
 
   applyFilter();
 }
 
-/* ══════════ VISTAS ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   VISTAS
+══════════════════════════════════════════════════════════════════════════ */
 let curView="sem";
 function setView(v){
   curView=v;
@@ -712,7 +760,9 @@ function setView(v){
   document.getElementById("btn-per").classList.toggle("active",v==="per");
 }
 
-/* ══════════ MODAL ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════════════════════════════════════ */
 let mId=null;
 function abrirM(id){
   mId=id;const m=IDX[id];const est=gE(id);const a=AM[m.a];
@@ -729,11 +779,15 @@ function abrirM(id){
   const pw=document.getElementById("m-pre");
   if(allP.length){
     pw.innerHTML=`<div class="pre-title">Previas requeridas</div><div class="pre-chips">${
-      allP.map(({id:p,tipo})=>{const pm=IDX[p];const pe=gE(p);const ok=(tipo==="exo"&&pe==="exonerada")||(tipo==="apr"&&pe!=="pendiente");
-        return`<span class="pre-chip ${ok?"ok":"nok"}" onclick="redir('${p}')">${pm?pm.ab:p}<span class="pre-tipo">${tipo}</span> ${ok?"✓":"✗"}</span>`
+      allP.map(({id:p,tipo})=>{
+        const pm=IDX[p];const pe=gE(p);
+        const ok=(tipo==="exo"&&pe==="exonerada")||(tipo==="apr"&&pe!=="pendiente");
+        return`<span class="pre-chip ${ok?"ok":"nok"}" onclick="redir('${p}')">${pm?pm.ab:p}<span class="pre-tipo">${tipo}</span> ${ok?"✓":"✗"}</span>`;
       }).join("")
     }</div>`;
-  }else{pw.innerHTML=`<p style="font-size:.74rem;color:var(--text3);margin-bottom:12px">Sin previas requeridas.</p>`}
+  }else{
+    pw.innerHTML=`<p style="font-size:.74rem;color:var(--text3);margin-bottom:12px">Sin previas requeridas.</p>`;
+  }
   document.querySelectorAll(".btn-e").forEach(b=>b.classList.toggle("activo",b.dataset.e===est));
   document.getElementById("m-nota").innerHTML=m.notas?`<div class="m-nota">${m.notas}</div>`:"";
   document.getElementById("overlay").classList.add("open");
@@ -741,24 +795,36 @@ function abrirM(id){
 function redir(id){cerrar();setTimeout(()=>abrirM(id),80)}
 function cerrar(){document.getElementById("overlay").classList.remove("open");mId=null;clrHl()}
 
-/* ══════════ REFRESH ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   REFRESH
+══════════════════════════════════════════════════════════════════════════ */
 function refresh(){renderSem();renderPer();updCr()}
 
-/* ══════════ EVENTOS ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   EVENTOS
+══════════════════════════════════════════════════════════════════════════ */
 document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")cerrar()});
 document.getElementById("confirm-overlay").addEventListener("click",e=>{if(e.target.id==="confirm-overlay")cerrarConfirm()});
 document.querySelectorAll(".btn-e").forEach(b=>b.addEventListener("click",()=>{
   if(!mId)return;
   const next=b.dataset.e;
-  if(next!=="pendiente"){const fl=chkPrevias(mId,next);if(fl.length){showMsg("⚠️ Falta: "+fl.map(f=>(IDX[f.id]?IDX[f.id].ab:f.id)+" ("+(f.tipo==="exo"?"exonerar":"aprobar")+")").join(", "));return}}
+  if(next!=="pendiente"){
+    const fl=chkPrevias(mId,next);
+    if(fl.length){
+      showMsg("⚠️ Falta: "+fl.map(f=>(IDX[f.id]?IDX[f.id].ab:f.id)+" ("+(f.tipo==="exo"?"exonerar":"aprobar")+")").join(", "));
+      return;
+    }
+  }
   sE(mId,next);
 }));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){cerrar();cerrarConfirm()}});
 
-/* ══════════ INIT ══════════ */
+/* ══════════════════════════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════════════════════════ */
 renderAP();
 renderFilterBtns("yr-btns",YEARS,"year");
-renderFilterBtns("sem-btns",SEM_LIST,"sem");
+renderFilterBtns("sem-btns",SEMS,"sem");
 refresh();
 setView("sem");
 </script>
