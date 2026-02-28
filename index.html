@@ -17,235 +17,224 @@
   --sh-sm:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
   --sh:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
   --sh-hov:0 14px 35px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07);
-  /* tarjeta normal */
-  --cw:108px;--ch:118px;
-  /* tarjeta periódica — compacta */
-  --pw:78px;--ph:88px;
-  --font:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+  --cw:108px; --ch:118px;   /* semestral */
+  --pw:80px;  --ph:92px;   /* periódica */
+  --font:'Outfit',sans-serif; --mono:'DM Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
 
-/* HEADER */
-header{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:200;box-shadow:var(--sh-sm)}
-.brand{display:flex;align-items:center;gap:11px}
-.brand-icon{width:38px;height:38px;background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;box-shadow:0 3px 10px rgba(124,58,237,.28)}
-.brand h1{font-size:.95rem;font-weight:800;letter-spacing:-.3px}
-.brand p{font-size:.72rem;color:var(--text3);margin-top:1px}
-.hdr-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+/* ─── HEADER ─── */
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:200;box-shadow:var(--sh-sm)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{width:36px;height:36px;background:linear-gradient(135deg,#7C3AED,#2563EB);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 3px 10px rgba(124,58,237,.28)}
+.brand h1{font-size:.9rem;font-weight:800;letter-spacing:-.3px}
+.brand p{font-size:.68rem;color:var(--text3)}
+.hdr-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .view-toggle{display:flex;background:var(--bg);border:1.5px solid var(--border2);border-radius:8px;overflow:hidden}
-.view-btn{padding:6px 14px;border:none;background:none;cursor:pointer;font-family:var(--font);font-size:.78rem;font-weight:600;color:var(--text3);transition:all .18s;display:flex;align-items:center;gap:6px}
+.view-btn{padding:5px 13px;border:none;background:none;cursor:pointer;font-family:var(--font);font-size:.76rem;font-weight:600;color:var(--text3);transition:all .18s;display:flex;align-items:center;gap:5px}
 .view-btn.active{background:var(--surface);color:var(--text);box-shadow:var(--sh-sm)}
-.cr-box{text-align:right}
-.cr-num{font-size:1.5rem;font-weight:900;letter-spacing:-1.5px;color:var(--text);line-height:1}
-.cr-num span{font-size:.85rem;font-weight:400;color:var(--text3)}
-.cr-label{font-size:.65rem;color:var(--text3)}
-.prog-outer{width:120px;height:5px;background:var(--border2);border-radius:999px;overflow:hidden;margin-top:2px}
-.prog-fill{height:100%;background:linear-gradient(90deg,#7C3AED,#2563EB);border-radius:999px;transition:width .5s cubic-bezier(.34,1.56,.64,1);width:0%}
-.cr-pct{font-size:.62rem;color:var(--text3);margin-top:2px}
-.btn-reset{padding:6px 13px;border-radius:7px;border:1.5px solid #FCA5A5;background:#FEF2F2;color:#DC2626;font-family:var(--font);font-size:.74rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap}
+.cr-num{font-size:1.4rem;font-weight:900;letter-spacing:-1px;line-height:1}
+.cr-num span{font-size:.8rem;font-weight:400;color:var(--text3)}
+.cr-label{font-size:.62rem;color:var(--text3)}
+.prog-outer{width:110px;height:4px;background:var(--border2);border-radius:999px;overflow:hidden;margin-top:2px}
+.prog-fill{height:100%;background:linear-gradient(90deg,#7C3AED,#2563EB);border-radius:999px;transition:width .5s;width:0%}
+.cr-pct{font-size:.6rem;color:var(--text3);margin-top:2px}
+.btn-reset{padding:5px 12px;border-radius:7px;border:1.5px solid #FCA5A5;background:#FEF2F2;color:#DC2626;font-family:var(--font);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap}
 .btn-reset:hover{background:#FEE2E2}
 
-/* TOOLBAR */
-.toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:9px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.tlbl{font-size:.7rem;font-weight:700;color:var(--text3);white-space:nowrap}
-.dv{width:1px;height:20px;background:var(--border2);flex-shrink:0}
-.filter-btns{display:flex;gap:4px;flex-wrap:wrap}
-.f-btn{padding:4px 11px;border-radius:6px;border:1.5px solid var(--border2);background:var(--surface);font-family:var(--font);font-size:.72rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s}
+/* ─── TOOLBAR ─── */
+.toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 22px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tlbl{font-size:.68rem;font-weight:700;color:var(--text3);white-space:nowrap}
+.dv{width:1px;height:18px;background:var(--border2);flex-shrink:0}
+.filter-btns{display:flex;gap:3px;flex-wrap:wrap}
+.f-btn{padding:3px 10px;border-radius:5px;border:1.5px solid var(--border2);background:var(--surface);font-family:var(--font);font-size:.7rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all .14s}
 .f-btn:hover{border-color:var(--text3);background:var(--bg)}
 .f-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
 
-/* AREA PROGRESS */
-.ap-sec{padding:12px 24px 0;display:flex;gap:7px;flex-wrap:wrap}
-.ap-item{flex:1 1 120px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:9px 12px}
-.ap-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.ap-name{font-size:.67rem;font-weight:700}
-.ap-cr{font-size:.62rem;color:var(--text3);font-family:var(--mono)}
-.ap-bar{height:4px;background:var(--border2);border-radius:999px;overflow:hidden}
+/* ─── AREA PROGRESS ─── */
+.ap-sec{padding:10px 22px 0;display:flex;gap:6px;flex-wrap:wrap}
+.ap-item{flex:1 1 110px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 11px}
+.ap-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.ap-name{font-size:.64rem;font-weight:700}
+.ap-cr{font-size:.6rem;color:var(--text3);font-family:var(--mono)}
+.ap-bar{height:3px;background:var(--border2);border-radius:999px;overflow:hidden}
 .ap-fill{height:100%;border-radius:999px;transition:width .5s;width:0%}
 
-/* LEYENDA */
-.leg-bar{padding:7px 24px;display:flex;gap:16px;font-size:.68rem;color:var(--text3);align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--surface)}
+/* ─── LEYENDA ─── */
+.leg-bar{padding:6px 22px;display:flex;gap:14px;font-size:.66rem;color:var(--text3);align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--surface)}
 .leg-bar span{display:flex;align-items:center;gap:5px}
-.lg-sq{width:10px;height:10px;border-radius:3px;border:2px solid}
-.lg-dot{width:8px;height:8px;border-radius:50%}
+.lg-sq{width:9px;height:9px;border-radius:3px;border:2px solid}
+.lg-dot{width:7px;height:7px;border-radius:50%}
 
-/* HINT TOAST */
-.hint-toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(15,23,42,.88);color:#fff;padding:9px 18px;border-radius:999px;font-size:.76rem;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s;opacity:0;z-index:9999;white-space:nowrap;backdrop-filter:blur(4px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+/* ─── TOAST ─── */
+.hint-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(15,23,42,.88);color:#fff;padding:8px 16px;border-radius:999px;font-size:.74rem;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s;opacity:0;z-index:9999;white-space:nowrap;backdrop-filter:blur(4px)}
 .hint-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* ══ TARJETA BASE ══
-   Top row: créditos izq + hemi badge der
-   Abrev centro grande
-   Nombre completo abajo pequeño
-   Código abajo
-*/
+/* ══════════════════════════════════
+   TARJETA BASE
+   Top: créditos izq | hemi badge der
+   Centro: nombre abreviado grande
+   Abajo: nombre completo · código
+══════════════════════════════════ */
 .materia-card{
-  border-radius:10px;border:2px solid;
+  border-radius:10px; border:2px solid;
   padding:6px 6px 5px;
-  cursor:pointer;position:relative;
-  display:flex;flex-direction:column;
-  user-select:none;flex-shrink:0;
-  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease,opacity .2s;
-  /* Tamaño semestral */
-  width:var(--cw);min-height:var(--ch);
+  cursor:pointer; position:relative;
+  display:flex; flex-direction:column;
+  user-select:none; flex-shrink:0;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s,opacity .2s;
+  width:var(--cw); min-height:var(--ch);
 }
-.materia-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:10;opacity:1!important}
-
-/* Colores por área */
+.materia-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:20;opacity:1!important}
 .area-CFM{--av:var(--cfm-c);--ap:var(--cfm-p);--at:var(--cfm-t);--ab:var(--cfm-b)}
 .area-CQ {--av:var(--cq-c); --ap:var(--cq-p); --at:var(--cq-t); --ab:var(--cq-b)}
 .area-CBB{--av:var(--cbb-c);--ap:var(--cbb-p);--at:var(--cbb-t);--ab:var(--cbb-b)}
 .area-CFA{--av:var(--cfa-c);--ap:var(--cfa-p);--at:var(--cfa-t);--ab:var(--cfa-b)}
 .area-PRO{--av:var(--pro-c);--ap:var(--pro-p);--at:var(--pro-t);--ab:var(--pro-b)}
-
-/* Estados */
-.materia-card.pendiente {background:var(--ap);border-color:var(--ab);opacity:.72}
-.materia-card.aprobada  {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 16%,transparent),var(--sh);opacity:1}
-.materia-card.exonerada {background:var(--surface);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 20%,transparent),var(--sh);opacity:1}
-
-/* Fila superior: créditos izq, hemi der */
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px;min-height:16px}
-.card-cr{font-size:.62rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.85;line-height:1}
-.card-hemi{font-size:.5rem;font-weight:800;background:var(--av);color:#fff;border-radius:3px;padding:1px 4px;line-height:1.4;opacity:.9;white-space:nowrap}
-/* Abrev central */
-.card-abrev{font-size:.9rem;font-weight:800;color:var(--at);text-align:center;line-height:1.15;flex:1;display:flex;align-items:center;justify-content:center;word-break:break-word;hyphens:auto;padding:1px 0}
-/* Nombre completo */
-.card-nombre{font-size:.5rem;font-weight:500;color:var(--at);opacity:.65;text-align:center;line-height:1.3;margin-top:auto}
-/* Código */
+.materia-card.pendiente {background:var(--ap);border-color:var(--ab)}
+.materia-card.aprobada  {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 16%,transparent),var(--sh)}
+.materia-card.exonerada {background:var(--surface);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 22%,transparent),var(--sh)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}
+.card-cr{font-size:.6rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.85}
+.card-hemi{font-size:.49rem;font-weight:800;background:var(--av);color:#fff;border-radius:3px;padding:1px 4px;line-height:1.4;opacity:.9}
+.card-abrev{font-size:.88rem;font-weight:800;color:var(--at);text-align:center;line-height:1.15;flex:1;display:flex;align-items:center;justify-content:center;word-break:break-word;hyphens:auto;padding:2px 0}
+.card-nombre{font-size:.49rem;font-weight:500;color:var(--at);opacity:.62;text-align:center;line-height:1.3;margin-top:auto}
 .card-cod{font-size:.46rem;font-family:var(--mono);color:var(--av);text-align:center;margin-top:2px;opacity:.7}
-/* Dot estado */
 .card-dot{width:8px;height:8px;border-radius:50%;position:absolute;bottom:5px;right:5px;display:none}
-.aprobada  .card-dot{display:block;background:#3B82F6;box-shadow:0 0 5px rgba(59,130,246,.55)}
-.exonerada .card-dot{display:block;background:#10B981;box-shadow:0 0 5px rgba(16,185,129,.55)}
-
-/* Highlights */
-.materia-card.hl-self{outline:2.5px solid #3B82F6;outline-offset:2px;opacity:1!important;transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:10}
+.aprobada  .card-dot{display:block;background:#3B82F6;box-shadow:0 0 5px rgba(59,130,246,.5)}
+.exonerada .card-dot{display:block;background:#10B981;box-shadow:0 0 5px rgba(16,185,129,.5)}
+.materia-card.hl-self{outline:2.5px solid #3B82F6;outline-offset:2px;opacity:1!important;transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:20}
 .materia-card.hl-pre {outline:2.5px solid #F59E0B;outline-offset:2px;opacity:1!important}
 .materia-card.hl-post{outline:2.5px solid #10B981;outline-offset:2px;opacity:1!important}
-
-/* Filtro */
-body.yr-on .materia-card{opacity:.2;transform:none;box-shadow:none!important}
+body.yr-on .materia-card{opacity:.18;transform:none;box-shadow:none!important}
 body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shadow:var(--sh-hov)!important;z-index:4}
 
-/* ══ VISTA SEMESTRAL ══ */
-#view-sem{padding:20px 24px;overflow-x:auto}
-.sems-wrap{display:flex;gap:10px;min-width:max-content}
+/* ══════════════════════════════════
+   VISTA SEMESTRAL
+══════════════════════════════════ */
+#view-sem{padding:18px 22px;overflow-x:auto}
+.sems-wrap{display:flex;gap:9px;min-width:max-content}
 .sem-col{display:flex;flex-direction:column;gap:6px;width:var(--cw)}
-.sem-hdr{text-align:center;padding:5px 4px 8px;border-bottom:2px solid var(--border2);margin-bottom:4px}
-.sem-hdr-num{font-size:.68rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
-.sem-hdr-cr{font-size:.6rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
+.sem-hdr{text-align:center;padding:4px 4px 7px;border-bottom:2px solid var(--border2);margin-bottom:4px}
+.sem-hdr-num{font-size:.66rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
+.sem-hdr-cr{font-size:.58rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
 
-/* ══ VISTA TABLA PERIÓDICA ══
-   La tabla se construye como FILAS DE BLOQUES flex, no como grid posicionado.
-   Cada "fila periódica" es un div flex con las tarjetas del bloque principal
-   y las del bloque CFA a la derecha, separadas por un gap.
-   Sin celdas fantasma, sin espacios en blanco.
-   Estructura:
-     Bloque principal: [CFM cols] + gap + [CQ cols] + gap + [CBB+PRO cols]
-     Bloque CFA: separado a la derecha en cada fila
+/* ══════════════════════════════════
+   VISTA TABLA PERIÓDICA
+   
+   Grid de 15 columnas (numeradas 1-15):
+   1       = CFM
+   2       = gap 10px
+   3,4,5   = CQ  (3 cols)
+   6       = gap 20px  
+   7,8,9,10,11 = CBB (5 cols)
+   12      = PRO
+   13      = gap 20px
+   14,15   = CFA (2 cols)
 
-   Las materias se agrupan en FILAS que yo defino explícitamente en JS,
-   una lista de {cfm:[], cq:[], cbb:[], cfa:[]} por cada fila periódica.
+   Todas las tarjetas comparten filas → "mismo piso"
+   overflow-x: auto para que no se salga de la página
+══════════════════════════════════ */
+#view-per{display:none;padding:18px 22px;overflow-x:auto;overflow-y:visible}
+
+.per-wrap{display:inline-block;min-width:max-content;padding-bottom:30px}
+
+.per-legend{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.per-leg-item{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.67rem;font-weight:600;border:1.5px solid;white-space:nowrap}
+.per-leg-dot{width:7px;height:7px;border-radius:50%}
+
+/* ── EL GRID PRINCIPAL ──
+   grid-template-columns: CFM gap CQ×3 gap CBB×5 PRO gap CFA×2
+   gap de 4px entre celdas + columnas de separación entre grupos
 */
-#view-per{display:none;padding:20px 24px;overflow:auto}
-.per-wrap{min-width:max-content;padding-bottom:40px}
-.per-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.per-leg-item{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:.7rem;font-weight:600;border:1.5px solid;white-space:nowrap}
-.per-leg-dot{width:8px;height:8px;border-radius:50%}
+.per-grid{
+  display: grid;
+  grid-template-columns:
+    var(--pw)           /* 1: CFM */
+    10px                /* 2: gap CFM↔CQ */
+    var(--pw) var(--pw) var(--pw)   /* 3,4,5: CQ */
+    20px                /* 6: gap CQ↔CBB */
+    var(--pw) var(--pw) var(--pw) var(--pw) var(--pw)  /* 7-11: CBB */
+    var(--pw)           /* 12: PRO */
+    20px                /* 13: gap PRO↔CFA */
+    var(--pw) var(--pw) /* 14,15: CFA */
+  ;
+  grid-auto-rows: var(--ph);
+  gap: 4px 4px;
+  align-items: start;
+}
 
-/* Tarjeta periódica — 74×84px, compacta, sin espacios */
-.materia-card.p-card{
-  width:74px!important;
-  min-height:84px!important;
-  border-radius:7px!important;
+/* Tarjeta periódica — override de tamaño */
+.p-card{
+  width:var(--pw)!important;
+  min-height:var(--ph)!important;
+  border-radius:8px!important;
   padding:5px 5px 4px!important;
 }
-.p-card .card-abrev{font-size:.72rem!important}
-.p-card .card-nombre{font-size:.42rem!important}
+.p-card .card-abrev{font-size:.76rem!important}
+.p-card .card-nombre{font-size:.43rem!important}
 .p-card .card-cod{font-size:.4rem!important}
 .p-card .card-cr{font-size:.52rem!important}
-.p-card .card-hemi{font-size:.42rem!important;padding:1px 3px!important}
+.p-card .card-hemi{font-size:.43rem!important;padding:1px 3px!important}
 .p-card .card-dot{width:6px!important;height:6px!important;bottom:4px!important;right:4px!important}
 
-/* Fila de la tabla periódica */
-.per-row{
-  display:flex;
-  align-items:flex-start;
-  gap:0;
-  margin-bottom:4px;
+/* ── FILA DE ETIQUETAS (mismo grid) ── */
+.per-labels{
+  display: grid;
+  grid-template-columns:
+    var(--pw) 10px
+    var(--pw) var(--pw) var(--pw) 20px
+    var(--pw) var(--pw) var(--pw) var(--pw) var(--pw) var(--pw) 20px
+    var(--pw) var(--pw)
+  ;
+  gap: 0 4px;
+  margin-top: 12px;
+  align-items: start;
 }
-/* Bloque dentro de cada fila (CFM, CQ, CBB, CFA) */
-.per-block{
-  display:flex;
-  flex-wrap:nowrap;
-  gap:4px;
-  align-items:flex-start;
-}
-/* Separador visual entre bloques principales */
-.per-sep{width:16px;flex-shrink:0}
-/* Separador grande antes del bloque CFA */
-.per-sep-cfa{flex:1;min-width:20px}
+.per-lbl{font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3}
+.per-lbl-sub{font-size:.62rem;font-weight:500;opacity:.65;margin-top:2px;font-family:var(--mono)}
 
-/* Etiquetas de área debajo */
-.per-labels-row{
-  display:flex;
-  align-items:flex-start;
-  gap:0;
-  margin-top:12px;
-}
-.per-area-label{
-  display:flex;flex-direction:column;
-}
-.per-area-label-name{font-size:.82rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3}
-.per-area-label-sub{font-size:.66rem;font-weight:500;opacity:.65;margin-top:2px;font-family:var(--mono)}
-
-/* Separator line between main table and CFA block (lanthanide style) */
-.per-lant-sep{
-  border:none;border-top:1px dashed var(--border2);
-  margin:8px 0 6px;
-}
-
-/* ══ MODAL ══ */
+/* ══════════════════════════════════
+   MODAL
+══════════════════════════════════ */
 .overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:16px}
 .overlay.open{display:flex}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:min(490px,100%);max-height:88vh;overflow-y:auto;padding:24px;box-shadow:0 24px 70px rgba(0,0,0,.16);animation:mIn .2s cubic-bezier(.34,1.56,.64,1)}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:15px;width:min(490px,100%);max-height:88vh;overflow-y:auto;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.16);animation:mIn .2s cubic-bezier(.34,1.56,.64,1)}
 @keyframes mIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
-.modal-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
-.m-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.66rem;font-weight:800;margin-bottom:7px;border:1.5px solid;letter-spacing:.3px;text-transform:uppercase}
-.m-nombre{font-size:1.1rem;font-weight:800;line-height:1.3}
-.m-meta{font-size:.72rem;font-family:var(--mono);color:var(--text3);margin-top:5px}
-.m-close{background:var(--bg);border:1.5px solid var(--border2);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;color:var(--text2);flex-shrink:0;transition:all .15s}
+.modal-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.m-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.64rem;font-weight:800;margin-bottom:6px;border:1.5px solid;letter-spacing:.3px;text-transform:uppercase}
+.m-nombre{font-size:1.05rem;font-weight:800;line-height:1.3}
+.m-meta{font-size:.7rem;font-family:var(--mono);color:var(--text3);margin-top:4px}
+.m-close{background:var(--bg);border:1.5px solid var(--border2);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;color:var(--text2);flex-shrink:0;transition:all .14s}
 .m-close:hover{background:var(--border2)}
-.m-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:16px}
-.stat-b{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:10px 12px}
-.stat-b label{display:block;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);margin-bottom:3px}
-.stat-b span{font-size:.95rem;font-weight:700}
-.pre-title{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);margin-bottom:8px}
-.pre-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.pre-chip{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;border:1.5px solid;font-size:.74rem;font-weight:600;cursor:pointer;transition:opacity .15s}
+.m-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.stat-b{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 11px}
+.stat-b label{display:block;font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);margin-bottom:2px}
+.stat-b span{font-size:.9rem;font-weight:700}
+.pre-title{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);margin-bottom:7px}
+.pre-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.pre-chip{display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;border:1.5px solid;font-size:.72rem;font-weight:600;cursor:pointer;transition:opacity .14s}
 .pre-chip:hover{opacity:.75}
 .pre-chip.ok {border-color:#10B981;color:#065F46;background:#ECFDF5}
 .pre-chip.nok{border-color:#F87171;color:#DC2626;background:#FEF2F2}
-.pre-chip .pre-tipo{font-size:.58rem;opacity:.7;font-style:italic;margin-left:2px}
-.estado-btns{display:flex;gap:8px;margin-top:16px}
-.btn-e{flex:1;padding:9px;border-radius:10px;border:2px solid;font-family:var(--font);font-size:.8rem;font-weight:700;cursor:pointer;transition:all .15s;background:transparent}
+.pre-chip .pre-tipo{font-size:.55rem;opacity:.7;font-style:italic;margin-left:2px}
+.estado-btns{display:flex;gap:7px;margin-top:14px}
+.btn-e{flex:1;padding:8px;border-radius:9px;border:2px solid;font-family:var(--font);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .14s;background:transparent}
 .btn-pend{border-color:var(--border2);color:var(--text3)}
 .btn-apr {border-color:#3B82F6;color:#1D4ED8}
 .btn-exon{border-color:#10B981;color:#065F46}
 .btn-e.activo.btn-pend{background:var(--border2);color:var(--text)}
 .btn-e.activo.btn-apr {background:#EFF6FF;border-color:#3B82F6;color:#1E40AF}
 .btn-e.activo.btn-exon{background:#ECFDF5;border-color:#10B981;color:#064E3B}
-.m-nota{margin-top:12px;font-size:.74rem;color:var(--text2);background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:9px 12px;line-height:1.6}
-
-/* CONFIRM */
+.m-nota{margin-top:10px;font-size:.72rem;color:var(--text2);background:#FFFBEB;border:1px solid #FDE68A;border-radius:7px;padding:8px 11px;line-height:1.5}
 .confirm-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);z-index:600;align-items:center;justify-content:center;padding:16px}
 .confirm-overlay.open{display:flex}
-.confirm-box{background:var(--surface);border-radius:14px;padding:26px;max-width:320px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.18);animation:mIn .2s cubic-bezier(.34,1.56,.64,1)}
-.confirm-box h3{font-size:.95rem;font-weight:800;margin-bottom:7px}
-.confirm-box p{font-size:.8rem;color:var(--text2);margin-bottom:18px;line-height:1.5}
-.confirm-btns{display:flex;gap:9px}
-.cbtn{flex:1;padding:9px;border-radius:9px;border:2px solid;font-family:var(--font);font-size:.8rem;font-weight:700;cursor:pointer;transition:all .15s}
+.confirm-box{background:var(--surface);border-radius:13px;padding:24px;max-width:300px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.18);animation:mIn .2s cubic-bezier(.34,1.56,.64,1)}
+.confirm-box h3{font-size:.9rem;font-weight:800;margin-bottom:6px}
+.confirm-box p{font-size:.78rem;color:var(--text2);margin-bottom:16px;line-height:1.5}
+.confirm-btns{display:flex;gap:8px}
+.cbtn{flex:1;padding:8px;border-radius:8px;border:2px solid;font-family:var(--font);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .14s}
 .cbtn-cancel{border-color:var(--border2);color:var(--text2);background:var(--bg)}
 .cbtn-cancel:hover{background:var(--border2)}
 .cbtn-confirm{border-color:#DC2626;color:#DC2626;background:#FEF2F2}
@@ -254,7 +243,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 </head>
 <body>
 
-<div class="hint-toast" id="hint-toast">💡 Toque rápido → cambia estado  ·  Toque largo → ver detalles</div>
+<div class="hint-toast" id="hint-toast"></div>
 
 <header>
   <div class="brand">
@@ -267,7 +256,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   <div class="hdr-right">
     <div class="view-toggle">
       <button class="view-btn active" id="btn-sem" onclick="setView('sem')">
-        <svg width="15" height="13" viewBox="0 0 15 13" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="1.5" y1="0.5" x2="1.5" y2="12.5"/><line x1="5.5" y1="0.5" x2="5.5" y2="12.5"/><line x1="9.5" y1="0.5" x2="9.5" y2="12.5"/><line x1="13.5" y1="0.5" x2="13.5" y2="12.5"/></svg>
+        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="1.5" y1=".5" x2="1.5" y2="12.5"/><line x1="5" y1=".5" x2="5" y2="12.5"/><line x1="8.5" y1=".5" x2="8.5" y2="12.5"/><line x1="12" y1=".5" x2="12" y2="12.5"/></svg>
         Por semestre
       </button>
       <button class="view-btn" id="btn-per" onclick="setView('per')">
@@ -275,8 +264,8 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
         Tabla periódica
       </button>
     </div>
-    <div style="display:flex;align-items:center;gap:9px">
-      <div class="cr-box">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div>
         <div class="cr-num"><span id="cr-n">0</span><span> / 450</span></div>
         <div class="cr-label">créditos exonerados</div>
       </div>
@@ -307,15 +296,21 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   <span><span class="lg-dot" style="background:#10B981"></span> Exonerada</span>
 </div>
 
+<!-- VISTA SEMESTRAL -->
 <div id="view-sem"><div class="sems-wrap" id="malla-sem"></div></div>
 
+<!-- VISTA TABLA PERIÓDICA -->
 <div id="view-per">
   <div class="per-wrap">
     <div class="per-legend" id="per-legend"></div>
-    <div id="per-table"></div>
+    <!-- El grid con todas las tarjetas + celdas vacías de separación -->
+    <div class="per-grid" id="per-grid"></div>
+    <!-- Etiquetas de área (mismo grid para alineación) -->
+    <div class="per-labels" id="per-labels"></div>
   </div>
 </div>
 
+<!-- MODAL -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-top">
@@ -340,7 +335,7 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 <div class="confirm-overlay" id="confirm-overlay">
   <div class="confirm-box">
     <h3>⚠️ Reiniciar progreso</h3>
-    <p>Esto borrará todo el progreso. Todas las materias volverán a pendiente.</p>
+    <p>Esto borrará todo el progreso guardado. Todas las materias vuelven a pendiente.</p>
     <div class="confirm-btns">
       <button class="cbtn cbtn-cancel" onclick="cerrarConfirm()">Cancelar</button>
       <button class="cbtn cbtn-confirm" onclick="confirmarReset()">Sí, reiniciar</button>
@@ -349,138 +344,114 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════════
    ÁREAS
-══════════════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════════════════════════ */
 const AM={
-  CFM:{n:"Cs. Físico-Matemáticas",  cMin:42,  c:"#2563EB",p:"#EFF6FF",t:"#1E3A8A",b:"#BFDBFE"},
-  CQ: {n:"Ciencias Químicas",        cMin:108, c:"#16A34A",p:"#F0FDF4",t:"#14532D",b:"#BBF7D0"},
-  CBB:{n:"Cs. Biológicas y Biomédicas",cMin:69,c:"#EA580C",p:"#FFF7ED",t:"#7C2D12",b:"#FED7AA"},
-  CFA:{n:"Cs. Farmacéuticas",        cMin:105, c:"#7C3AED",p:"#F5F3FF",t:"#4C1D95",b:"#DDD6FE"},
-  PRO:{n:"Practicantado",            cMin:55,  c:"#374151",p:"#F9FAFB",t:"#1F2937",b:"#E5E7EB"},
+  CFM:{n:"Cs. Físico-Matemáticas",   cMin:42,  c:"#2563EB",p:"#EFF6FF",t:"#1E3A8A",b:"#BFDBFE"},
+  CQ: {n:"Ciencias Químicas",         cMin:108, c:"#16A34A",p:"#F0FDF4",t:"#14532D",b:"#BBF7D0"},
+  CBB:{n:"Cs. Biológicas y Biomédicas",cMin:69, c:"#EA580C",p:"#FFF7ED",t:"#7C2D12",b:"#FED7AA"},
+  CFA:{n:"Cs. Farmacéuticas",         cMin:105, c:"#7C3AED",p:"#F5F3FF",t:"#4C1D95",b:"#DDD6FE"},
+  PRO:{n:"Practicantado",             cMin:55,  c:"#374151",p:"#F9FAFB",t:"#1F2937",b:"#E5E7EB"},
 };
 const CMIN=450;
 
-/* ══════════════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════════
    MATERIAS
-   pre_exo: deben estar EXONERADAS
+   
+   prow / pcol = posición en la tabla periódica
+   
+   MAPA DE COLUMNAS CSS (grid-column):
+     1  = CFM
+     2  = gap (10px)
+     3,4,5 = CQ
+     6  = gap (20px)
+     7,8,9,10,11 = CBB
+     12 = PRO
+     13 = gap (20px)
+     14,15 = CFA
+
+   pre_exo: deben estar EXONERADAS para poder aprobar/exonerar esta materia
    pre_apr: alcanza con estar APROBADAS
-══════════════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════════════════════════ */
 const materias=[
-  // S1
-  {id:"MAT_A",     cod:"01A", s:1,h:null,n:"Matemática A",              ab:"Mat. A",       a:"CFM",cr:10,pre_exo:[],pre_apr:[]},
-  {id:"QUI_GEN_I", cod:"102", s:1,h:null,n:"Química General I",          ab:"Q. Gral. I",   a:"CQ", cr:7, pre_exo:[],pre_apr:[]},
-  {id:"BIO_I",     cod:"103B",s:1,h:null,n:"Introd. Cs. Biológicas I",   ab:"ICB I",        a:"CBB",cr:5, pre_exo:[],pre_apr:[]},
-  {id:"RIESGOS",   cod:"104A",s:1,h:2,   n:"Prev. Riesgos en Lab.",      ab:"Prev. Riesgos",a:"CQ", cr:4, pre_exo:[],pre_apr:[],notas:"2do hemisemestre"},
-  // S2
-  {id:"MAT_B",     cod:"02B", s:2,h:1,   n:"Matemática B",               ab:"Mat. B",       a:"CFM",cr:6, pre_exo:["MAT_A"],pre_apr:[],notas:"1er hemi"},
-  {id:"MAT_C",     cod:"02C", s:2,h:null,n:"Matemática C",               ab:"Mat. C",       a:"CFM",cr:8, pre_exo:["MAT_A"],pre_apr:[],notas:"Estadística"},
-  {id:"FIS101",    cod:"205Q",s:2,h:null,n:"Física 101",                  ab:"Física 101",   a:"CFM",cr:7, pre_exo:["MAT_A"],pre_apr:[]},
-  {id:"QUI_GEN_II",cod:"202", s:2,h:null,n:"Química General II",          ab:"Q. Gral. II",  a:"CQ", cr:8, pre_exo:["QUI_GEN_I","RIESGOS"],pre_apr:[]},
-  {id:"BIO_II",    cod:"203A",s:2,h:null,n:"Introd. Cs. Biológicas II",   ab:"ICB II",       a:"CBB",cr:5, pre_exo:["BIO_I","RIESGOS"],pre_apr:[]},
-  // S3
-  {id:"QO101",     cod:"301", s:3,h:null,n:"Química Orgánica 101",        ab:"Org. 101",     a:"CQ", cr:11,pre_exo:["QUI_GEN_II"],pre_apr:[]},
-  {id:"QA1",       cod:"302", s:3,h:null,n:"Química Analítica I",         ab:"Q. Anal. I",   a:"CQ", cr:10,pre_exo:["QUI_GEN_II"],pre_apr:[]},
-  {id:"QI_T",      cod:"303A",s:3,h:null,n:"Química Inorgánica (T)",      ab:"Q. Inorg. T",  a:"CQ", cr:6, pre_exo:["QUI_GEN_II"],pre_apr:[],notas:"Teórico"},
-  {id:"QI_L",      cod:"303B",s:3,h:null,n:"Lab. Q. Inorgánica",          ab:"Q. Inorg. L",  a:"CQ", cr:5, pre_exo:["QUI_GEN_II"],pre_apr:[],notas:"Lab."},
-  {id:"FIS102",    cod:"304Q",s:3,h:null,n:"Física 102",                  ab:"Física 102",   a:"CFM",cr:7, pre_exo:["FIS101"],pre_apr:[],notas:"Electromagnetismo"},
-  {id:"FISIO",     cod:"408A",s:3,h:null,n:"Fisiología",                  ab:"Fisiología",   a:"CBB",cr:7, pre_exo:["BIO_II"],pre_apr:[]},
-  // S4
-  {id:"QO102",     cod:"401", s:4,h:null,n:"Química Orgánica 102",        ab:"Org. 102",     a:"CQ", cr:6, pre_exo:["QO101"],pre_apr:[]},
-  {id:"QA2",       cod:"402A",s:4,h:null,n:"Química Analítica II",        ab:"Q. Anal. II",  a:"CQ", cr:7, pre_exo:["QA1"],pre_apr:[]},
-  {id:"FQ102",     cod:"508A",s:4,h:null,n:"Fisicoquímica 102",           ab:"FQ 102",       a:"CQ", cr:13,pre_exo:["MAT_B","QA1"],pre_apr:[]},
-  {id:"FIS003L",   cod:"404", s:4,h:1,   n:"Física 003 (L)",              ab:"Física 003L",  a:"CFM",cr:4, pre_exo:["FIS102"],pre_apr:[],notas:"Lab. 1er hemi"},
-  {id:"FISIOPAT",  cod:"415C",s:4,h:null,n:"Fisiopatología",              ab:"Fisiopatol.",  a:"CBB",cr:7, pre_exo:["FISIO"],pre_apr:[]},
-  {id:"INTRO_MED", cod:"416X",s:4,h:1,   n:"Introd. al Medicamento",      ab:"Intro. Med.",  a:"CFA",cr:2, pre_exo:[],pre_apr:[],notas:"1er hemi. Asistencia obligatoria."},
-  // S5
-  {id:"QO103L",    cod:"501", s:5,h:null,n:"Q. Orgánica 103 (L)",         ab:"Org. 103L",    a:"CQ", cr:5, pre_exo:["QO101","QA1"],pre_apr:[],notas:"Lab."},
-  {id:"QO104",     cod:"502X",s:5,h:1,   n:"Química Orgánica 104",        ab:"Org. 104",     a:"CQ", cr:4, pre_exo:["QO102"],pre_apr:[],notas:"1er hemi"},
-  {id:"QA3",       cod:"503", s:5,h:null,n:"Química Analítica III",       ab:"Q. Anal. III", a:"CQ", cr:10,pre_exo:["QA2"],pre_apr:[],notas:"Análisis Instr."},
-  {id:"FQ103",     cod:"520A",s:5,h:null,n:"Fisicoquímica 103",           ab:"FQ 103",       a:"CQ", cr:12,pre_exo:["FQ102"],pre_apr:[]},
-  {id:"BIOQ",      cod:"190", s:5,h:null,n:"Bioquímica Op. II",           ab:"Bioquímica",   a:"CBB",cr:10,pre_exo:["BIO_I","FQ102","QO102","QA2"],pre_apr:[],notas:"Desde 2026"},
-  // S6
-  {id:"FARMACOGNOSIA",  cod:"909", s:6,h:null,n:"Farmacognosia",          ab:"Farmacogn.",   a:"CFA",cr:9, pre_exo:["QO103L","QO104","QA3"],pre_apr:[]},
-  {id:"BOTANICA",       cod:"908A",s:6,h:1,   n:"Botánica",               ab:"Botánica",     a:"CFA",cr:4, pre_exo:["BIO_II","QO103L","QO104","QA3"],pre_apr:[],notas:"1er hemi"},
-  {id:"MICROBIO_T",     cod:"533T",s:6,h:null,n:"Microbiología Gral. (T)",ab:"Microbio. T",  a:"CBB",cr:6, pre_exo:["BIO_II","BIOQ"],pre_apr:[],notas:"Teórico"},
-  {id:"MICROBIO_L",     cod:"533L",s:6,h:null,n:"Lab. Análisis Microbiol.",ab:"Microbio. L", a:"CBB",cr:6, pre_exo:["BIO_I","BIOQ"],pre_apr:[],notas:"Lab."},
-  {id:"INMUNO1",        cod:"506X",s:6,h:2,   n:"Inmunología I",          ab:"Inmuno. I",    a:"CBB",cr:5, pre_exo:["BIO_II","BIOQ"],pre_apr:[],notas:"2do hemi"},
-  {id:"FARMACOKINETICA",cod:"535X",s:6,h:null,n:"Farmacocinética y Biofarmacia",ab:"Farmacocin.",a:"CFA",cr:8,pre_exo:["FISIO","MAT_B"],pre_apr:[]},
-  {id:"TALLER_INTEG",   cod:"615", s:6,h:1,   n:"Taller Integ. Cs. Bio.", ab:"Taller Integ.",a:"CBB",cr:2, pre_exo:["FISIO","FISIOPAT"],pre_apr:[],notas:"1er hemi"},
-  {id:"UC_CALIDAD",     cod:"157", s:6,h:2,   n:"Sistemas de Gestión",    ab:"Sist. Gestión",a:"CFA",cr:4, pre_exo:["MAT_C","QA3"],pre_apr:[],notas:"2do hemi. Desde 2025."},
-  // S7
-  {id:"QF101",     cod:"700", s:7,h:null,n:"Q. Farmacéutica 101 (T)",     ab:"Q. Farm. 101", a:"CFA",cr:8, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FARMACOGNOSIA","BIOQ"],pre_apr:[],notas:"Teórico"},
-  {id:"QF102",     cod:"701X",s:7,h:null,n:"Q. Farmacéutica 102 (L)",     ab:"Q. Farm. 102", a:"CFA",cr:6, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FQ103","FARMACOGNOSIA","BIOQ"],pre_apr:[],notas:"Lab."},
-  {id:"FTEC1",     cod:"702X",s:7,h:null,n:"Farmacotecnia I",             ab:"Farmacotec. I",a:"CFA",cr:10,pre_exo:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"],pre_apr:[]},
-  {id:"FARMACO",   cod:"703X",s:7,h:null,n:"Farmacología",                ab:"Farmacología", a:"CFA",cr:10,pre_exo:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"],pre_apr:[]},
-  {id:"INMUNO2",   cod:"534X",s:7,h:null,n:"Inmunología II",              ab:"Inmuno. II",   a:"CBB",cr:7, pre_exo:["INMUNO1"],pre_apr:[]},
-  {id:"BROMATO",   cod:"704", s:7,h:2,   n:"Bromatología y Nutrición",    ab:"Bromatología", a:"CBB",cr:4, pre_exo:["BIOQ","MICROBIO_T"],pre_apr:[],notas:"2do hemi"},
-  // S8
-  {id:"FARMACOTERAPIA",cod:"803X",s:8,h:null,n:"Farmacoterapia I",        ab:"Farmacoterap.",a:"CFA",cr:8, pre_exo:["FISIOPAT","FARMACO"],pre_apr:[]},
-  {id:"FTEC2",     cod:"802X",s:8,h:null,n:"Farmacotecnia II",            ab:"Farmacotec. II",a:"CFA",cr:10,pre_exo:["FTEC1"],pre_apr:[]},
-  {id:"CONTROL",   cod:"804X",s:8,h:null,n:"Control Calidad Medic. I",    ab:"Control Cal.", a:"CFA",cr:12,pre_exo:["MICROBIO_T","QF101","QF102","FTEC1"],pre_apr:[]},
-  {id:"TOXICO",    cod:"805", s:8,h:1,   n:"Toxicología Fundamental",     ab:"Toxicología",  a:"CFA",cr:4, pre_exo:["QA3","BIOQ"],pre_apr:[],notas:"1er hemi"},
-  // S9
-  {id:"LEGISLACION",cod:"809",s:9,h:null,n:"Legislación y Deontología",   ab:"Legislación",  a:"CFA",cr:6, pre_exo:["FTEC2","FARMACOTERAPIA"],pre_apr:[]},
-  {id:"GESTION",   cod:"410", s:9,h:2,   n:"Gestión de Empresas",         ab:"Gestión Emp.", a:"CFA",cr:4, pre_exo:[],pre_apr:[],notas:"2do hemi. Asistencia controlada."},
-  // S10
-  {id:"PRACTICA",  cod:"965X",s:10,h:null,n:"Practicantado",              ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],pre_apr:[],notas:"Requiere todas las obligatorias aprobadas."},
+  /* ─ CFM (col 1) ─ */
+  {id:"MAT_A",    cod:"01A", s:1,h:null,n:"Matemática A",               ab:"Mat. A",       a:"CFM",cr:10,pre_exo:[],                              pre_apr:[],           prow:1,pcol:1},
+  {id:"MAT_B",    cod:"02B", s:2,h:1,   n:"Matemática B",               ab:"Mat. B",       a:"CFM",cr:6, pre_exo:["MAT_A"],                        pre_apr:[],           prow:2,pcol:1,notas:"1er hemisemestre"},
+  {id:"MAT_C",    cod:"02C", s:2,h:null,n:"Matemática C",               ab:"Mat. C",       a:"CFM",cr:8, pre_exo:["MAT_A"],                        pre_apr:[],           prow:3,pcol:1,notas:"Estadística"},
+  {id:"FIS101",   cod:"205Q",s:2,h:null,n:"Física 101",                 ab:"Física 101",   a:"CFM",cr:7, pre_exo:["MAT_A"],                        pre_apr:[],           prow:4,pcol:1},
+  {id:"FIS102",   cod:"304Q",s:3,h:null,n:"Física 102",                 ab:"Física 102",   a:"CFM",cr:7, pre_exo:["FIS101"],                       pre_apr:[],           prow:5,pcol:1,notas:"Electromagnetismo"},
+  {id:"FIS003L",  cod:"404", s:4,h:1,   n:"Física 003 (L)",             ab:"Física 003L",  a:"CFM",cr:4, pre_exo:["FIS102"],                       pre_apr:[],           prow:6,pcol:1,notas:"Lab. 1er hemi"},
+
+  /* ─ CQ (cols 3,4,5) ─ */
+  {id:"QUI_GEN_I", cod:"102", s:1,h:null,n:"Química General I",          ab:"Q. Gral. I",   a:"CQ", cr:7, pre_exo:[],                              pre_apr:[],           prow:2,pcol:3},
+  {id:"RIESGOS",   cod:"104A",s:1,h:2,   n:"Prev. Riesgos en Lab.",      ab:"Prev. Riesgos",a:"CQ", cr:4, pre_exo:[],                              pre_apr:[],           prow:2,pcol:4,notas:"2do hemisemestre"},
+  {id:"QUI_GEN_II",cod:"202", s:2,h:null,n:"Química General II",          ab:"Q. Gral. II",  a:"CQ", cr:8, pre_exo:["QUI_GEN_I","RIESGOS"],         pre_apr:[],           prow:2,pcol:5},
+  {id:"QA1",       cod:"302", s:3,h:null,n:"Química Analítica I",         ab:"Q. Anal. I",   a:"CQ", cr:10,pre_exo:["QUI_GEN_II"],                  pre_apr:[],           prow:3,pcol:3},
+  {id:"QI_T",      cod:"303A",s:3,h:null,n:"Química Inorgánica (T)",      ab:"Q. Inorg. T",  a:"CQ", cr:6, pre_exo:["QUI_GEN_II"],                  pre_apr:[],           prow:3,pcol:4,notas:"Teórico"},
+  {id:"QI_L",      cod:"303B",s:3,h:null,n:"Lab. Q. Inorgánica",          ab:"Q. Inorg. L",  a:"CQ", cr:5, pre_exo:["QUI_GEN_II"],                  pre_apr:[],           prow:3,pcol:5,notas:"Lab."},
+  {id:"QO101",     cod:"301", s:3,h:null,n:"Química Orgánica 101",        ab:"Org. 101",     a:"CQ", cr:11,pre_exo:["QUI_GEN_II"],                  pre_apr:[],           prow:4,pcol:3},
+  {id:"QO102",     cod:"401", s:4,h:null,n:"Química Orgánica 102",        ab:"Org. 102",     a:"CQ", cr:6, pre_exo:["QO101"],                       pre_apr:[],           prow:4,pcol:4},
+  {id:"QO103L",    cod:"501", s:5,h:null,n:"Q. Orgánica 103 (L)",         ab:"Org. 103L",    a:"CQ", cr:5, pre_exo:["QO101","QA1"],                 pre_apr:[],           prow:4,pcol:5,notas:"Lab."},
+  {id:"QA2",       cod:"402A",s:4,h:null,n:"Química Analítica II",        ab:"Q. Anal. II",  a:"CQ", cr:7, pre_exo:["QA1"],                         pre_apr:[],           prow:5,pcol:3},
+  {id:"FQ102",     cod:"508A",s:4,h:null,n:"Fisicoquímica 102",           ab:"FQ 102",       a:"CQ", cr:13,pre_exo:["MAT_B","QA1"],                 pre_apr:[],           prow:5,pcol:4},
+  {id:"QA3",       cod:"503", s:5,h:null,n:"Química Analítica III",       ab:"Q. Anal. III", a:"CQ", cr:10,pre_exo:["QA2"],                         pre_apr:[],           prow:5,pcol:5,notas:"Análisis Instr."},
+  {id:"QO104",     cod:"502X",s:5,h:1,   n:"Química Orgánica 104",        ab:"Org. 104",     a:"CQ", cr:4, pre_exo:["QO102"],                       pre_apr:[],           prow:6,pcol:3,notas:"1er hemi"},
+  {id:"FQ103",     cod:"520A",s:5,h:null,n:"Fisicoquímica 103",           ab:"FQ 103",       a:"CQ", cr:12,pre_exo:["FQ102"],                       pre_apr:[],           prow:6,pcol:4},
+
+  /* ─ CBB (cols 7-11) ─ */
+  {id:"BIO_I",        cod:"103B",s:1,h:null,n:"Introd. Cs. Biológicas I",  ab:"ICB I",        a:"CBB",cr:5, pre_exo:[],                              pre_apr:[],           prow:2,pcol:7},
+  {id:"BIO_II",       cod:"203A",s:2,h:null,n:"Introd. Cs. Biológicas II", ab:"ICB II",       a:"CBB",cr:5, pre_exo:["BIO_I","RIESGOS"],             pre_apr:[],           prow:2,pcol:8},
+  {id:"FISIO",        cod:"408A",s:3,h:null,n:"Fisiología",                ab:"Fisiología",   a:"CBB",cr:7, pre_exo:["BIO_II"],                      pre_apr:[],           prow:3,pcol:7},
+  {id:"FISIOPAT",     cod:"415C",s:4,h:null,n:"Fisiopatología",            ab:"Fisiopatol.",  a:"CBB",cr:7, pre_exo:["FISIO"],                       pre_apr:[],           prow:3,pcol:8},
+  {id:"BIOQ",         cod:"190", s:5,h:null,n:"Bioquímica Op. II",         ab:"Bioquímica",   a:"CBB",cr:10,pre_exo:["BIO_I","FQ102","QO102","QA2"], pre_apr:[],           prow:3,pcol:9,notas:"Desde 2026"},
+  {id:"MICROBIO_T",   cod:"533T",s:6,h:null,n:"Microbiología Gral. (T)",  ab:"Microbio. T",  a:"CBB",cr:6, pre_exo:["BIO_II","BIOQ"],               pre_apr:[],           prow:4,pcol:7,notas:"Teórico"},
+  {id:"MICROBIO_L",   cod:"533L",s:6,h:null,n:"Lab. Análisis Microbiol.", ab:"Microbio. L",  a:"CBB",cr:6, pre_exo:["BIO_I","BIOQ"],                pre_apr:[],           prow:4,pcol:8,notas:"Lab."},
+  {id:"INMUNO1",      cod:"506X",s:6,h:2,   n:"Inmunología I",            ab:"Inmuno. I",    a:"CBB",cr:5, pre_exo:["BIO_II","BIOQ"],               pre_apr:[],           prow:4,pcol:9,notas:"2do hemi"},
+  {id:"TALLER_INTEG", cod:"615", s:6,h:1,   n:"Taller Integ. Cs. Bio.",   ab:"Taller Integ.",a:"CBB",cr:2, pre_exo:["FISIO","FISIOPAT"],            pre_apr:[],           prow:4,pcol:10,notas:"1er hemi"},
+  {id:"INMUNO2",      cod:"534X",s:7,h:null,n:"Inmunología II",           ab:"Inmuno. II",   a:"CBB",cr:7, pre_exo:["INMUNO1"],                     pre_apr:[],           prow:4,pcol:11},
+  {id:"BROMATO",      cod:"704", s:7,h:2,   n:"Bromatología y Nutrición", ab:"Bromatología", a:"CBB",cr:4, pre_exo:["BIOQ","MICROBIO_T"],           pre_apr:[],           prow:5,pcol:7,notas:"2do hemi"},
+
+  /* ─ PRO (col 12) ─ */
+  {id:"PRACTICA", cod:"965X",s:10,h:null,n:"Practicantado",              ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],                              pre_apr:[],           prow:2,pcol:12,notas:"Requiere todas las obligatorias aprobadas."},
+
+  /* ─ CFA (cols 14,15) ─
+     Col 14 = izquierda, col 15 = derecha (como en imagen)
+     FARMACOGNOSIA sola arriba a la derecha (como He en tabla real)
+  */
+  {id:"FARMACOGNOSIA",   cod:"909", s:6,h:null,n:"Farmacognosia",                 ab:"Farmacogn.",   a:"CFA",cr:9, pre_exo:["QO103L","QO104","QA3"],                                                        pre_apr:[], prow:1,pcol:15},
+  {id:"BOTANICA",        cod:"908A",s:6,h:1,   n:"Botánica",                      ab:"Botánica",     a:"CFA",cr:4, pre_exo:["BIO_II","QO103L","QO104","QA3"],                                                pre_apr:[], prow:2,pcol:14,notas:"1er hemi"},
+  {id:"FARMACOKINETICA", cod:"535X",s:6,h:null,n:"Farmacocinética y Biofarmacia", ab:"Farmacocin.",  a:"CFA",cr:8, pre_exo:["FISIO","MAT_B"],                                                               pre_apr:[], prow:2,pcol:15},
+  {id:"UC_CALIDAD",      cod:"157", s:6,h:2,   n:"Sistemas de Gestión",           ab:"Sist. Gestión",a:"CFA",cr:4, pre_exo:["MAT_C","QA3"],                                                                  pre_apr:[], prow:3,pcol:14,notas:"2do hemi. Desde 2025."},
+  {id:"INTRO_MED",       cod:"416X",s:4,h:1,   n:"Introd. al Medicamento",        ab:"Intro. Med.",  a:"CFA",cr:2, pre_exo:[],                                                                               pre_apr:[], prow:3,pcol:15,notas:"1er hemi. Asistencia obligatoria."},
+  {id:"QF101",           cod:"700", s:7,h:null,n:"Q. Farmacéutica 101 (T)",       ab:"Q. Farm. 101", a:"CFA",cr:8, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FARMACOGNOSIA","BIOQ"],                  pre_apr:[], prow:4,pcol:14,notas:"Teórico"},
+  {id:"QF102",           cod:"701X",s:7,h:null,n:"Q. Farmacéutica 102 (L)",       ab:"Q. Farm. 102", a:"CFA",cr:6, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FQ103","FARMACOGNOSIA","BIOQ"],           pre_apr:[], prow:4,pcol:15,notas:"Lab."},
+  {id:"FTEC1",           cod:"702X",s:7,h:null,n:"Farmacotecnia I",               ab:"Farmacotec. I",a:"CFA",cr:10,pre_exo:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"],pre_apr:[], prow:5,pcol:14},
+  {id:"FARMACO",         cod:"703X",s:7,h:null,n:"Farmacología",                  ab:"Farmacología", a:"CFA",cr:10,pre_exo:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"],                          pre_apr:[], prow:5,pcol:15},
+  {id:"FARMACOTERAPIA",  cod:"803X",s:8,h:null,n:"Farmacoterapia I",              ab:"Farmacoterap.",a:"CFA",cr:8, pre_exo:["FISIOPAT","FARMACO"],                                                            pre_apr:[], prow:6,pcol:14},
+  {id:"FTEC2",           cod:"802X",s:8,h:null,n:"Farmacotecnia II",              ab:"Farmacotec. II",a:"CFA",cr:10,pre_exo:["FTEC1"],                                                                        pre_apr:[], prow:6,pcol:15},
+  {id:"CONTROL",         cod:"804X",s:8,h:null,n:"Control Calidad Medic. I",      ab:"Control Cal.", a:"CFA",cr:12,pre_exo:["MICROBIO_T","QF101","QF102","FTEC1"],                                            pre_apr:[], prow:7,pcol:14},
+  {id:"TOXICO",          cod:"805", s:8,h:1,   n:"Toxicología Fundamental",       ab:"Toxicología",  a:"CFA",cr:4, pre_exo:["QA3","BIOQ"],                                                                   pre_apr:[], prow:7,pcol:15,notas:"1er hemi"},
+  {id:"LEGISLACION",     cod:"809", s:9,h:null,n:"Legislación y Deontología",     ab:"Legislación",  a:"CFA",cr:6, pre_exo:["FTEC2","FARMACOTERAPIA"],                                                       pre_apr:[], prow:8,pcol:14},
+  {id:"GESTION",         cod:"410", s:9,h:2,   n:"Gestión de Empresas",           ab:"Gestión Emp.", a:"CFA",cr:4, pre_exo:[],                                                                               pre_apr:[], prow:8,pcol:15,notas:"2do hemi. Asistencia controlada."},
 ];
 
 const IDX=Object.fromEntries(materias.map(m=>[m.id,m]));
 
-/* ══════════════════════════════════════════════════════════════════════════
-   LAYOUT DE LA TABLA PERIÓDICA
-   Definimos manualmente cada fila de la tabla como arrays de IDs por bloque.
-   Filas del bloque principal: {cfm:[], cq:[], cbb:[]}
-   Filas del bloque CFA (lantánidos): arrays de IDs
-   El PRO va integrado en el bloque CBB en la fila que corresponda.
-══════════════════════════════════════════════════════════════════════════ */
-const PER_LAYOUT = {
-  // Filas del bloque principal (tabla de arriba)
-  // Cada fila: {cfm:[ids], cq:[ids], cbb:[ids]}
-  main: [
-    // Fila 1 — solo MAT_A sola (como H en la tabla periódica real)
-    { cfm:["MAT_A"],      cq:[],                                     cbb:[]              },
-    // Fila 2
-    { cfm:["MAT_B"],      cq:["QUI_GEN_I","RIESGOS","QUI_GEN_II"],   cbb:["BIO_I","BIO_II"]},
-    // Fila 3
-    { cfm:["MAT_C"],      cq:["QA1","QI_T","QI_L"],                   cbb:["FISIO","FISIOPAT","BIOQ"]},
-    // Fila 4
-    { cfm:["FIS101"],     cq:["QO101","QO102","QO103L","QO104"],      cbb:["MICROBIO_T","MICROBIO_L","INMUNO1","TALLER_INTEG","INMUNO2"]},
-    // Fila 5
-    { cfm:["FIS102"],     cq:["QA2","FQ102","QA3","FQ103"],           cbb:["BROMATO"]},
-    // Fila 6
-    { cfm:["FIS003L"],    cq:[],                                     cbb:["PRACTICA"]},
-  ],
-  // Bloque CFA (debajo, como lantánidos) — filas de IDs
-  cfa: [
-    ["FARMACOGNOSIA","BOTANICA","FARMACOKINETICA","UC_CALIDAD","INTRO_MED"],
-    ["QF101","QF102","FTEC1","FARMACO","FARMACOTERAPIA","FTEC2"],
-    ["CONTROL","TOXICO","LEGISLACION","GESTION"],
-  ]
-};
-
-/* ══════════════════════════════════════════════════════════════════════════
-   VALIDACIÓN PREVIAS
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ VALIDACIÓN PREVIAS ══════════ */
 function chkPrevias(id,target){
-  const m=IDX[id];if(!m)return[];
-  const fl=[];
+  const m=IDX[id];if(!m)return[];const fl=[];
   for(const p of m.pre_exo){
     const pe=gE(p);
-    if(target==="aprobada"&&pe==="pendiente") fl.push({id:p,tipo:"exo"});
-    if(target==="exonerada"&&pe!=="exonerada") fl.push({id:p,tipo:"exo"});
+    if(target==="aprobada"&&pe==="pendiente")fl.push({id:p,tipo:"exo"});
+    if(target==="exonerada"&&pe!=="exonerada")fl.push({id:p,tipo:"exo"});
   }
-  for(const p of m.pre_apr){
-    if(gE(p)==="pendiente") fl.push({id:p,tipo:"apr"});
-  }
+  for(const p of m.pre_apr){if(gE(p)==="pendiente")fl.push({id:p,tipo:"apr"})}
   return fl;
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   ESTADO
-══════════════════════════════════════════════════════════════════════════ */
-const SK="qf_pe2015_v6";
+/* ══════════ ESTADO ══════════ */
+const SK="qf_pe2015_v7";
 let E=(()=>{try{return JSON.parse(localStorage.getItem(SK))||{}}catch{return{}}})();
 const gE=id=>E[id]||"pendiente";
 function sE(id,v){E[id]=v;try{localStorage.setItem(SK,JSON.stringify(E))}catch{}refresh();if(mId===id)abrirM(id)}
@@ -488,27 +459,22 @@ function pedirReset(){document.getElementById("confirm-overlay").classList.add("
 function cerrarConfirm(){document.getElementById("confirm-overlay").classList.remove("open")}
 function confirmarReset(){E={};try{localStorage.setItem(SK,"{}")}catch{}cerrarConfirm();refresh()}
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HINT / TOAST
-══════════════════════════════════════════════════════════════════════════ */
-let hintShown=localStorage.getItem("qf_hint4")==="1";
-function showHint(){if(hintShown)return;hintShown=true;localStorage.setItem("qf_hint4","1");showMsg("💡 Toque rápido → cambia estado  ·  Toque largo → ver detalles",5000)}
-function showMsg(msg,dur=3500){
+/* ══════════ TOAST ══════════ */
+let _hintDone=localStorage.getItem("qf_h7")==="1";
+function showHint(){if(_hintDone)return;_hintDone=true;localStorage.setItem("qf_h7","1");showMsg("💡 Toque rápido → cambia estado  ·  Toque largo → ver detalles",5000)}
+function showMsg(msg,dur=3200){
   const t=document.getElementById("hint-toast");t.textContent=msg;t.classList.add("show");
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),dur);
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   PRESS CORTO / LARGO
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ PRESS ══════════ */
 const ESTADOS=["pendiente","aprobada","exonerada"];
 let pTimer=null,pMoved=false;
 function onPS(id){pMoved=false;pTimer=setTimeout(()=>{pTimer=null;abrirM(id)},380)}
 function onPM(){pMoved=true;clearTimeout(pTimer);pTimer=null}
 function onPE(id){
   if(pTimer!==null&&!pMoved){
-    clearTimeout(pTimer);pTimer=null;
-    showHint();
+    clearTimeout(pTimer);pTimer=null;showHint();
     const cur=gE(id),next=ESTADOS[(ESTADOS.indexOf(cur)+1)%3];
     if(next!=="pendiente"){
       const fl=chkPrevias(id,next);
@@ -518,9 +484,7 @@ function onPE(id){
   }
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   CREAR TARJETA
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ TARJETA ══════════ */
 function mkCard(m,extraCls=""){
   const est=gE(m.id);
   const d=document.createElement("div");
@@ -536,9 +500,9 @@ function mkCard(m,extraCls=""){
     <div class="card-cod">${m.cod}</div>
     <div class="card-dot"></div>
   `;
-  d.addEventListener("mousedown", e=>{if(e.button===0)onPS(m.id)});
-  d.addEventListener("mousemove", onPM);
-  d.addEventListener("mouseup",   e=>{if(e.button===0)onPE(m.id)});
+  d.addEventListener("mousedown",e=>{if(e.button===0)onPS(m.id)});
+  d.addEventListener("mousemove",onPM);
+  d.addEventListener("mouseup",  e=>{if(e.button===0)onPE(m.id)});
   d.addEventListener("touchstart",()=>onPS(m.id),{passive:true});
   d.addEventListener("touchmove", onPM,{passive:true});
   d.addEventListener("touchend",  ()=>onPE(m.id));
@@ -547,9 +511,7 @@ function mkCard(m,extraCls=""){
   return d;
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HIGHLIGHTS
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ HIGHLIGHTS ══════════ */
 function hlPre(id){
   clrHl();
   document.querySelectorAll(`[data-id="${id}"]`).forEach(e=>e.classList.add("hl-self"));
@@ -562,9 +524,7 @@ function hlPre(id){
 }
 function clrHl(){document.querySelectorAll(".hl-self,.hl-pre,.hl-post").forEach(e=>e.classList.remove("hl-self","hl-pre","hl-post"))}
 
-/* ══════════════════════════════════════════════════════════════════════════
-   CRÉDITOS
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ CRÉDITOS ══════════ */
 function calcCr(){
   const t={total:0};for(const k in AM)t[k]=0;
   for(const m of materias)if(gE(m.id)==="exonerada"){t[m.a]=(t[m.a]||0)+m.cr;t.total+=m.cr}
@@ -583,9 +543,7 @@ function updCr(){
   }
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   AREA PROGRESS
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ AREA PROGRESS ══════════ */
 function renderAP(){
   const c=document.getElementById("ap-sec");c.innerHTML="";
   for(const [k,a]of Object.entries(AM)){
@@ -595,26 +553,19 @@ function renderAP(){
   }
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   FILTROS
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ FILTROS ══════════ */
 let AF={type:null,value:null};
 const YEARS=[{l:"Todos",s:null},{l:"1° año",s:[1,2]},{l:"2° año",s:[3,4]},{l:"3° año",s:[5,6]},{l:"4° año",s:[7,8]},{l:"5° año",s:[9,10]}];
 const SEMS=[{l:"Todos",s:null},...[1,2,3,4,5,6,7,8,9,10].map(i=>({l:"S"+i,s:[i]}))];
-
 function renderFilterBtns(cid,list,type){
   const c=document.getElementById(cid);c.innerHTML="";
   for(const y of list){
-    const active=AF.type===type&&JSON.stringify(AF.value)===JSON.stringify(y.s);
-    const b=document.createElement("button");
-    b.className="f-btn"+(active?" active":"");b.textContent=y.l;
+    const act=AF.type===type&&JSON.stringify(AF.value)===JSON.stringify(y.s);
+    const b=document.createElement("button");b.className="f-btn"+(act?" active":"");b.textContent=y.l;
     b.onclick=()=>{
-      AF=active?{type:null,value:null}:{type,value:y.s};
-      renderFilterBtns("yr-btns",YEARS,"year");
-      renderFilterBtns("sem-btns",SEMS,"sem");
-      applyFilter();
-    };
-    c.appendChild(b);
+      AF=act?{type:null,value:null}:{type,value:y.s};
+      renderFilterBtns("yr-btns",YEARS,"year");renderFilterBtns("sem-btns",SEMS,"sem");applyFilter();
+    };c.appendChild(b);
   }
 }
 function applyFilter(){
@@ -624,9 +575,7 @@ function applyFilter(){
   document.querySelectorAll(".materia-card").forEach(c=>{const m=IDX[c.dataset.id];c.classList.toggle("yr-match",!!m&&s.includes(m.s))});
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   VISTA SEMESTRAL
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ VISTA SEMESTRAL ══════════ */
 function renderSem(){
   const wrap=document.getElementById("malla-sem");wrap.innerHTML="";
   const sems=[...new Set(materias.map(m=>m.s))].sort((a,b)=>a-b);
@@ -640,117 +589,70 @@ function renderSem(){
   applyFilter();
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   VISTA TABLA PERIÓDICA
-   Estrategia: CSS Grid de 3 columnas (CFM | CQ | CBB) para alinear bloques.
-   Cada celda del grid contiene las tarjetas de esa fila pegadas sin ancho fijo.
-   Tarjetas más chicas (p-card). CFA separado debajo como lantánidos.
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ VISTA TABLA PERIÓDICA ══════════
+   Usa CSS grid con posicionamiento explícito.
+   Cada tarjeta ocupa la celda [prow, pcol] del grid.
+   Las columnas de gap (cols 2,6,13) son automáticamente
+   vacías — solo las tarjetas ocupan su espacio.
+   Todos los elementos comparten el mismo sistema de filas → "mismo piso".
+══════════════════════════════════════════════ */
 function renderPer(){
+  /* Leyenda */
   const leg=document.getElementById("per-legend");leg.innerHTML="";
   for(const [k,a]of Object.entries(AM)){
     const d=document.createElement("div");d.className="per-leg-item";
     d.style.cssText=`background:${a.p};border-color:${a.b};color:${a.t}`;
-    d.innerHTML=`<span class="per-leg-dot" style="background:${a.c}"></span>${a.n}<span style="opacity:.55;font-size:.6rem;font-family:var(--mono);margin-left:4px">${a.cMin} cr mín.</span>`;
+    d.innerHTML=`<span class="per-leg-dot" style="background:${a.c}"></span>${a.n}<span style="opacity:.5;font-size:.58rem;font-family:var(--mono);margin-left:4px">${a.cMin} cr mín.</span>`;
     leg.appendChild(d);
   }
 
-  const table=document.getElementById("per-table");table.innerHTML="";
-  const G=4; // gap entre tarjetas px
-
-  /* Crea fila de tarjetas compactas */
-  function makeRow(ids){
-    const b=document.createElement("div");
-    b.style.cssText=`display:flex;gap:${G}px;align-items:flex-start;flex-shrink:0`;
-    for(const id of ids){const m=IDX[id];if(m)b.appendChild(mkCard(m,"p-card"))}
-    return b;
+  /* Grid de tarjetas */
+  const grid=document.getElementById("per-grid");grid.innerHTML="";
+  for(const m of materias){
+    const card=mkCard(m,"p-card");
+    card.style.gridRow=m.prow;
+    card.style.gridColumn=m.pcol;
+    grid.appendChild(card);
   }
 
-  /* ── Tabla principal: grid 3 cols con gap visual entre grupos ── */
-  // Calculamos cuántas tarjetas como máximo tiene cada columna para fijar width
-  const maxCFM=Math.max(...PER_LAYOUT.main.map(r=>r.cfm.length));
-  const maxCQ =Math.max(...PER_LAYOUT.main.map(r=>r.cq.length));
-  const maxCBB=Math.max(...PER_LAYOUT.main.map(r=>r.cbb.length));
-  const PW=74, GAP=14; // tarjeta periódica px, gap entre bloques
+  /* Fila de etiquetas debajo del grid */
+  const lbl=document.getElementById("per-labels");lbl.innerHTML="";
+  const lblS=`font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3`;
+  const subS=`font-size:.62rem;font-weight:500;opacity:.62;margin-top:2px;font-family:var(--mono)`;
 
-  const colW=n=>n*(PW+G)-G; // ancho exacto de n tarjetas con gap entre ellas
+  // CFM: col 1
+  const lCFM=document.createElement("div");lCFM.style.gridColumn="1";
+  lCFM.innerHTML=`<div style="${lblS};color:${AM.CFM.c}">Cs. Físico-<br>Matemáticas</div><div style="${subS}">${AM.CFM.cMin} cr mín.</div>`;
+  lbl.appendChild(lCFM);
 
-  // Grid wrapper: 3 columnas con ancho fijo por bloque
-  const mainGrid=document.createElement("div");
-  mainGrid.style.cssText=`
-    display:grid;
-    grid-template-columns:${colW(maxCFM)}px ${GAP}px ${colW(maxCQ)}px ${GAP}px ${colW(maxCBB)}px;
-    grid-auto-rows:auto;
-    gap:${G}px 0;
-  `;
+  // gap col 2 — empty div
+  const g1=document.createElement("div");g1.style.gridColumn="2";lbl.appendChild(g1);
 
-  for(const row of PER_LAYOUT.main){
-    // col CFM
-    const cCFM=document.createElement("div");
-    cCFM.style.cssText=`display:flex;align-items:flex-start`;
-    if(row.cfm.length)cCFM.appendChild(makeRow(row.cfm));
-    mainGrid.appendChild(cCFM);
+  // CQ: cols 3-5
+  const lCQ=document.createElement("div");lCQ.style.cssText=`grid-column:3/6`;
+  lCQ.innerHTML=`<div style="${lblS};color:${AM.CQ.c}">Ciencias Químicas</div><div style="${subS}">${AM.CQ.cMin} cr mín.</div>`;
+  lbl.appendChild(lCQ);
 
-    // gap col
-    mainGrid.appendChild(document.createElement("div"));
+  // gap col 6
+  const g2=document.createElement("div");g2.style.gridColumn="6";lbl.appendChild(g2);
 
-    // col CQ
-    const cCQ=document.createElement("div");
-    cCQ.style.cssText=`display:flex;align-items:flex-start`;
-    if(row.cq.length)cCQ.appendChild(makeRow(row.cq));
-    mainGrid.appendChild(cCQ);
+  // CBB + PRO: cols 7-12
+  const lCBB=document.createElement("div");lCBB.style.cssText=`grid-column:7/13`;
+  lCBB.innerHTML=`<div style="${lblS};color:${AM.CBB.c}">Cs. Biológicas y Biomédicas</div><div style="${subS}">${AM.CBB.cMin} cr mín. <span style="color:${AM.PRO.c}">· Practicantado: ${AM.PRO.cMin} cr mín.</span></div>`;
+  lbl.appendChild(lCBB);
 
-    // gap col
-    mainGrid.appendChild(document.createElement("div"));
+  // gap col 13
+  const g3=document.createElement("div");g3.style.gridColumn="13";lbl.appendChild(g3);
 
-    // col CBB
-    const cCBB=document.createElement("div");
-    cCBB.style.cssText=`display:flex;align-items:flex-start`;
-    if(row.cbb.length)cCBB.appendChild(makeRow(row.cbb));
-    mainGrid.appendChild(cCBB);
-  }
-  table.appendChild(mainGrid);
-
-  // Etiquetas debajo del bloque principal
-  const lblRow=document.createElement("div");
-  lblRow.style.cssText=`display:grid;grid-template-columns:${colW(maxCFM)}px ${GAP}px ${colW(maxCQ)}px ${GAP}px ${colW(maxCBB)}px;margin-top:10px;margin-bottom:10px`;
-  const lblStyle=`font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.3px;line-height:1.3`;
-  const subStyle=`font-size:.62rem;font-weight:500;opacity:.65;margin-top:1px;font-family:var(--mono)`;
-  lblRow.innerHTML=`
-    <div><div style="${lblStyle};color:${AM.CFM.c}">${AM.CFM.n}</div><div style="${subStyle}">${AM.CFM.cMin} cr mín.</div></div>
-    <div></div>
-    <div><div style="${lblStyle};color:${AM.CQ.c}">${AM.CQ.n}</div><div style="${subStyle}">${AM.CQ.cMin} cr mín.</div></div>
-    <div></div>
-    <div><div style="${lblStyle};color:${AM.CBB.c}">${AM.CBB.n}</div><div style="${subStyle};color:${AM.PRO.c}">${AM.CBB.cMin} cr mín. · Practicantado: ${AM.PRO.cMin} cr</div></div>
-  `;
-  table.appendChild(lblRow);
-
-  /* ── Línea separadora estilo lantánidos ── */
-  const cfaIndent=colW(maxCFM)+GAP+colW(maxCQ)+GAP; // empieza bajo bloque CQ+CBB
-  const sep=document.createElement("div");
-  sep.style.cssText=`height:1px;background:var(--border2);margin:4px 0 8px;margin-left:${cfaIndent}px`;
-  table.appendChild(sep);
-
-  /* ── Bloque CFA (lantánidos): pegado a la derecha, indentado ── */
-  for(const row of PER_LAYOUT.cfa){
-    const rowEl=document.createElement("div");
-    rowEl.style.cssText=`display:flex;gap:${G}px;margin-left:${cfaIndent}px;margin-bottom:${G}px`;
-    for(const id of row){const m=IDX[id];if(m)rowEl.appendChild(mkCard(m,"p-card"))}
-    table.appendChild(rowEl);
-  }
-
-  // Etiqueta CFA
-  const lCFA=document.createElement("div");
-  lCFA.style.cssText=`margin-left:${cfaIndent}px;margin-top:8px`;
-  lCFA.innerHTML=`<div style="${lblStyle};color:${AM.CFA.c}">${AM.CFA.n}</div><div style="${subStyle}">${AM.CFA.cMin} cr mín.</div>`;
-  table.appendChild(lCFA);
+  // CFA: cols 14-15
+  const lCFA=document.createElement("div");lCFA.style.cssText=`grid-column:14/16`;
+  lCFA.innerHTML=`<div style="${lblS};color:${AM.CFA.c}">Cs. Farmacéuticas</div><div style="${subS}">${AM.CFA.cMin} cr mín.</div>`;
+  lbl.appendChild(lCFA);
 
   applyFilter();
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   VISTAS
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ VISTAS ══════════ */
 let curView="sem";
 function setView(v){
   curView=v;
@@ -760,9 +662,7 @@ function setView(v){
   document.getElementById("btn-per").classList.toggle("active",v==="per");
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   MODAL
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ MODAL ══════════ */
 let mId=null;
 function abrirM(id){
   mId=id;const m=IDX[id];const est=gE(id);const a=AM[m.a];
@@ -779,15 +679,12 @@ function abrirM(id){
   const pw=document.getElementById("m-pre");
   if(allP.length){
     pw.innerHTML=`<div class="pre-title">Previas requeridas</div><div class="pre-chips">${
-      allP.map(({id:p,tipo})=>{
-        const pm=IDX[p];const pe=gE(p);
+      allP.map(({id:p,tipo})=>{const pm=IDX[p];const pe=gE(p);
         const ok=(tipo==="exo"&&pe==="exonerada")||(tipo==="apr"&&pe!=="pendiente");
-        return`<span class="pre-chip ${ok?"ok":"nok"}" onclick="redir('${p}')">${pm?pm.ab:p}<span class="pre-tipo">${tipo}</span> ${ok?"✓":"✗"}</span>`;
+        return`<span class="pre-chip ${ok?"ok":"nok"}" onclick="redir('${p}')">${pm?pm.ab:p}<span class="pre-tipo">${tipo}</span> ${ok?"✓":"✗"}</span>`
       }).join("")
     }</div>`;
-  }else{
-    pw.innerHTML=`<p style="font-size:.74rem;color:var(--text3);margin-bottom:12px">Sin previas requeridas.</p>`;
-  }
+  }else{pw.innerHTML=`<p style="font-size:.72rem;color:var(--text3);margin-bottom:10px">Sin previas requeridas.</p>`}
   document.querySelectorAll(".btn-e").forEach(b=>b.classList.toggle("activo",b.dataset.e===est));
   document.getElementById("m-nota").innerHTML=m.notas?`<div class="m-nota">${m.notas}</div>`:"";
   document.getElementById("overlay").classList.add("open");
@@ -795,33 +692,21 @@ function abrirM(id){
 function redir(id){cerrar();setTimeout(()=>abrirM(id),80)}
 function cerrar(){document.getElementById("overlay").classList.remove("open");mId=null;clrHl()}
 
-/* ══════════════════════════════════════════════════════════════════════════
-   REFRESH
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ REFRESH ══════════ */
 function refresh(){renderSem();renderPer();updCr()}
 
-/* ══════════════════════════════════════════════════════════════════════════
-   EVENTOS
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ EVENTOS ══════════ */
 document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")cerrar()});
 document.getElementById("confirm-overlay").addEventListener("click",e=>{if(e.target.id==="confirm-overlay")cerrarConfirm()});
 document.querySelectorAll(".btn-e").forEach(b=>b.addEventListener("click",()=>{
   if(!mId)return;
   const next=b.dataset.e;
-  if(next!=="pendiente"){
-    const fl=chkPrevias(mId,next);
-    if(fl.length){
-      showMsg("⚠️ Falta: "+fl.map(f=>(IDX[f.id]?IDX[f.id].ab:f.id)+" ("+(f.tipo==="exo"?"exonerar":"aprobar")+")").join(", "));
-      return;
-    }
-  }
+  if(next!=="pendiente"){const fl=chkPrevias(mId,next);if(fl.length){showMsg("⚠️ Falta: "+fl.map(f=>(IDX[f.id]?IDX[f.id].ab:f.id)+" ("+(f.tipo==="exo"?"exonerar":"aprobar")+")").join(", "));return}}
   sE(mId,next);
 }));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){cerrar();cerrarConfirm()}});
 
-/* ══════════════════════════════════════════════════════════════════════════
-   INIT
-══════════════════════════════════════════════════════════════════════════ */
+/* ══════════ INIT ══════════ */
 renderAP();
 renderFilterBtns("yr-btns",YEARS,"year");
 renderFilterBtns("sem-btns",SEMS,"sem");
