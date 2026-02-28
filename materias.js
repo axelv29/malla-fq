@@ -39,7 +39,7 @@ const materias = [
 
   // ─── CFM (col 1) ───
   { id: "MAT_A",    cod: "01A",  s: 1, h: null, n: "Matemática A",               ab: "Mat. A",       a: "CFM", cr: 10, pre_exo: [],                    pre_apr: [], prow: 6, pcol: 1 },
-  { id: "MAT_B",    cod: "02B",  s: 2, h: 1,    n: "Matemática B",               ab: "Mat. B",       a: "CFM", cr: 6,  pre_exo: ["MAT_A"],             pre_apr: [], prow: 5, pcol: 1, notas: "1er hemisemestre" },
+  { id: "MAT_B",    cod: "02B",  s: 2, h: 1,    n: "Matemática B",               ab: "Mat. B",       a: "CFM", cr: 6,  pre_exo: [],                    pre_apr: ["MAT_A"], prow: 5, pcol: 1, },
   { id: "MAT_C",    cod: "02C",  s: 2, h: null, n: "Matemática C",               ab: "Mat. C",       a: "CFM", cr: 8,  pre_exo: ["MAT_A"],             pre_apr: [], prow: 4, pcol: 1, notas: "Estadística" },
   { id: "FIS101",   cod: "205Q", s: 2, h: null, n: "Física 101",                 ab: "Física 101",   a: "CFM", cr: 7,  pre_exo: ["MAT_A"],             pre_apr: [], prow: 3, pcol: 1 },
   { id: "FIS102",   cod: "304Q", s: 3, h: null, n: "Física 102",                 ab: "Física 102",   a: "CFM", cr: 7,  pre_exo: ["FIS101"],            pre_apr: [], prow: 2, pcol: 1, notas: "Electromagnetismo" },
@@ -49,15 +49,15 @@ const materias = [
   { id: "QUI_GEN_I",  cod: "102",  s: 1, h: null, n: "Química General I",          ab: "Q. Gral. I",   a: "CQ", cr: 7,  pre_exo: [],                    pre_apr: [], prow: 6, pcol: 2 },
   { id: "RIESGOS",    cod: "104A", s: 1, h: 2,    n: "Prev. Riesgos en Lab.",      ab: "Prev. Riesgos", a: "CQ", cr: 4,  pre_exo: [],                    pre_apr: [], prow: 6, pcol: 3, notas: "2do hemisemestre" },
   { id: "QUI_GEN_II", cod: "202",  s: 2, h: null, n: "Química General II",          ab: "Q. Gral. II",  a: "CQ", cr: 8,  pre_exo: ["QUI_GEN_I", "RIESGOS"], pre_apr: [], prow: 6, pcol: 4 },
-  { id: "QA1",        cod: "302",  s: 3, h: null, n: "Química Analítica I",         ab: "Q. Anal. I",   a: "CQ", cr: 10, pre_exo: ["QUI_GEN_II"],        pre_apr: [], prow: 5, pcol: 2 },
+  { id: "QA1",        cod: "302",  s: 3, h: null, n: "Química Analítica I",         ab: "Q. Analítica I",   a: "CQ", cr: 10, pre_exo: ["QUI_GEN_II"],        pre_apr: [], prow: 5, pcol: 2 },
   { id: "QI_T",       cod: "303A", s: 3, h: null, n: "Química Inorgánica (T)",      ab: "Q. Inorg. T",  a: "CQ", cr: 6,  pre_exo: ["QUI_GEN_II"],        pre_apr: [], prow: 5, pcol: 3, notas: "Teórico" },
   { id: "QI_L",       cod: "303B", s: 3, h: null, n: "Lab. Q. Inorgánica",          ab: "Q. Inorg. L",  a: "CQ", cr: 5,  pre_exo: ["QUI_GEN_II"],        pre_apr: [], prow: 5, pcol: 4, notas: "Lab." },
   { id: "QO101",      cod: "301",  s: 3, h: null, n: "Química Orgánica 101",        ab: "Org. 101",     a: "CQ", cr: 11, pre_exo: ["QUI_GEN_II"],        pre_apr: [], prow: 4, pcol: 2 },
   { id: "QO102",      cod: "401",  s: 4, h: null, n: "Química Orgánica 102",        ab: "Org. 102",     a: "CQ", cr: 6,  pre_exo: ["QO101"],             pre_apr: [], prow: 4, pcol: 3 },
   { id: "QO103L",     cod: "501",  s: 5, h: null, n: "Q. Orgánica 103 (L)",         ab: "Org. 103L",    a: "CQ", cr: 5,  pre_exo: ["QO101", "QA1"],      pre_apr: [], prow: 4, pcol: 4, notas: "Lab." },
-  { id: "QA2",        cod: "402A", s: 4, h: null, n: "Química Analítica II",        ab: "Q. Anal. II",  a: "CQ", cr: 7,  pre_exo: ["QA1"],               pre_apr: [], prow: 3, pcol: 2 },
+  { id: "QA2",        cod: "402A", s: 4, h: null, n: "Química Analítica II",        ab: "Q. Analítica II",  a: "CQ", cr: 7,  pre_exo: ["QA1"],               pre_apr: [], prow: 3, pcol: 2 },
   { id: "FQ102",      cod: "508A", s: 4, h: null, n: "Fisicoquímica 102",           ab: "FQ 102",       a: "CQ", cr: 13, pre_exo: ["MAT_B", "QA1"],     pre_apr: [], prow: 3, pcol: 3 },
-  { id: "QA3",        cod: "503",  s: 5, h: null, n: "Química Analítica III",       ab: "Q. Anal. III", a: "CQ", cr: 10, pre_exo: ["QA2"],               pre_apr: [], prow: 3, pcol: 4, notas: "Análisis Instr." },
+  { id: "QA3",        cod: "503",  s: 5, h: null, n: "Química Analítica III",       ab: "Q. Analítica III", a: "CQ", cr: 10, pre_exo: ["QA2"],               pre_apr: [], prow: 3, pcol: 4, notas: "Análisis Instr." },
   { id: "QO104",      cod: "502X", s: 5, h: 1,    n: "Química Orgánica 104",        ab: "Org. 104",     a: "CQ", cr: 4,  pre_exo: ["QO102"],             pre_apr: [], prow: 2, pcol: 2, notas: "1er hemi" },
   { id: "FQ103",      cod: "520A", s: 5, h: null, n: "Fisicoquímica 103",           ab: "FQ 103",       a: "CQ", cr: 12, pre_exo: ["FQ102"],            pre_apr: [], prow: 2, pcol: 3 },
 
@@ -94,3 +94,4 @@ const materias = [
   { id: "LEGISLACION",     cod: "809",  s: 9, h: null, n: "Legislación y Deontología",     ab: "Legislación",   a: "CFA", cr: 6,  pre_exo: ["FTEC2", "FARMACOTERAPIA"], pre_apr: [], prow: 1, pcol: 9 },
   { id: "GESTION",         cod: "410",  s: 9, h: 2,    n: "Gestión de Empresas",           ab: "Gestión Emp.",  a: "CFA", cr: 4,  pre_exo: [], pre_apr: [], prow: 1, pcol: 10, notas: "2do hemi. Asistencia controlada." },
 ];
+
