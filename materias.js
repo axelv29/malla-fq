@@ -27,11 +27,11 @@ const materias = [
   { id:"MAT_A",     cod:"01A",  s:1, h:null, n:"Matemática A",               ab:"Mat. A",       a:"CFM", cr:10, pre_exo:[],                                       pre_apr:[] },
   { id:"QUI_GEN_I", cod:"102",  s:1, h:null, n:"Química General I",           ab:"Q. Gral. I",   a:"CQ",  cr:7,  pre_exo:[],                                       pre_apr:[] },
   { id:"BIO_I",     cod:"103B", s:1, h:null, n:"Introd. Cs. Biológicas I",    ab:"ICB I",        a:"CBB", cr:5,  pre_exo:[],                                       pre_apr:[] },
-  { id:"RIESGOS",   cod:"104A", s:1, h:2,    n:"Prev. Riesgos en Lab.",       ab:"Prev. Riesgos",a:"CQ",  cr:4,  pre_exo:[],                                       pre_apr:[], notas:"2do hemisemestre" },
+  { id:"RIESGOS",   cod:"104A", s:1, h:2,    n:"Prev. Riesgos en Lab.",       ab:"Prev. Riesgos",a:"CQ",  cr:4,  pre_exo:[],                                       pre_apr:[],
 
   // ── SEMESTRE 2 ─────────────────────────────────────────────────────────
-  { id:"MAT_B",     cod:"02B",  s:2, h:1,    n:"Matemática B",                ab:"Mat. B",       a:"CFM", cr:6,  pre_exo:["MAT_A"],                                pre_apr:[], notas:"1er hemi" },
-  { id:"MAT_C",     cod:"02C",  s:2, h:null, n:"Matemática C",                ab:"Mat. C",       a:"CFM", cr:8,  pre_exo:["MAT_A"],                                pre_apr:[], notas:"Estadística" },
+  { id:"MAT_B",     cod:"02B",  s:2, h:1,    n:"Matemática B",                ab:"Mat. B",       a:"CFM", cr:6,  pre_exo:["MAT_A"],                                pre_apr:[],
+  { id:"MAT_C",     cod:"02C",  s:2, h:null, n:"Matemática C",                ab:"Mat. C",       a:"CFM", cr:8,  pre_exo:["MAT_A"],                                pre_apr:[], 
   { id:"FIS101",    cod:"205Q", s:2, h:null, n:"Física 101",                   ab:"Física 101",   a:"CFM", cr:7,  pre_exo:["MAT_A"],                                pre_apr:[] },
   { id:"QUI_GEN_II",cod:"202",  s:2, h:null, n:"Química General II",           ab:"Q. Gral. II",  a:"CQ",  cr:8,  pre_exo:["QUI_GEN_I","RIESGOS"],                  pre_apr:[] },
   { id:"BIO_II",    cod:"203A", s:2, h:null, n:"Introd. Cs. Biológicas II",    ab:"ICB II",       a:"CBB", cr:5,  pre_exo:["BIO_I","RIESGOS"],                      pre_apr:[] },
@@ -62,7 +62,7 @@ const materias = [
   // ── SEMESTRE 6 ─────────────────────────────────────────────────────────
   { id:"FARMACOGNOSIA",  cod:"909",  s:6, h:null, n:"Farmacognosia",           ab:"Farmacogn.",   a:"CFA", cr:9,  pre_exo:["QO103L","QO104","QA3"],                 pre_apr:[] },
   { id:"BOTANICA",       cod:"908A", s:6, h:1,    n:"Botánica",                ab:"Botánica",     a:"CFA", cr:4,  pre_exo:["BIO_II","QO103L","QO104","QA3"],        pre_apr:[], notas:"1er hemi" },
-  { id:"MICROBIO_T",     cod:"533T", s:6, h:null, n:"Microbiología Gral. (T)", ab:"Microbio. T",  a:"CBB", cr:6,  pre_exo:["BIO_II","BIOQ"],                        pre_apr:[], notas:"Teórico" },
+  { id:"MICROBIO_T",     cod:"533T", s:6, h:null, n:"Microbiología Gral. (T)", ab:"Microbio. T",  a:"CBB", cr:6,  pre_exo:["BIO_I","BIOQ"],                        pre_apr:[], notas:"Teórico" },
   { id:"MICROBIO_L",     cod:"533L", s:6, h:null, n:"Lab. Análisis Microbiol.",ab:"Microbio. L",  a:"CBB", cr:6,  pre_exo:["BIO_I","BIOQ"],                         pre_apr:[], notas:"Laboratorio" },
   { id:"INMUNO1",        cod:"506X", s:6, h:2,    n:"Inmunología I",           ab:"Inmuno. I",    a:"CBB", cr:5,  pre_exo:["BIO_II","BIOQ"],                        pre_apr:[], notas:"2do hemi" },
   { id:"FARMACOKINETICA",cod:"535X", s:6, h:null, n:"Farmacocinética y Biofarmacia", ab:"Farmacocin.",a:"CFA",cr:8,pre_exo:["FISIO","MAT_B"],                       pre_apr:[] },
