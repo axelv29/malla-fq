@@ -80,7 +80,7 @@ const materias = [
   // ─── CFA (cols 7, 8, 9, 10) ───
   { id: "INTRO_MED",       cod: "416X", s: 4, h: 1,    n: "Introd. al Medicamento",        ab: "Intro. Med.",  a: "CFA", cr: 2,  pre_exo: [], pre_apr: [], prow: 5, pcol: 8, notas: "1er hemi. Asistencia obligatoria." },
   { id: "FARMACOGNOSIA",   cod: "909",  s: 6, h: null, n: "Farmacognosia",                 ab: "Farmacogn.",   a: "CFA", cr: 9,  pre_exo: ["QO103L", "QO104", "QA3"], pre_apr: [], prow: 6, pcol: 9 },
-  { id: "BOTANICA",        cod: "908A", s: 6, h: 1,    n: "Botánica",                      ab: "Botánica",     a: "CFA", cr: 4,  pre_exo: ["BIO_II", "QO103L", "QO104", "QA3"], pre_apr: [], prow: 6, pcol: 10, notas: "1er hemi" },
+  { id: "BOTANICA",        cod: "908A", s: 6, h: 1,    n: "Botánica",                      ab: "Botánica",     a: "CFA", cr: 4,  pre_exo: ["BIO_I", "QO103L", "QO104", "QA3"], pre_apr: [], prow: 6, pcol: 10, notas: "1er hemisemestre" },
   { id: "FARMACOKINETICA", cod: "535X", s: 6, h: null, n: "Farmacocinética y Biofarmacia", ab: "Farmacocin.",   a: "CFA", cr: 8,  pre_exo: ["FISIO", "MAT_B"], pre_apr: [], prow: 5, pcol: 9 },
   { id: "UC_CALIDAD",      cod: "157",  s: 6, h: 2,    n: "Sistemas de Gestión",           ab: "Sist. Gestión", a: "CFA", cr: 4,  pre_exo: ["MAT_C", "QA3"], pre_apr: [], prow: 5, pcol: 10, notas: "2do hemi. Desde 2025." },
   { id: "QF101",           cod: "700",  s: 7, h: null, n: "Q. Farmacéutica 101 (T)",       ab: "Q. Farm. 101", a: "CFA", cr: 8,  pre_exo: ["QO102", "QO103L", "QO104", "QA3", "FQ102", "FARMACOGNOSIA", "BIOQ"], pre_apr: [], prow: 4, pcol: 9, notas: "Teórico" },
