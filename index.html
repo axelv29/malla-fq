@@ -4,27 +4,64 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Malla QF · PE2015 · UDELAR</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">  
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
+/* ══ TEMA CLARO (default) ══ */
 :root {
-  --cfm-c:#2563EB;--cfm-p:#EFF6FF;--cfm-t:#1E3A8A;--cfm-b:#BFDBFE;
-  --cq-c: #16A34A;--cq-p: #F0FDF4;--cq-t: #14532D;--cq-b: #BBF7D0;
-  --cbb-c:#EA580C;--cbb-p:#FFF7ED;--cbb-t:#7C2D12;--cbb-b:#FED7AA;
-  --cfa-c:#7C3AED;--cfa-p:#F5F3FF;--cfa-t:#4C1D95;--cfa-b:#DDD6FE;
-  --pro-c:#374151;--pro-p:#F9FAFB;--pro-t:#1F2937;--pro-b:#E5E7EB;
-  --opt-c:#DB2777;--opt-p:#FDF2F8;--opt-t:#831843;--opt-b:#FBCFE8;
+  /* colores base de área — no cambian entre temas */
+  --cfm-c:#2563EB; --cq-c:#16A34A; --cbb-c:#EA580C;
+  --cfa-c:#7C3AED; --pro-c:#4B5563; --opt-c:#DB2777;
+
+  /* tokens de área: fondo, texto, borde de tarjeta */
+  --cfm-p:#EFF6FF;--cfm-t:#1E3A8A;--cfm-b:#BFDBFE;
+  --cq-p:#F0FDF4; --cq-t:#14532D; --cq-b:#BBF7D0;
+  --cbb-p:#FFF7ED;--cbb-t:#7C2D12;--cbb-b:#FED7AA;
+  --cfa-p:#F5F3FF;--cfa-t:#4C1D95;--cfa-b:#DDD6FE;
+  --pro-p:#F9FAFB;--pro-t:#1F2937;--pro-b:#E5E7EB;
+  --opt-p:#FDF2F8;--opt-t:#831843;--opt-b:#FBCFE8;
+
+  /* UI */
   --bg:#F8FAFC;--surface:#FFFFFF;--border:#E2E8F0;--border2:#CBD5E1;
   --text:#0F172A;--text2:#334155;--text3:#94A3B8;
   --sh-sm:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
   --sh:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
   --sh-hov:0 14px 35px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07);
-  --cw:108px; --ch:108px;
-  --pw:108px; --ph:108px; /* periódica: igual que semestral → cuadradas */
-  --font:'Outfit',sans-serif; --mono:'DM Mono',monospace;
+
+  /* tarjeta aprobada/exonerada: usamos surface en claro */
+  --card-done-bg:#FFFFFF;
+
+  --cw:108px;--ch:108px;--pw:108px;--ph:108px;
+  --font:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+
+/* ══ TEMA OSCURO ══ */
+html.dark {
+  /* colores base idénticos — solo ajustamos levemente para mejor contraste */
+  --cfm-c:#60A5FA; --cq-c:#34D399; --cbb-c:#FB923C;
+  --cfa-c:#A78BFA; --pro-c:#9CA3AF; --opt-c:#F472B6;
+
+  /* fondos de tarjeta "pendiente": más oscuros y vibrantes, no pasteles */
+  --cfm-p:#1E2D45;--cfm-t:#93C5FD;--cfm-b:#1D3561;
+  --cq-p:#132D20; --cq-t:#6EE7B7; --cq-b:#14532D;
+  --cbb-p:#2D1A0A;--cbb-t:#FDBA74;--cbb-b:#431F05;
+  --cfa-p:#1E1433;--cfa-t:#C4B5FD;--cfa-b:#2D1B6B;
+  --pro-p:#1A1F27;--pro-t:#D1D5DB;--pro-b:#2D3748;
+  --opt-p:#2D0F1E;--opt-t:#F9A8D4;--opt-b:#4A1132;
+
+  /* UI oscuro — gris cálido, no frío */
+  --bg:#161B22;--surface:#1E2530;--border:#2A3441;--border2:#374151;
+  --text:#E2E8F0;--text2:#94A3B8;--text3:#4B5563;
+  --sh-sm:0 1px 4px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.2);
+  --sh:0 4px 14px rgba(0,0,0,.4),0 1px 4px rgba(0,0,0,.2);
+  --sh-hov:0 14px 40px rgba(0,0,0,.55),0 4px 12px rgba(0,0,0,.3);
+
+  --card-done-bg:#252D38;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+/* smooth theme on key elements */
+header,input,select,button,.modal,.confirm-box,.welcome-box,.ap-item,.leg-bar,.toolbar{transition:background .25s,border-color .25s,color .25s}
 
 /* ─── HEADER ─── */
 header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:200;box-shadow:var(--sh-sm)}
@@ -42,8 +79,8 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .prog-outer{width:110px;height:4px;background:var(--border2);border-radius:999px;overflow:hidden;margin-top:2px}
 .prog-fill{height:100%;background:linear-gradient(90deg,#7C3AED,#2563EB);border-radius:999px;transition:width .5s;width:0%}
 .cr-pct{font-size:.6rem;color:var(--text3);margin-top:2px}
-.btn-reset{padding:5px 12px;border-radius:7px;border:1.5px solid #FCA5A5;background:#FEF2F2;color:#DC2626;font-family:var(--font);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap}
-.btn-reset:hover{background:#FEE2E2}
+.btn-reset{padding:5px 12px;border-radius:7px;border:1.5px solid #EF4444;background:color-mix(in srgb,#EF4444 10%,transparent);color:#EF4444;font-family:var(--font);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap}
+.btn-reset:hover{background:color-mix(in srgb,#EF4444 18%,transparent)}
 
 /* ─── TOOLBAR ─── */
 .toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 22px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -58,11 +95,31 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .switch-wrap{display:flex;align-items:center;gap:7px;margin-left:auto}
 .switch-lbl{font-size:.68rem;font-weight:700;color:var(--text3);white-space:nowrap}
 .sw{position:relative;display:inline-block;width:34px;height:18px;flex-shrink:0}
-.sw input{opacity:0;width:0;height:0}
+.sw input{opacity:0;width:0;height:0;position:absolute}
 .sw-track{position:absolute;inset:0;background:var(--border2);border-radius:999px;cursor:pointer;transition:background .2s}
 .sw input:checked+.sw-track{background:#7C3AED}
 .sw-track::after{content:'';position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .sw input:checked+.sw-track::after{transform:translateX(16px)}
+
+/* Dark mode switch — más ancho para los iconos */
+.dm-sw{width:42px;height:22px;position:relative}
+.dm-sw .sw-track{inset:0}
+.dm-sw .sw-track::after{width:18px;height:18px}
+.dm-sw input:checked+.sw-track::after{transform:translateX(20px)}
+.dm-sw input:checked+.sw-track{background:#374151}
+.dm-icons{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 3px;pointer-events:none;font-size:.65rem;line-height:1}
+
+/* ── DARK MODE overrides específicos ── */
+html.dark .f-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234B5563' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+html.dark .f-select option{background:#1E2530;color:#E2E8F0}
+html.dark .hint-toast{background:rgba(226,232,240,.92);color:#0F172A}
+html.dark .overlay{background:rgba(0,0,0,.65)}
+html.dark .confirm-overlay,html.dark .welcome-overlay{background:rgba(0,0,0,.72)}
+html.dark .brand-icon{box-shadow:0 3px 10px rgba(124,58,237,.45)}
+html.dark .card-abrev{color:var(--at)}
+html.dark .card-nombre{color:var(--at)}
+html.dark .aprobada .card-dot{background:#60A5FA;box-shadow:0 0 6px rgba(96,165,250,.6)}
+html.dark .exonerada .card-dot{background:#34D399;box-shadow:0 0 6px rgba(52,211,153,.6)}
 
 /* ─── AREA PROGRESS ─── */
 .ap-sec{padding:10px 22px 0;display:flex;gap:6px;flex-wrap:wrap}
@@ -103,8 +160,8 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .area-PRO{--av:var(--pro-c);--ap:var(--pro-p);--at:var(--pro-t);--ab:var(--pro-b)}
 .area-OPT{--av:var(--opt-c);--ap:var(--opt-p);--at:var(--opt-t);--ab:var(--opt-b)}
 .materia-card.pendiente{background:var(--ap);border-color:var(--ab)}
-.materia-card.aprobada {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 16%,transparent),var(--sh)}
-.materia-card.exonerada{background:var(--surface);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 22%,transparent),var(--sh)}
+.materia-card.aprobada {background:var(--card-done-bg);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 18%,transparent),var(--sh)}
+.materia-card.exonerada{background:var(--card-done-bg);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 28%,transparent),var(--sh)}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}
 .card-area{display:none;font-size:.5rem;font-weight:800;letter-spacing:.5px;color:var(--at);opacity:.9}
 .card-cr{font-size:.6rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.85}
@@ -225,8 +282,8 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
 .pre-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
 .pre-chip{display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;border:1.5px solid;font-size:.72rem;font-weight:600;cursor:pointer;transition:opacity .14s}
 .pre-chip:hover{opacity:.75}
-.pre-chip.ok {border-color:#10B981;color:#065F46;background:#ECFDF5}
-.pre-chip.nok{border-color:#F87171;color:#DC2626;background:#FEF2F2}
+.pre-chip.ok {border-color:#10B981;color:#10B981;background:color-mix(in srgb,#10B981 12%,transparent)}
+.pre-chip.nok{border-color:#F87171;color:#F87171;background:color-mix(in srgb,#F87171 12%,transparent)}
 .pre-chip .pre-tipo{font-size:.55rem;opacity:.7;font-style:italic;margin-left:2px}
 .estado-btns{display:flex;gap:7px;margin-top:14px}
 .btn-e{flex:1;padding:8px;border-radius:9px;border:2px solid;font-family:var(--font);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .14s;background:transparent}
@@ -234,9 +291,9 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
 .btn-apr {border-color:#3B82F6;color:#1D4ED8}
 .btn-exon{border-color:#10B981;color:#065F46}
 .btn-e.activo.btn-pend{background:var(--border2);color:var(--text)}
-.btn-e.activo.btn-apr {background:#EFF6FF;border-color:#3B82F6;color:#1E40AF}
-.btn-e.activo.btn-exon{background:#ECFDF5;border-color:#10B981;color:#064E3B}
-.m-nota{margin-top:10px;font-size:.72rem;color:var(--text2);background:#FFFBEB;border:1px solid #FDE68A;border-radius:7px;padding:8px 11px;line-height:1.5}
+.btn-e.activo.btn-apr {background:color-mix(in srgb,#3B82F6 15%,transparent);border-color:#3B82F6;color:#3B82F6}
+.btn-e.activo.btn-exon{background:color-mix(in srgb,#10B981 15%,transparent);border-color:#10B981;color:#10B981}
+.m-nota{margin-top:10px;font-size:.72rem;color:var(--text2);background:color-mix(in srgb,#F59E0B 10%,var(--surface));border:1px solid color-mix(in srgb,#F59E0B 35%,transparent);border-radius:7px;padding:8px 11px;line-height:1.5}
 /* Modal opt/elec links */
 .opt-links{display:flex;flex-direction:column;gap:10px;margin:16px 0}
 .opt-link-item{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--opt-b);background:var(--opt-p);text-decoration:none;color:var(--opt-t);font-weight:700;font-size:.82rem;transition:opacity .14s}
@@ -256,8 +313,8 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
 .cbtn{flex:1;padding:8px;border-radius:8px;border:2px solid;font-family:var(--font);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .14s}
 .cbtn-cancel{border-color:var(--border2);color:var(--text2);background:var(--bg)}
 .cbtn-cancel:hover{background:var(--border2)}
-.cbtn-confirm{border-color:#DC2626;color:#DC2626;background:#FEF2F2}
-.cbtn-confirm:hover{background:#FEE2E2}
+.cbtn-confirm{border-color:#EF4444;color:#EF4444;background:color-mix(in srgb,#EF4444 10%,transparent)}
+.cbtn-confirm:hover{background:color-mix(in srgb,#EF4444 18%,transparent)}
 
 /* ══════════════════════════════════
    MODAL BIENVENIDA
@@ -315,6 +372,12 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
       </div>
     </div>
     <button class="btn-reset" onclick="pedirReset()">↺ Reiniciar</button>
+    <!-- SWITCH MODO OSCURO -->
+    <label class="sw dm-sw" title="Modo oscuro">
+      <input type="checkbox" id="dark-sw" onchange="toggleDark(this.checked)">
+      <span class="sw-track"></span>
+      <span class="dm-icons"><span class="dm-sun">☀️</span><span class="dm-moon">🌙</span></span>
+    </label>
   </div>
 </header>
 
@@ -475,7 +538,19 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
 
 <script src="materias.js"></script>
 <script>
-/* ══════════ ÍNDICE ══════════ */
+/* ══════════ MODO OSCURO ══════════ */
+const DK="qf_dark_v1";
+function toggleDark(on){
+  html.classList.toggle("dark",on);
+  try{localStorage.setItem(DK,on?"1":"0")}catch{}
+}
+const html=document.documentElement;
+(function(){
+  const saved=localStorage.getItem(DK);
+  const prefersDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const on=saved!==null?saved==="1":prefersDark;
+  if(on){html.classList.add("dark");document.getElementById("dark-sw").checked=true}
+})();
 const IDX = Object.fromEntries(materias.map(m => [m.id, m]));
 
 /* ══════════ VALIDACIÓN PREVIAS ══════════ */
