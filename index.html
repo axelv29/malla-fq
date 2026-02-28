@@ -100,8 +100,8 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .card-cr{font-size:.6rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.85}
 .card-hemi{font-size:.49rem;font-weight:800;background:var(--av);color:#fff;border-radius:3px;padding:1px 4px;line-height:1.4;opacity:.9}
 .card-abrev{font-size:.88rem;font-weight:800;color:var(--at);text-align:center;line-height:1.15;flex:1;display:flex;align-items:center;justify-content:center;word-break:break-word;hyphens:auto;padding:2px 0}
-.card-nombre{font-size:.49rem;font-weight:500;color:var(--at);opacity:.62;text-align:center;line-height:1.3;margin-top:auto}
-.card-cod{font-size:.46rem;font-family:var(--mono);color:var(--av);text-align:center;margin-top:2px;opacity:.7}
+.card-nombre{font-size:.58rem;font-weight:500;color:var(--at);opacity:.75;text-align:center;line-height:1.3;margin-top:auto}
+.card-cod{font-size:.54rem;font-family:var(--mono);color:var(--av);text-align:center;margin-top:2px;opacity:.8}
 .card-dot{width:8px;height:8px;border-radius:50%;position:absolute;bottom:5px;right:5px;display:none}
 .aprobada  .card-dot{display:block;background:#3B82F6;box-shadow:0 0 5px rgba(59,130,246,.5)}
 .exonerada .card-dot{display:block;background:#10B981;box-shadow:0 0 5px rgba(16,185,129,.5)}
@@ -373,26 +373,26 @@ const materias=[
   {id:"FISIO",        cod:"408A",s:3,h:null,n:"Fisiología",                ab:"Fisiología",   a:"CBB",cr:7, pre_exo:["BIO_II"],                      pre_apr:[],           prow:5,pcol:5},
   {id:"FISIOPAT",     cod:"415C",s:4,h:null,n:"Fisiopatología",            ab:"Fisiopatol.",  a:"CBB",cr:7, pre_exo:["FISIO"],                       pre_apr:[],           prow:5,pcol:6},
   {id:"BIOQ",         cod:"190", s:5,h:null,n:"Bioquímica Op. II",         ab:"Bioquímica",   a:"CBB",cr:10,pre_exo:["BIO_I","FQ102","QO102","QA2"], pre_apr:[],           prow:6,pcol:7,notas:"Desde 2026"},
-  {id:"MICROBIO_T",   cod:"533T",s:6,h:null,n:"Microbiología Gral. (T)",  ab:"Microbio. T",  a:"CBB",cr:6, pre_exo:["BIO_II","BIOQ"],               pre_apr:[],           prow:5,pcol:8,notas:"Teórico"},
+  {id:"MICROBIO_T",   cod:"533T",s:6,h:null,n:"Microbiología Gral. (T)",  ab:"Microbio. T",  a:"CBB",cr:6, pre_exo:["BIO_II","BIOQ"],               pre_apr:[],           prow:5,pcol:7,notas:"Teórico"},
   {id:"MICROBIO_L",   cod:"533L",s:6,h:null,n:"Lab. Análisis Microbiol.", ab:"Microbio. L",  a:"CBB",cr:6, pre_exo:["BIO_I","BIOQ"],                pre_apr:[],           prow:4,pcol:5,notas:"Lab."},
   {id:"INMUNO1",      cod:"506X",s:6,h:2,   n:"Inmunología I",            ab:"Inmuno. I",    a:"CBB",cr:5, pre_exo:["BIO_II","BIOQ"],               pre_apr:[],           prow:3,pcol:5,notas:"2do hemi"},
   {id:"TALLER_INTEG", cod:"615", s:6,h:1,   n:"Taller Integ. Cs. Bio.",   ab:"Taller Integ.",a:"CBB",cr:2, pre_exo:["FISIO","FISIOPAT"],            pre_apr:[],           prow:4,pcol:7,notas:"1er hemi"},
-  {id:"INMUNO2",      cod:"534X",s:7,h:null,n:"Inmunología II",           ab:"Inmuno. II",   a:"CBB",cr:7, pre_exo:["INMUNO1"],                     pre_apr:[],           prow:4,pcol:8},
+  {id:"INMUNO2",      cod:"534X",s:7,h:null,n:"Inmunología II",           ab:"Inmuno. II",   a:"CBB",cr:7, pre_exo:["INMUNO1"],                     pre_apr:[],           prow:3,pcol:6},
   {id:"BROMATO",      cod:"704", s:7,h:2,   n:"Bromatología y Nutrición", ab:"Bromatología", a:"CBB",cr:4, pre_exo:["BIOQ","MICROBIO_T"],           pre_apr:[],           prow:4,pcol:6,notas:"2do hemi"},
 
   /* ─ PRO ─ */
-  {id:"PRACTICA", cod:"965X",s:10,h:null,n:"Practicantado",              ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],                              pre_apr:[],           prow:6,pcol:8,notas:"Requiere todas las obligatorias aprobadas."},
+  {id:"PRACTICA", cod:"965X",s:10,h:null,n:"Practicantado",              ab:"Practicantado",a:"PRO",cr:55,pre_exo:[],                              pre_apr:[],           prow:3,pcol:8,notas:"Requiere todas las obligatorias aprobadas."},
 
   /* ─ CFA (Intro.Med↔Bioq: Intro.Med abajo; luego volteado) ─ */
-  {id:"INTRO_MED",       cod:"416X",s:4,h:1,   n:"Introd. al Medicamento",        ab:"Intro. Med.",  a:"CFA",cr:2, pre_exo:[],                                                                               pre_apr:[], prow:5,pcol:7,notas:"1er hemi. Asistencia obligatoria."},
+  {id:"INTRO_MED",       cod:"416X",s:4,h:1,   n:"Introd. al Medicamento",        ab:"Intro. Med.",  a:"CFA",cr:2, pre_exo:[],                                                                               pre_apr:[], prow:5,pcol:8,notas:"1er hemi. Asistencia obligatoria."},
   {id:"FARMACOGNOSIA",   cod:"909", s:6,h:null,n:"Farmacognosia",                 ab:"Farmacogn.",   a:"CFA",cr:9, pre_exo:["QO103L","QO104","QA3"],                                                        pre_apr:[], prow:6,pcol:9},
   {id:"BOTANICA",        cod:"908A",s:6,h:1,   n:"Botánica",                      ab:"Botánica",     a:"CFA",cr:4, pre_exo:["BIO_II","QO103L","QO104","QA3"],                                                pre_apr:[], prow:6,pcol:10,notas:"1er hemi"},
   {id:"FARMACOKINETICA", cod:"535X",s:6,h:null,n:"Farmacocinética y Biofarmacia", ab:"Farmacocin.",  a:"CFA",cr:8, pre_exo:["FISIO","MAT_B"],                                                               pre_apr:[], prow:5,pcol:9},
   {id:"UC_CALIDAD",      cod:"157", s:6,h:2,   n:"Sistemas de Gestión",           ab:"Sist. Gestión",a:"CFA",cr:4, pre_exo:["MAT_C","QA3"],                                                                  pre_apr:[], prow:5,pcol:10,notas:"2do hemi. Desde 2025."},
   {id:"QF101",           cod:"700", s:7,h:null,n:"Q. Farmacéutica 101 (T)",       ab:"Q. Farm. 101", a:"CFA",cr:8, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FARMACOGNOSIA","BIOQ"],                  pre_apr:[], prow:4,pcol:9,notas:"Teórico"},
   {id:"QF102",           cod:"701X",s:7,h:null,n:"Q. Farmacéutica 102 (L)",       ab:"Q. Farm. 102", a:"CFA",cr:6, pre_exo:["QO102","QO103L","QO104","QA3","FQ102","FQ103","FARMACOGNOSIA","BIOQ"],           pre_apr:[], prow:4,pcol:10,notas:"Lab."},
-  {id:"FTEC1",           cod:"702X",s:7,h:null,n:"Farmacotecnia I",               ab:"Farmacotec. I",a:"CFA",cr:10,pre_exo:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"],pre_apr:[], prow:3,pcol:7},
-  {id:"FARMACO",         cod:"703X",s:7,h:null,n:"Farmacología",                  ab:"Farmacología", a:"CFA",cr:10,pre_exo:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"],                          pre_apr:[], prow:3,pcol:8},
+  {id:"FTEC1",           cod:"702X",s:7,h:null,n:"Farmacotecnia I",               ab:"Farmacotec. I",a:"CFA",cr:10,pre_exo:["FARMACOKINETICA","FARMACOGNOSIA","BOTANICA","MICROBIO_T","QA3","QI_T","FQ102","INTRO_MED"],pre_apr:[], prow:4,pcol:8},
+  {id:"FARMACO",         cod:"703X",s:7,h:null,n:"Farmacología",                  ab:"Farmacología", a:"CFA",cr:10,pre_exo:["QO102","QO103L","QO104","FISIO","TALLER_INTEG","BIOQ"],                          pre_apr:[], prow:6,pcol:8},
   {id:"FARMACOTERAPIA",  cod:"803X",s:8,h:null,n:"Farmacoterapia I",              ab:"Farmacoterap.",a:"CFA",cr:8, pre_exo:["FISIOPAT","FARMACO"],                                                            pre_apr:[], prow:3,pcol:9},
   {id:"FTEC2",           cod:"802X",s:8,h:null,n:"Farmacotecnia II",              ab:"Farmacotec. II",a:"CFA",cr:10,pre_exo:["FTEC1"],                                                                        pre_apr:[], prow:3,pcol:10},
   {id:"CONTROL",         cod:"804X",s:8,h:null,n:"Control Calidad Medic. I",      ab:"Control Cal.", a:"CFA",cr:12,pre_exo:["MICROBIO_T","QF101","QF102","FTEC1"],                                            pre_apr:[], prow:2,pcol:9},
@@ -593,7 +593,8 @@ function renderPer(){
 
   mkLbl(1,1,"Cs. Físico-Matemáticas",AM.CFM.cMin,AM.CFM.c);
   mkLbl(2,3,"Ciencias Químicas",AM.CQ.cMin,AM.CQ.c);
-  mkLbl(5,3,"Cs. Biológicas y Biomédicas",AM.CBB.cMin,AM.CBB.c);
+  mkLbl(5,2,"Cs. Biológicas y Biomédicas",AM.CBB.cMin,AM.CBB.c);
+  (function(){const e=document.createElement("div");e.className="per-lbl-wrap";e.style.gridColumn="7";lbl.appendChild(e);})();
   mkLbl(8,1,"Practicantado",AM.PRO.cMin,AM.PRO.c);
   mkLbl(9,2,"Cs. Farmacéuticas",AM.CFA.cMin,AM.CFA.c);
 
