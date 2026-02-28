@@ -18,7 +18,7 @@
   --sh:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
   --sh-hov:0 14px 35px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07);
   --cw:108px; --ch:118px;   /* semestral */
-  --pw:88px;  --ph:98px;   /* periódica (estilo tabla periódica) */
+  --pw:102px; --ph:108px;  /* periódica: más ancho para aprovechar página */
   --font:'Outfit',sans-serif; --mono:'DM Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -126,11 +126,10 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
    Layout continuo tipo tabla periódica: sin espacios entre elementos.
    Grupos distinguidos solo por color. Columnas: 1=CFM, 2-4=CQ, 5-9=CBB, 10=PRO, 11-12=CFA
 ══════════════════════════════════ */
-#view-per{display:none;padding:18px 22px;overflow-x:auto;overflow-y:visible}
+#view-per{display:none;padding:18px 22px;overflow-x:auto;overflow-y:visible;justify-content:center;align-items:flex-start}
+.per-wrap{display:inline-block;min-width:max-content;padding-bottom:20px}
 
-.per-wrap{display:inline-block;min-width:max-content;padding-bottom:30px}
-
-.per-legend{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.per-legend{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;justify-content:center}
 .per-leg-item{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.67rem;font-weight:600;border:1.5px solid;white-space:nowrap}
 .per-leg-dot{width:7px;height:7px;border-radius:50%}
 
@@ -143,32 +142,31 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
   align-items: start;
 }
 
-/* Tarjeta periódica — estilo diagrama: área izq, créditos der, nombre centro, código abajo */
+/* Tarjeta periódica: créditos izq (sin área), hemi der; nombre y código más legibles */
 .p-card{
   width:var(--pw)!important;
   min-height:var(--ph)!important;
   border-radius:4px!important;
   padding:5px 5px 4px!important;
 }
-.p-card .card-area{display:block!important}
+.p-card .card-area{display:none!important}
 .p-card .card-top{flex-wrap:wrap;gap:2px 0}
-.p-card .card-top .card-cr{margin-left:auto}
-.p-card .card-top .card-hemi{margin-left:2px}
+.p-card .card-top .card-cr{margin-left:0}
+.p-card .card-top .card-hemi{margin-left:auto}
 .p-card .card-abrev{font-size:.7rem!important;font-weight:800;line-height:1.2}
-.p-card .card-nombre{font-size:.4rem!important;line-height:1.25}
-.p-card .card-cod{font-size:.38rem!important;margin-top:1px}
-.p-card .card-cr{font-size:.5rem!important}
+.p-card .card-nombre{font-size:.52rem!important;line-height:1.3}
+.p-card .card-cod{font-size:.5rem!important;margin-top:2px}
+.p-card .card-cr{font-size:.52rem!important}
 .p-card .card-hemi{font-size:.4rem!important;padding:1px 2px!important}
 .p-card .card-dot{width:6px!important;height:6px!important;bottom:4px!important;right:4px!important}
-/* Tarjeta PRO en vista periódica: sin nombre, código centrado */
-.p-card[data-id="PRACTICA"] .card-abrev:empty ~ .card-nombre:empty ~ .card-cod{margin-top:auto;padding-top:.25rem}
 
 /* ── Etiquetas bajo cada grupo (10 columnas) ── */
 .per-labels{
   display: grid;
   grid-template-columns: repeat(10, var(--pw));
   gap: 0;
-  margin-top: 14px;
+  margin-top: 12px;
+  margin-bottom: 4px;
   align-items: start;
 }
 .per-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.25px;line-height:1.25;color:var(--text2)}
@@ -282,11 +280,9 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 <!-- VISTA TABLA PERIÓDICA -->
 <div id="view-per">
   <div class="per-wrap">
-    <div class="per-legend" id="per-legend"></div>
-    <!-- El grid con todas las tarjetas + celdas vacías de separación -->
     <div class="per-grid" id="per-grid"></div>
-    <!-- Etiquetas de área (mismo grid para alineación) -->
     <div class="per-labels" id="per-labels"></div>
+    <div class="per-legend" id="per-legend"></div>
   </div>
 </div>
 
@@ -455,9 +451,6 @@ function onPE(id){
 /* ══════════ TARJETA ══════════ */
 function mkCard(m,extraCls=""){
   const est=gE(m.id);
-  const isProPer=extraCls&&extraCls.includes("p-card")&&m.id==="PRACTICA";
-  const ab=isProPer?"":m.ab;
-  const nom=isProPer?"":m.n;
   const d=document.createElement("div");
   d.className=`materia-card area-${m.a} ${est}${extraCls?" "+extraCls:""}`;
   d.dataset.id=m.id;
@@ -467,8 +460,8 @@ function mkCard(m,extraCls=""){
       <span class="card-cr">${m.cr} cr</span>
       ${m.h?`<span class="card-hemi">${m.h}°</span>`:""}
     </div>
-    <div class="card-abrev">${ab}</div>
-    <div class="card-nombre">${nom}</div>
+    <div class="card-abrev">${m.ab}</div>
+    <div class="card-nombre">${m.n}</div>
     <div class="card-cod">${m.cod}</div>
     <div class="card-dot"></div>
   `;
@@ -610,7 +603,7 @@ let curView="sem";
 function setView(v){
   curView=v;
   document.getElementById("view-sem").style.display=v==="sem"?"block":"none";
-  document.getElementById("view-per").style.display=v==="per"?"block":"none";
+  document.getElementById("view-per").style.display=v==="per"?"flex":"none";
   document.getElementById("btn-sem").classList.toggle("active",v==="sem");
   document.getElementById("btn-per").classList.toggle("active",v==="per");
 }
