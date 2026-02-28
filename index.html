@@ -12,13 +12,14 @@
   --cbb-c:#EA580C;--cbb-p:#FFF7ED;--cbb-t:#7C2D12;--cbb-b:#FED7AA;
   --cfa-c:#7C3AED;--cfa-p:#F5F3FF;--cfa-t:#4C1D95;--cfa-b:#DDD6FE;
   --pro-c:#374151;--pro-p:#F9FAFB;--pro-t:#1F2937;--pro-b:#E5E7EB;
+  --opt-c:#DB2777;--opt-p:#FDF2F8;--opt-t:#831843;--opt-b:#FBCFE8;
   --bg:#F8FAFC;--surface:#FFFFFF;--border:#E2E8F0;--border2:#CBD5E1;
   --text:#0F172A;--text2:#334155;--text3:#94A3B8;
   --sh-sm:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
   --sh:0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.04);
   --sh-hov:0 14px 35px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07);
-  --cw:108px; --ch:108px;   /* semestral: cuadradas */
-  --pw:102px; --ph:108px;   /* periódica */
+  --cw:108px; --ch:108px;
+  --pw:108px; --ph:108px; /* periódica: igual que semestral → cuadradas */
   --font:'Outfit',sans-serif; --mono:'DM Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -44,13 +45,23 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 .btn-reset:hover{background:#FEE2E2}
 
 /* ─── TOOLBAR ─── */
-.toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 22px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 22px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .tlbl{font-size:.68rem;font-weight:700;color:var(--text3);white-space:nowrap}
 .dv{width:1px;height:18px;background:var(--border2);flex-shrink:0}
-.filter-btns{display:flex;gap:3px;flex-wrap:wrap}
-.f-btn{padding:3px 10px;border-radius:5px;border:1.5px solid var(--border2);background:var(--surface);font-family:var(--font);font-size:.7rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all .14s}
-.f-btn:hover{border-color:var(--text3);background:var(--bg)}
-.f-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
+/* Dropdown filters */
+.f-select{padding:4px 8px;border-radius:6px;border:1.5px solid var(--border2);background:var(--surface);font-family:var(--font);font-size:.72rem;font-weight:600;color:var(--text2);cursor:pointer;outline:none;transition:border-color .14s;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394A3B8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;padding-right:22px}
+.f-select:hover,.f-select:focus{border-color:var(--text3)}
+.f-select.active{border-color:var(--text);color:var(--text);background-color:var(--bg)}
+
+/* ─── SWITCH modo progreso ─── */
+.switch-wrap{display:flex;align-items:center;gap:7px;margin-left:auto}
+.switch-lbl{font-size:.68rem;font-weight:700;color:var(--text3);white-space:nowrap}
+.sw{position:relative;display:inline-block;width:34px;height:18px;flex-shrink:0}
+.sw input{opacity:0;width:0;height:0}
+.sw-track{position:absolute;inset:0;background:var(--border2);border-radius:999px;cursor:pointer;transition:background .2s}
+.sw input:checked+.sw-track{background:#7C3AED}
+.sw-track::after{content:'';position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.sw input:checked+.sw-track::after{transform:translateX(16px)}
 
 /* ─── AREA PROGRESS ─── */
 .ap-sec{padding:10px 22px 0;display:flex;gap:6px;flex-wrap:wrap}
@@ -75,23 +86,24 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
    TARJETA BASE
 ══════════════════════════════════ */
 .materia-card{
-  border-radius:10px; border:2px solid;
+  border-radius:10px;border:2px solid;
   padding:6px 6px 5px;
-  cursor:pointer; position:relative;
-  display:flex; flex-direction:column;
-  user-select:none; flex-shrink:0;
-  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s,opacity .2s;
-  width:var(--cw); min-height:var(--ch);
+  cursor:pointer;position:relative;
+  display:flex;flex-direction:column;
+  user-select:none;flex-shrink:0;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s,opacity .2s,filter .2s;
+  width:var(--cw);min-height:var(--ch);
 }
-.materia-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:20;opacity:1!important}
+.materia-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:20;opacity:1!important;filter:none!important}
 .area-CFM{--av:var(--cfm-c);--ap:var(--cfm-p);--at:var(--cfm-t);--ab:var(--cfm-b)}
 .area-CQ {--av:var(--cq-c); --ap:var(--cq-p); --at:var(--cq-t); --ab:var(--cq-b)}
 .area-CBB{--av:var(--cbb-c);--ap:var(--cbb-p);--at:var(--cbb-t);--ab:var(--cbb-b)}
 .area-CFA{--av:var(--cfa-c);--ap:var(--cfa-p);--at:var(--cfa-t);--ab:var(--cfa-b)}
 .area-PRO{--av:var(--pro-c);--ap:var(--pro-p);--at:var(--pro-t);--ab:var(--pro-b)}
-.materia-card.pendiente {background:var(--ap);border-color:var(--ab)}
-.materia-card.aprobada  {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 16%,transparent),var(--sh)}
-.materia-card.exonerada {background:var(--surface);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 22%,transparent),var(--sh)}
+.area-OPT{--av:var(--opt-c);--ap:var(--opt-p);--at:var(--opt-t);--ab:var(--opt-b)}
+.materia-card.pendiente{background:var(--ap);border-color:var(--ab)}
+.materia-card.aprobada {background:var(--surface);border-color:var(--av);box-shadow:0 0 0 2px color-mix(in srgb,var(--av) 16%,transparent),var(--sh)}
+.materia-card.exonerada{background:var(--surface);border-color:var(--av);box-shadow:0 4px 14px color-mix(in srgb,var(--av) 22%,transparent),var(--sh)}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}
 .card-area{display:none;font-size:.5rem;font-weight:800;letter-spacing:.5px;color:var(--at);opacity:.9}
 .card-cr{font-size:.6rem;font-weight:700;font-family:var(--mono);color:var(--at);opacity:.85}
@@ -108,6 +120,13 @@ header{background:var(--surface);border-bottom:1px solid var(--border);padding:1
 body.yr-on .materia-card{opacity:.18;transform:none;box-shadow:none!important}
 body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shadow:var(--sh-hov)!important;z-index:4}
 
+/* ── MODO PROGRESO ──
+   Aprobadas/exoneradas: normales. Habilitadas: gris medio. Bloqueadas: gris fuerte+saturación 0 */
+body.prog-on .materia-card{opacity:1;filter:grayscale(1) brightness(.72);transform:none;box-shadow:none!important}
+body.prog-on .materia-card.prog-ok{filter:none;opacity:1}
+body.prog-on .materia-card.prog-hab{filter:grayscale(.5) brightness(.88);opacity:.72}
+body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;transform:translateY(-4px);box-shadow:var(--sh-hov)!important;z-index:20}
+
 /* ══════════════════════════════════
    VISTA SEMESTRAL
 ══════════════════════════════════ */
@@ -117,6 +136,9 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .sem-hdr{text-align:center;padding:4px 4px 7px;border-bottom:2px solid var(--border2);margin-bottom:4px}
 .sem-hdr-num{font-size:.66rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
 .sem-hdr-cr{font-size:.58rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
+/* Fila inferior optativas/electivas */
+.sem-opt-row{padding:6px 22px 18px;border-top:2px dashed var(--border2);margin-top:2px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sem-opt-row-lbl{display:flex;align-items:center}
 
 /* ══════════════════════════════════
    VISTA TABLA PERIÓDICA
@@ -126,6 +148,12 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .per-legend{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;justify-content:center}
 .per-leg-item{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.67rem;font-weight:600;border:1.5px solid;white-space:nowrap}
 .per-leg-dot{width:7px;height:7px;border-radius:50%}
+/* Layout: grid principal (10 cols) + separador + col optativas */
+.per-outer{display:flex;gap:0;align-items:start}
+.per-main{display:flex;flex-direction:column}
+.per-opt-sep{width:18px;border-left:2px dashed var(--border2);margin:0 18px;align-self:stretch;flex-shrink:0}
+.per-opt-col{display:flex;flex-direction:column;gap:7px;padding-top:0}
+.per-opt-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.25px;color:var(--opt-c);margin-bottom:4px}
 
 .per-grid{
   display:grid;
@@ -157,6 +185,23 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .per-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.25px;line-height:1.25;color:var(--text2)}
 .per-lbl-sub{font-size:.58rem;font-weight:500;opacity:.7;margin-top:3px;font-family:var(--mono);color:var(--text3)}
 .per-lbl-wrap{min-height:2.5em}
+
+/* ─── Tarjeta Opt/Elec especial ─── */
+.opt-card{
+  width:var(--cw);height:var(--ch);
+  border-radius:10px;border:2px solid var(--opt-b);
+  background:var(--opt-p);
+  cursor:pointer;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  user-select:none;flex-shrink:0;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;
+  position:relative;
+}
+.opt-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:20}
+.opt-card-title{font-size:.72rem;font-weight:900;color:var(--opt-t);text-align:center;line-height:1.3;padding:0 6px}
+.opt-card-sub{font-size:.54rem;font-weight:600;color:var(--opt-c);opacity:.75;margin-top:4px;text-align:center}
+/* p-card variant for periodic view */
+.opt-card.p-card{width:var(--pw)!important;min-height:var(--ph)!important;border-radius:4px!important}
 
 /* ══════════════════════════════════
    MODAL MATERIA
@@ -191,6 +236,12 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 .btn-e.activo.btn-apr {background:#EFF6FF;border-color:#3B82F6;color:#1E40AF}
 .btn-e.activo.btn-exon{background:#ECFDF5;border-color:#10B981;color:#064E3B}
 .m-nota{margin-top:10px;font-size:.72rem;color:var(--text2);background:#FFFBEB;border:1px solid #FDE68A;border-radius:7px;padding:8px 11px;line-height:1.5}
+/* Modal opt/elec links */
+.opt-links{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.opt-link-item{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--opt-b);background:var(--opt-p);text-decoration:none;color:var(--opt-t);font-weight:700;font-size:.82rem;transition:opacity .14s}
+.opt-link-item:hover{opacity:.8}
+.opt-link-icon{font-size:1.2rem;flex-shrink:0}
+.opt-link-meta{font-size:.62rem;color:var(--opt-c);opacity:.75;font-weight:500;margin-top:2px}
 
 /* ══════════════════════════════════
    CONFIRM RESET
@@ -268,10 +319,36 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 
 <div class="toolbar">
   <span class="tlbl">AÑO:</span>
-  <div class="filter-btns" id="yr-btns"></div>
+  <select class="f-select" id="yr-sel" onchange="onYrSel(this)">
+    <option value="">Todos</option>
+    <option value="1,2">1° año</option>
+    <option value="3,4">2° año</option>
+    <option value="5,6">3° año</option>
+    <option value="7,8">4° año</option>
+    <option value="9,10">5° año</option>
+  </select>
   <div class="dv"></div>
   <span class="tlbl">SEMESTRE:</span>
-  <div class="filter-btns" id="sem-btns"></div>
+  <select class="f-select" id="sem-sel" onchange="onSemSel(this)">
+    <option value="">Todos</option>
+    <option value="1">Sem. 1</option>
+    <option value="2">Sem. 2</option>
+    <option value="3">Sem. 3</option>
+    <option value="4">Sem. 4</option>
+    <option value="5">Sem. 5</option>
+    <option value="6">Sem. 6</option>
+    <option value="7">Sem. 7</option>
+    <option value="8">Sem. 8</option>
+    <option value="9">Sem. 9</option>
+    <option value="10">Sem. 10</option>
+  </select>
+  <div class="switch-wrap">
+    <span class="switch-lbl">Ver progreso</span>
+    <label class="sw">
+      <input type="checkbox" id="prog-sw" onchange="toggleProgreso(this.checked)">
+      <span class="sw-track"></span>
+    </label>
+  </div>
 </div>
 
 <div class="ap-sec" id="ap-sec"></div>
@@ -285,13 +362,31 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
 </div>
 
 <!-- VISTA SEMESTRAL -->
-<div id="view-sem"><div class="sems-wrap" id="malla-sem"></div></div>
+<div id="view-sem">
+  <div style="padding:18px 22px;overflow-x:auto">
+    <div class="sems-wrap" id="malla-sem"></div>
+  </div>
+  <div class="sem-opt-row" id="sem-opt-col">
+    <div class="sem-opt-row-lbl">
+      <span style="color:var(--opt-c);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px">Optativas y Electivas</span>
+      <span style="font-size:.58rem;color:var(--text3);font-family:var(--mono);margin-left:8px">60 cr mín.</span>
+    </div>
+  </div>
+</div>
 
 <!-- VISTA TABLA PERIÓDICA -->
 <div id="view-per">
   <div class="per-wrap">
-    <div class="per-grid" id="per-grid"></div>
-    <div class="per-labels" id="per-labels"></div>
+    <div class="per-outer">
+      <div class="per-main">
+        <div class="per-grid" id="per-grid"></div>
+        <div class="per-labels" id="per-labels"></div>
+      </div>
+      <div class="per-opt-sep"></div>
+      <div class="per-opt-col" id="per-opt-col">
+        <div class="per-opt-lbl">Opt. / Elec.</div>
+      </div>
+    </div>
     <div class="per-legend" id="per-legend"></div>
   </div>
 </div>
@@ -307,10 +402,11 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
       </div>
       <button class="m-close" onclick="cerrar()">✕</button>
     </div>
+    <div id="m-opt-links" style="display:none"></div>
     <div class="m-stats" id="m-stats"></div>
     <div id="m-pre"></div>
     <div id="m-post"></div>
-    <div class="estado-btns">
+    <div class="estado-btns" id="m-estado-btns">
       <button class="btn-e btn-pend" data-e="pendiente">Pendiente</button>
       <button class="btn-e btn-apr"  data-e="aprobada">Aprobada</button>
       <button class="btn-e btn-exon" data-e="exonerada">Exonerada</button>
@@ -337,7 +433,6 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
     <div class="welcome-icon">⚗️</div>
     <h2>Bienvenido a tu Malla Curricular</h2>
     <p class="w-sub">Químico Farmacéutico · UDELAR · Plan 2015 — Seguí tu progreso fácilmente.</p>
-
     <div class="w-steps">
       <div class="w-step">
         <div class="w-step-icon">👆</div>
@@ -361,21 +456,17 @@ body.yr-on .materia-card.yr-match{opacity:1;transform:translateY(-4px);box-shado
         </div>
       </div>
       <div class="w-step">
-        <div class="w-step-icon">🗂️</div>
+        <div class="w-step-icon">📊</div>
         <div class="w-step-text">
-          <strong>Dos vistas disponibles</strong>
-          <span>Usá <b>Por semestre</b> para una vista cronológica, o <b>Tabla periódica</b> para ver todas las áreas de un vistazo. Filtrá por año o semestre desde la barra superior.</span>
+          <strong>Switch "Ver progreso"</strong>
+          <span>Activá el switch en la barra de filtros para resaltar lo que ya tenés aprobado/exonerado, ver en gris medio lo que podés cursar ahora, y en gris oscuro lo que todavía está bloqueado.</span>
         </div>
       </div>
     </div>
-
     <div class="w-divider"></div>
     <p style="font-size:.72rem;color:var(--text3);margin-bottom:16px">Tu progreso se guarda automáticamente en el navegador.</p>
-
     <div class="w-footer">
-      <label>
-        <input type="checkbox" id="welcome-no-show"> No volver a mostrar
-      </label>
+      <label><input type="checkbox" id="welcome-no-show"> No volver a mostrar</label>
       <button class="btn-welcome-ok" onclick="cerrarWelcome()">¡Entendido!</button>
     </div>
   </div>
@@ -398,6 +489,14 @@ function chkPrevias(id,target){
   return fl;
 }
 
+/* comprueba si todas las previas de una materia están cumplidas para cursarla (aprobada/exonerada) */
+function estaHabilitada(id){
+  const m=IDX[id];if(!m)return false;
+  for(const p of m.pre_exo){if(gE(p)!=="exonerada")return false}
+  for(const p of m.pre_apr){if(gE(p)==="pendiente")return false}
+  return true;
+}
+
 /* ══════════ ESTADO ══════════ */
 const SK="qf_pe2015_v7";
 let E=(()=>{try{return JSON.parse(localStorage.getItem(SK))||{}}catch{return{}}})();
@@ -414,10 +513,30 @@ function mostrarWelcome(){
   document.getElementById("welcome-overlay").classList.add("open");
 }
 function cerrarWelcome(){
-  if(document.getElementById("welcome-no-show").checked){
-    try{localStorage.setItem(WK,"1")}catch{}
-  }
+  if(document.getElementById("welcome-no-show").checked){try{localStorage.setItem(WK,"1")}catch{}}
   document.getElementById("welcome-overlay").classList.remove("open");
+}
+
+/* ══════════ MODO PROGRESO ══════════ */
+let progOn=false;
+function toggleProgreso(on){
+  progOn=on;
+  document.body.classList.toggle("prog-on",on);
+  applyProgreso();
+}
+function applyProgreso(){
+  if(!progOn){
+    document.querySelectorAll(".materia-card").forEach(c=>c.classList.remove("prog-ok","prog-hab"));
+    return;
+  }
+  document.querySelectorAll(".materia-card").forEach(c=>{
+    const id=c.dataset.id;
+    if(!id)return;
+    const est=gE(id);
+    c.classList.remove("prog-ok","prog-hab");
+    if(est==="aprobada"||est==="exonerada"){c.classList.add("prog-ok")}
+    else if(estaHabilitada(id)){c.classList.add("prog-hab")}
+  });
 }
 
 /* ══════════ TOAST ══════════ */
@@ -473,6 +592,23 @@ function mkCard(m,extraCls=""){
   return d;
 }
 
+/* ══════════ TARJETA OPT/ELEC ══════════ */
+function mkOptCard(extraCls=""){
+  const d=document.createElement("div");
+  d.className="opt-card"+(extraCls?" "+extraCls:"");
+  d.innerHTML=`
+    <div class="opt-card-title">Optativas &amp;<br>Electivas</div>
+    <div class="opt-card-sub">Ver catálogos →</div>
+  `;
+  d.addEventListener("mousedown",e=>{if(e.button===0){pMoved=false;pTimer=setTimeout(()=>{pTimer=null;abrirOptM()},380)}});
+  d.addEventListener("mousemove",onPM);
+  d.addEventListener("mouseup",e=>{if(e.button===0&&pTimer!==null&&!pMoved){clearTimeout(pTimer);pTimer=null;abrirOptM()}});
+  d.addEventListener("touchstart",()=>{pMoved=false;pTimer=setTimeout(()=>{pTimer=null;abrirOptM()},380)},{passive:true});
+  d.addEventListener("touchmove",onPM,{passive:true});
+  d.addEventListener("touchend",()=>{if(pTimer!==null&&!pMoved){clearTimeout(pTimer);pTimer=null;abrirOptM()}});
+  return d;
+}
+
 /* ══════════ HIGHLIGHTS ══════════ */
 function hlPre(id){
   clrHl();
@@ -506,6 +642,7 @@ function updCr(){
 }
 
 /* ══════════ AREA PROGRESS ══════════ */
+const AM_OPT = { n:"Optativas y Electivas", cMin:60, c:"#DB2777" };
 function renderAP(){
   const c=document.getElementById("ap-sec");c.innerHTML="";
   for(const [k,a]of Object.entries(AM)){
@@ -513,22 +650,32 @@ function renderAP(){
     d.innerHTML=`<div class="ap-head"><span class="ap-name" style="color:${a.c}">${a.n}</span><span class="ap-cr" id="apl-${k}">0 / ${a.cMin} cr</span></div><div class="ap-bar"><div class="ap-fill" id="apf-${k}" style="background:${a.c}"></div></div>`;
     c.appendChild(d);
   }
+  /* Opt/Elec item (manual, no tiene materias tracked todavía) */
+  const dopt=document.createElement("div");dopt.className="ap-item";
+  dopt.innerHTML=`<div class="ap-head"><span class="ap-name" style="color:${AM_OPT.c}">${AM_OPT.n}</span><span class="ap-cr">0 / ${AM_OPT.cMin} cr</span></div><div class="ap-bar"><div class="ap-fill" style="background:${AM_OPT.c};width:0%"></div></div>`;
+  c.appendChild(dopt);
 }
 
-/* ══════════ FILTROS ══════════ */
+/* ══════════ FILTROS (dropdowns) ══════════ */
 let AF={type:null,value:null};
-const YEARS=[{l:"Todos",s:null},{l:"1° año",s:[1,2]},{l:"2° año",s:[3,4]},{l:"3° año",s:[5,6]},{l:"4° año",s:[7,8]},{l:"5° año",s:[9,10]}];
-const SEMS=[{l:"Todos",s:null},...[1,2,3,4,5,6,7,8,9,10].map(i=>({l:"S"+i,s:[i]}))];
-function renderFilterBtns(cid,list,type){
-  const c=document.getElementById(cid);c.innerHTML="";
-  for(const y of list){
-    const act=AF.type===type&&JSON.stringify(AF.value)===JSON.stringify(y.s);
-    const b=document.createElement("button");b.className="f-btn"+(act?" active":"");b.textContent=y.l;
-    b.onclick=()=>{
-      AF=act?{type:null,value:null}:{type,value:y.s};
-      renderFilterBtns("yr-btns",YEARS,"year");renderFilterBtns("sem-btns",SEMS,"sem");applyFilter();
-    };c.appendChild(b);
-  }
+function onYrSel(sel){
+  const v=sel.value;
+  /* reset sem */
+  document.getElementById("sem-sel").value="";
+  sel.classList.toggle("active",v!=="");
+  if(!v){AF={type:null,value:null}}
+  else{AF={type:"year",value:v.split(",").map(Number)}}
+  applyFilter();
+}
+function onSemSel(sel){
+  const v=sel.value;
+  /* reset yr */
+  document.getElementById("yr-sel").value="";
+  document.getElementById("yr-sel").classList.remove("active");
+  sel.classList.toggle("active",v!=="");
+  if(!v){AF={type:null,value:null}}
+  else{AF={type:"sem",value:[Number(v)]}}
+  applyFilter();
 }
 function applyFilter(){
   const s=AF.value;
@@ -548,7 +695,15 @@ function renderSem(){
     for(const m of materias.filter(m=>m.s===s))col.appendChild(mkCard(m));
     wrap.appendChild(col);
   }
+  /* tarjeta opt en fila inferior */
+  const optRow=document.getElementById("sem-opt-col");
+  const lbl=optRow.querySelector(".sem-opt-row-lbl");
+  optRow.innerHTML="";optRow.appendChild(lbl);
+  const optCard=mkOptCard();
+  optCard.style.cssText="width:auto;min-width:160px;height:46px;min-height:46px;flex-direction:row;gap:10px;padding:0 18px;border-radius:8px";
+  optRow.appendChild(optCard);
   applyFilter();
+  applyProgreso();
 }
 
 /* ══════════ VISTA TABLA PERIÓDICA ══════════ */
@@ -560,6 +715,12 @@ function renderPer(){
     d.innerHTML=`<span class="per-leg-dot" style="background:${a.c}"></span>${a.n}<span style="opacity:.5;font-size:.58rem;font-family:var(--mono);margin-left:4px">${a.cMin} cr mín.</span>`;
     leg.appendChild(d);
   }
+  /* opt en leyenda */
+  const dopt=document.createElement("div");dopt.className="per-leg-item";
+  dopt.style.cssText=`background:var(--opt-p);border-color:var(--opt-b);color:var(--opt-t)`;
+  dopt.innerHTML=`<span class="per-leg-dot" style="background:var(--opt-c)"></span>${AM_OPT.n}<span style="opacity:.5;font-size:.58rem;font-family:var(--mono);margin-left:4px">${AM_OPT.cMin} cr mín.</span>`;
+  leg.appendChild(dopt);
+
   const grid=document.getElementById("per-grid");grid.innerHTML="";
   for(const m of materias){
     const card=mkCard(m,"p-card");
@@ -580,7 +741,15 @@ function renderPer(){
   (function(){const e=document.createElement("div");e.className="per-lbl-wrap";e.style.gridColumn="7";lbl.appendChild(e);})();
   mkLbl(8,1,"Practicantado",AM.PRO.cMin,AM.PRO.c);
   mkLbl(9,2,"Cs. Farmacéuticas",AM.CFA.cMin,AM.CFA.c);
+
+  /* tarjeta opt en columna derecha separada */
+  const optCol=document.getElementById("per-opt-col");
+  const lbl2=optCol.querySelector(".per-opt-lbl");
+  optCol.innerHTML="";optCol.appendChild(lbl2);
+  optCol.appendChild(mkOptCard("p-card"));
+
   applyFilter();
+  applyProgreso();
 }
 
 /* ══════════ VISTAS ══════════ */
@@ -591,6 +760,42 @@ function setView(v){
   document.getElementById("view-per").style.display=v==="per"?"flex":"none";
   document.getElementById("btn-sem").classList.toggle("active",v==="sem");
   document.getElementById("btn-per").classList.toggle("active",v==="per");
+}
+
+/* ══════════ MODAL OPT/ELEC ══════════ */
+function abrirOptM(){
+  const badge=document.getElementById("m-badge");
+  badge.textContent="Opt. / Elec.";
+  badge.style.cssText="background:var(--opt-p);border-color:var(--opt-b);color:var(--opt-t)";
+  document.getElementById("m-nombre").textContent="Optativas y Electivas";
+  document.getElementById("m-meta").textContent="Catálogos actualizados · Plan 2015";
+  document.getElementById("m-stats").innerHTML="";
+  document.getElementById("m-pre").innerHTML="";
+  document.getElementById("m-post").innerHTML="";
+  document.getElementById("m-estado-btns").style.display="none";
+  document.getElementById("m-nota").innerHTML=`<div class="m-nota">📅 Optativas actualizadas al 27/11/2025 · Electivas actualizadas al 22/12/2025</div>`;
+  const linksDiv=document.getElementById("m-opt-links");
+  linksDiv.style.display="block";
+  linksDiv.innerHTML=`
+    <div class="opt-links">
+      <a class="opt-link-item" href="Optativas_QF_27.pdf" target="_blank">
+        <span class="opt-link-icon">📄</span>
+        <div>
+          <div>PDF Optativas</div>
+          <div class="opt-link-meta">Catálogo Optativas QF PE2015</div>
+        </div>
+      </a>
+      <a class="opt-link-item" href="Electivas_QF_36.pdf" target="_blank">
+        <span class="opt-link-icon">📄</span>
+        <div>
+          <div>PDF Electivas</div>
+          <div class="opt-link-meta">Catálogo Electivas QF PE2015</div>
+        </div>
+      </a>
+    </div>
+  `;
+  mId=null;
+  document.getElementById("overlay").classList.add("open");
 }
 
 /* ══════════ MODAL MATERIA ══════════ */
@@ -606,6 +811,9 @@ function abrirM(id){
     <div class="stat-b"><label>Semestre</label><span>${m.s}</span></div>
     <div class="stat-b"><label>Estado</label><span style="color:${est==="exonerada"?"#065F46":est==="aprobada"?"#1D4ED8":"var(--text3)"}">${est.charAt(0).toUpperCase()+est.slice(1)}</span></div>
   `;
+  document.getElementById("m-opt-links").style.display="none";
+  document.getElementById("m-estado-btns").style.display="flex";
+
   const allP=[...m.pre_exo.map(p=>({id:p,tipo:"exo"})),...m.pre_apr.map(p=>({id:p,tipo:"apr"}))];
   const pw=document.getElementById("m-pre");
   if(allP.length){
@@ -634,7 +842,12 @@ function abrirM(id){
   document.getElementById("overlay").classList.add("open");
 }
 function redir(id){cerrar();setTimeout(()=>abrirM(id),80)}
-function cerrar(){document.getElementById("overlay").classList.remove("open");mId=null;clrHl()}
+function cerrar(){
+  document.getElementById("overlay").classList.remove("open");
+  document.getElementById("m-estado-btns").style.display="flex";
+  document.getElementById("m-opt-links").style.display="none";
+  mId=null;clrHl();
+}
 
 /* ══════════ REFRESH ══════════ */
 function refresh(){renderSem();renderPer();updCr()}
@@ -653,8 +866,6 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){cerrar();cerrarConf
 
 /* ══════════ INIT ══════════ */
 renderAP();
-renderFilterBtns("yr-btns",YEARS,"year");
-renderFilterBtns("sem-btns",SEMS,"sem");
 refresh();
 setView("sem");
 mostrarWelcome();
