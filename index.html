@@ -202,8 +202,8 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
 /* ══════════════════════════════════
    VISTA TABLA PERIÓDICA
 ══════════════════════════════════ */
-#view-per{display:none;padding:18px 22px;overflow-x:auto;overflow-y:visible;justify-content:center;align-items:flex-start}
-.per-wrap{display:inline-block;min-width:max-content;padding-bottom:20px}
+#view-per{display:none;padding:18px 0 18px 22px;overflow-x:auto;overflow-y:visible}
+.per-wrap{display:inline-block;min-width:max-content;padding-bottom:20px;padding-right:22px}
 .per-legend{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;justify-content:center}
 .per-leg-item{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.67rem;font-weight:600;border:1.5px solid;white-space:nowrap}
 .per-leg-dot{width:7px;height:7px;border-radius:50%}
@@ -871,7 +871,7 @@ let curView="sem";
 function setView(v){
   curView=v;
   document.getElementById("view-sem").style.display=v==="sem"?"block":"none";
-  document.getElementById("view-per").style.display=v==="per"?"flex":"none";
+  document.getElementById("view-per").style.display=v==="per"?"block":"none";
   document.getElementById("btn-sem").classList.toggle("active",v==="sem");
   document.getElementById("btn-per").classList.toggle("active",v==="per");
 }
