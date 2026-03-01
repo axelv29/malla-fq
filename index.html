@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Malla QF · PE2015 · UDELAR</title>
+<!-- CONFIG, AM, OPT y materias se cargan desde materias.js -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -256,8 +257,10 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
   position:relative;
 }
 .opt-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hov);z-index:20}
+.opt-card[data-est="aprobada"] {border-color:var(--opt-c);box-shadow:0 0 0 2px color-mix(in srgb,var(--opt-c) 18%,transparent),var(--sh)}
+.opt-card[data-est="exonerada"]{border-color:var(--opt-c);box-shadow:0 4px 14px color-mix(in srgb,var(--opt-c) 28%,transparent),var(--sh)}
 .opt-card-title{font-size:.72rem;font-weight:900;color:var(--opt-t);text-align:center;line-height:1.3;padding:0 6px}
-.opt-card-sub{font-size:.54rem;font-weight:600;color:var(--opt-c);opacity:.75;margin-top:4px;text-align:center}
+.opt-card-sub{font-size:.54rem;font-weight:600;color:var(--opt-c);opacity:.75;margin-top:4px;text-align:center;padding:0 4px}
 /* p-card variant for periodic view */
 .opt-card.p-card{width:var(--pw)!important;min-height:var(--ph)!important;border-radius:4px!important}
 
@@ -344,10 +347,10 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
 
 <header>
   <div class="brand">
-    <div class="brand-icon">⚗️</div>
+    <div class="brand-icon" id="brand-icon">⚗️</div>
     <div>
-      <h1>Malla Curricular · Químico Farmacéutico</h1>
-      <p>Facultad de Química · UDELAR · Plan de Estudios 2015</p>
+      <h1 id="brand-titulo"></h1>
+      <p id="brand-subtitulo"></p>
     </div>
   </div>
   <div class="hdr-right">
@@ -363,7 +366,7 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
     </div>
     <div style="display:flex;align-items:center;gap:8px">
       <div>
-        <div class="cr-num"><span id="cr-n">0</span><span> / 450</span></div>
+        <div class="cr-num"><span id="cr-n">0</span><span id="cr-total"> / 450</span></div>
         <div class="cr-label">créditos exonerados</div>
       </div>
       <div>
@@ -431,10 +434,7 @@ body.prog-on .materia-card:hover{filter:none!important;opacity:1!important;trans
     <div class="sems-wrap" id="malla-sem"></div>
   </div>
   <div class="sem-opt-row" id="sem-opt-col">
-    <div class="sem-opt-row-lbl">
-      <span style="color:var(--opt-c);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px">Optativas y Electivas</span>
-      <span style="font-size:.58rem;color:var(--text3);font-family:var(--mono);margin-left:8px">71 cr mín.</span>
-    </div>
+    <div class="sem-opt-row-lbl" id="sem-opt-lbl"></div>
   </div>
 </div>
 
@@ -551,7 +551,6 @@ const html=document.documentElement;
   const on=saved!==null?saved==="1":prefersDark;
   if(on){html.classList.add("dark");document.getElementById("dark-sw").checked=true}
 })();
-const IDX = Object.fromEntries(materias.map(m => [m.id, m]));
 
 /* ══════════ VALIDACIÓN PREVIAS ══════════ */
 function chkPrevias(id,target){
@@ -671,10 +670,14 @@ function mkCard(m,extraCls=""){
 /* ══════════ TARJETA OPT/ELEC ══════════ */
 function mkOptCard(extraCls=""){
   const d=document.createElement("div");
-  d.className="opt-card"+(extraCls?" "+extraCls:"");
+  d.className="opt-card area-OPT"+(extraCls?" "+extraCls:"");
   d.innerHTML=`
-    <div class="opt-card-title">Optativas &amp;<br>Electivas</div>
-    <div class="opt-card-sub">Ver catálogos →</div>
+    <div class="card-top">
+      <span class="card-cr" style="color:var(--opt-t)">${OPT.cMin} cr</span>
+    </div>
+    <div class="opt-card-title">${OPT.n.replace(" y ","<br>&amp; ")}</div>
+    <div class="opt-card-sub"></div>
+    <div class="opt-dot card-dot" style="display:none"></div>
   `;
   d.addEventListener("mousedown",e=>{if(e.button===0){pMoved=false;pTimer=setTimeout(()=>{pTimer=null;abrirOptM()},380)}});
   d.addEventListener("mousemove",onPM);
@@ -702,12 +705,13 @@ function clrHl(){document.querySelectorAll(".hl-self,.hl-pre,.hl-post").forEach(
 function calcCr(){
   const t={total:0};for(const k in AM)t[k]=0;
   for(const m of materias)if(gE(m.id)==="exonerada"){t[m.a]=(t[m.a]||0)+m.cr;t.total+=m.cr}
+  t.total+=getOptCr(); // sumar créditos de opt/elec
   return t;
 }
 function updCr(){
   const cr=calcCr();
   document.getElementById("cr-n").textContent=cr.total;
-  const pct=Math.min(100,Math.round(cr.total/CMIN*100));
+  const pct=Math.min(100,Math.round(cr.total/CONFIG.cMinTotal*100));
   document.getElementById("prog").style.width=pct+"%";
   document.getElementById("pct").textContent=pct+"%";
   for(const k of Object.keys(AM)){
@@ -718,7 +722,36 @@ function updCr(){
 }
 
 /* ══════════ AREA PROGRESS ══════════ */
-const AM_OPT = { n:"Optativas y Electivas", cMin:60, c:"#DB2777" };
+/* ══════════ CRÉDITOS OPTATIVAS (persiste en localStorage) ══════════ */
+const OPT_SK = "qf_opt_cr_v1";
+function getOptCr(){return parseInt(localStorage.getItem(OPT_SK)||"0",10)||0;}
+function setOptCr(v){v=Math.max(0,parseInt(v,10)||0);localStorage.setItem(OPT_SK,v);updOptCr();updCr();}
+function getOptEst(){const c=getOptCr();return c>=OPT.cMin?"exonerada":c>0?"aprobada":"pendiente";}
+function updOptCr(){
+  const cr=getOptCr();
+  const pa=Math.min(100,Math.round(cr/OPT.cMin*100));
+  const f=document.getElementById("apf-OPT");if(f)f.style.width=pa+"%";
+  const l=document.getElementById("apl-OPT");if(l)l.textContent=cr+" / "+OPT.cMin+" cr";
+  /* actualizar tarjetas opt */
+  document.querySelectorAll(".opt-card").forEach(c=>{
+    const est=getOptEst();
+    c.dataset.est=est;
+    const sub=c.querySelector(".opt-card-sub");
+    if(sub){
+      if(est==="exonerada") sub.textContent="✓ Exonerada ("+cr+" cr)";
+      else if(cr>0) sub.textContent=cr+" / "+OPT.cMin+" cr";
+      else sub.textContent="Pendiente · "+OPT.cMin+" cr mín.";
+    }
+    /* dot visual */
+    let dot=c.querySelector(".opt-dot");
+    if(!dot){dot=document.createElement("div");dot.className="opt-dot card-dot";c.appendChild(dot);}
+    dot.style.display=est==="pendiente"?"none":"block";
+    dot.style.background=est==="exonerada"?"#10B981":"#3B82F6";
+    dot.style.boxShadow=est==="exonerada"?"0 0 5px rgba(16,185,129,.5)":"0 0 5px rgba(59,130,246,.5)";
+  });
+  /* también actualizar counter en header si opt cuenta para total */
+}
+
 function renderAP(){
   const c=document.getElementById("ap-sec");c.innerHTML="";
   for(const [k,a]of Object.entries(AM)){
@@ -726,10 +759,11 @@ function renderAP(){
     d.innerHTML=`<div class="ap-head"><span class="ap-name" style="color:${a.c}">${a.n}</span><span class="ap-cr" id="apl-${k}">0 / ${a.cMin} cr</span></div><div class="ap-bar"><div class="ap-fill" id="apf-${k}" style="background:${a.c}"></div></div>`;
     c.appendChild(d);
   }
-  /* Opt/Elec item (manual, no tiene materias tracked todavía) */
+  /* Opt/Elec — barra interactiva con créditos */
   const dopt=document.createElement("div");dopt.className="ap-item";
-  dopt.innerHTML=`<div class="ap-head"><span class="ap-name" style="color:${AM_OPT.c}">${AM_OPT.n}</span><span class="ap-cr">0 / ${AM_OPT.cMin} cr</span></div><div class="ap-bar"><div class="ap-fill" style="background:${AM_OPT.c};width:0%"></div></div>`;
+  dopt.innerHTML=`<div class="ap-head"><span class="ap-name" style="color:${OPT.c}">${OPT.n}</span><span class="ap-cr" id="apl-OPT">0 / ${OPT.cMin} cr</span></div><div class="ap-bar"><div class="ap-fill" id="apf-OPT" style="background:${OPT.c}"></div></div>`;
   c.appendChild(dopt);
+  updOptCr();
 }
 
 /* ══════════ FILTROS (dropdowns) ══════════ */
@@ -773,11 +807,14 @@ function renderSem(){
   }
   /* tarjeta opt en fila inferior */
   const optRow=document.getElementById("sem-opt-col");
-  const lbl=optRow.querySelector(".sem-opt-row-lbl");
-  optRow.innerHTML="";optRow.appendChild(lbl);
+  const lbl=document.getElementById("sem-opt-lbl");
+  lbl.innerHTML=`<span style="color:${OPT.c};font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px">${OPT.n}</span><span style="font-size:.58rem;color:var(--text3);font-family:var(--mono);margin-left:8px">${OPT.cMin} cr mín.</span>`;
+  /* limpiar tarjetas anteriores pero mantener label */
+  Array.from(optRow.children).forEach(ch=>{if(ch!==lbl)ch.remove();});
   const optCard=mkOptCard();
-  optCard.style.cssText="width:auto;min-width:160px;height:46px;min-height:46px;flex-direction:row;gap:10px;padding:0 18px;border-radius:8px";
+  optCard.style.cssText="width:auto;min-width:160px;height:56px;min-height:56px;flex-direction:row;gap:10px;padding:0 18px;border-radius:8px";
   optRow.appendChild(optCard);
+  updOptCr();
   applyFilter();
   applyProgreso();
 }
@@ -794,7 +831,7 @@ function renderPer(){
   /* opt en leyenda */
   const dopt=document.createElement("div");dopt.className="per-leg-item";
   dopt.style.cssText=`background:var(--opt-p);border-color:var(--opt-b);color:var(--opt-t)`;
-  dopt.innerHTML=`<span class="per-leg-dot" style="background:var(--opt-c)"></span>${AM_OPT.n}<span style="opacity:.5;font-size:.58rem;font-family:var(--mono);margin-left:4px">${AM_OPT.cMin} cr mín.</span>`;
+  dopt.innerHTML=`<span class="per-leg-dot" style="background:${OPT.c}"></span>${OPT.n}<span style="opacity:.5;font-size:.58rem;font-family:var(--mono);margin-left:4px">${OPT.cMin} cr mín.</span>`;
   leg.appendChild(dopt);
 
   const grid=document.getElementById("per-grid");grid.innerHTML="";
@@ -823,6 +860,7 @@ function renderPer(){
   const lbl2=optCol.querySelector(".per-opt-lbl");
   optCol.innerHTML="";optCol.appendChild(lbl2);
   optCol.appendChild(mkOptCard("p-card"));
+  updOptCr();
 
   applyFilter();
   applyProgreso();
@@ -841,35 +879,55 @@ function setView(v){
 /* ══════════ MODAL OPT/ELEC ══════════ */
 function abrirOptM(){
   const badge=document.getElementById("m-badge");
-  badge.textContent="Opt. / Elec.";
-  badge.style.cssText="background:var(--opt-p);border-color:var(--opt-b);color:var(--opt-t)";
-  document.getElementById("m-nombre").textContent="Optativas y Electivas";
+  badge.textContent=OPT.n;
+  badge.style.cssText=`background:${OPT.p};border-color:${OPT.b};color:${OPT.t}`;
+  document.getElementById("m-nombre").textContent=OPT.n;
   document.getElementById("m-meta").textContent="Catálogos actualizados · Plan 2015";
-  document.getElementById("m-stats").innerHTML="";
+  const cr=getOptCr();
+  const est=getOptEst();
+  document.getElementById("m-stats").innerHTML=`
+    <div class="stat-b"><label>Créditos</label><span>${OPT.cMin} mín.</span></div>
+    <div class="stat-b"><label>Acumulados</label><span id="opt-cr-disp" style="color:${est==="exonerada"?"#065F46":est==="aprobada"?"#1D4ED8":"var(--text3)"}">${cr}</span></div>
+    <div class="stat-b"><label>Estado</label><span style="color:${est==="exonerada"?"#065F46":est==="aprobada"?"#1D4ED8":"var(--text3)"}">${est.charAt(0).toUpperCase()+est.slice(1)}</span></div>
+  `;
   document.getElementById("m-pre").innerHTML="";
   document.getElementById("m-post").innerHTML="";
   document.getElementById("m-estado-btns").style.display="none";
-  document.getElementById("m-nota").innerHTML=`<div class="m-nota">📅 Optativas actualizadas al 27/11/2025 · Electivas actualizadas al 22/12/2025</div>`;
+  document.getElementById("m-nota").innerHTML=`<div class="m-nota">📅 ${OPT.actualizacion}</div>`;
   const linksDiv=document.getElementById("m-opt-links");
   linksDiv.style.display="block";
+  /* Input créditos */
   linksDiv.innerHTML=`
+    <div style="background:var(--bg);border:1.5px solid ${OPT.b};border-radius:10px;padding:12px 14px;margin-bottom:10px">
+      <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);margin-bottom:8px">Créditos acumulados</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <input id="opt-cr-input" type="number" min="0" max="300" value="${cr}"
+          style="width:80px;padding:6px 10px;border-radius:7px;border:2px solid ${OPT.b};background:var(--surface);font-family:var(--font);font-size:.9rem;font-weight:700;color:${OPT.t};outline:none;text-align:center"
+          oninput="setOptCr(this.value);document.getElementById('opt-cr-disp')&&(document.getElementById('opt-cr-disp').textContent=this.value)">
+        <span style="font-size:.72rem;color:var(--text3)">de ${OPT.cMin} mín. requeridos</span>
+      </div>
+      <div style="height:5px;background:var(--border2);border-radius:999px;overflow:hidden;margin-top:10px">
+        <div id="opt-cr-bar" style="height:100%;background:${OPT.c};border-radius:999px;transition:width .3s;width:${Math.min(100,Math.round(cr/OPT.cMin*100))}%"></div>
+      </div>
+    </div>
     <div class="opt-links">
-      <a class="opt-link-item" href="Optativas_QF_27.pdf" target="_blank">
-        <span class="opt-link-icon">📄</span>
+      ${OPT.catalogos.map(cat=>`
+      <a class="opt-link-item" href="${cat.href}" target="_blank">
+        <span class="opt-link-icon">${cat.icono}</span>
         <div>
-          <div>PDF Optativas</div>
-          <div class="opt-link-meta">Catálogo Optativas QF PE2015</div>
+          <div>${cat.label}</div>
+          <div class="opt-link-meta">${cat.meta}</div>
         </div>
-      </a>
-      <a class="opt-link-item" href="Electivas_QF_36.pdf" target="_blank">
-        <span class="opt-link-icon">📄</span>
-        <div>
-          <div>PDF Electivas</div>
-          <div class="opt-link-meta">Catálogo Electivas QF PE2015</div>
-        </div>
-      </a>
+      </a>`).join("")}
     </div>
   `;
+  /* Actualizar barra al escribir */
+  document.getElementById("opt-cr-input").addEventListener("input",function(){
+    const v=Math.max(0,parseInt(this.value)||0);
+    const pa=Math.min(100,Math.round(v/OPT.cMin*100));
+    const bar=document.getElementById("opt-cr-bar");
+    if(bar)bar.style.width=pa+"%";
+  });
   mId=null;
   document.getElementById("overlay").classList.add("open");
 }
@@ -941,6 +999,12 @@ document.querySelectorAll(".btn-e").forEach(b=>b.addEventListener("click",()=>{
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){cerrar();cerrarConfirm();cerrarWelcome()}});
 
 /* ══════════ INIT ══════════ */
+/* Aplicar CONFIG al DOM */
+document.getElementById("brand-titulo").textContent=CONFIG.titulo;
+document.getElementById("brand-subtitulo").textContent=CONFIG.subtitulo;
+document.getElementById("brand-icon").textContent=CONFIG.icono;
+document.getElementById("cr-total").textContent=" / "+CONFIG.cMinTotal;
+const IDX = Object.fromEntries(materias.map(m => [m.id, m]));
 renderAP();
 refresh();
 setView("sem");
