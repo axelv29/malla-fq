@@ -28,4 +28,4 @@ Este proyecto fue desarrollado como experimento para probar las capacidades de m
 
 ---
 
-¿Encontraste algo que no funciona? Podés reportarlo acá → [Formulario de reporte de errores](https://forms.gle/MkDCYSJp27q1bg6V7)
+El proyecto es bastante propenso a tener errores, sobre todo en detalles referidos a las materias y la trayectoria, por la poca información (o desactualizada) que encontré sobre la misma, y porque no soy estudiante de dicha carrera :p. Si encontrás algún error, me ayudarías bastante reportándolo en el formulario para poder solucionarlo cuanto antes. [Formulario de reporte de errores](https://forms.gle/MkDCYSJp27q1bg6V7)
