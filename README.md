@@ -1,6 +1,6 @@
 # Malla Curricular QF · Plan 2015 · UDELAR
 
-Una herramienta web para visualizar y hacer seguimiento de la trayectoria sugerida de la carrera de Químico Farmacéutico (Plan 2015) de la Universidad de la República, Uruguay.
+Una herramienta web para visualizar y hacer seguimiento de la trayectoria sugerida de la carrera de Químico Farmacéutico (Plan 2015) de la Universidad de la República, Uruguay. Se puede acceder a la página con el siguiente link: [Malla curricular interactiva QF](https://axelv29.github.io/malla-fq/)
 
 ## ¿De qué se trata?
 
