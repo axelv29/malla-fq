@@ -78,7 +78,7 @@ const materias = [
   { id:"FQ102",      cod:"508A", s:4, h:null, n:"Fisicoquímica 102",       ab:"FQ 102",       a:"CQ", cr:13, pre:["QUI_GEN_II","MAT_B","QA1"],                            prow:3, pcol:3, programa:"Archivos/Materias/Fisicoquímica 102 - 2024.pdf" },
   { id:"QA3",        cod:"503",  s:5, h:null, n:"Química Analítica III",   ab:"Q. Analítica III",a:"CQ",cr:10,pre:["QA2"],                                         prow:3, pcol:4, notas:"Análisis Instr.", programa:"Archivos/Materias/Química Analítica III-503  (Actualizado 06 12 22).pdf" },
   { id:"QO104",      cod:"502X", s:5, h:1,    n:"Química Orgánica 104",    ab:"Org. 104",     a:"CQ", cr:4,  pre:["QO101","QO102"],                                  prow:2, pcol:2, notas:"1er hemi", programa:"Archivos/Materias/Qca Orgánica 104 (502X).pdf" },
-  { id:"FQ103",      cod:"520A", s:5, h:null, n:"Fisicoquímica 103",       ab:"FQ 103",       a:"CQ", cr:12, pre:["FQ102","FQ101"],                                  prow:2, pcol:3, programa:"Archivos/Materias/Programa FQ 103 520A(2).pdf" },
+  { id:"FQ103",      cod:"520A", s:5, h:null, n:"Fisicoquímica 103",       ab:"FQ 103",       a:"CQ", cr:12, pre:["FQ102"],                                  prow:2, pcol:3, programa:"Archivos/Materias/Programa FQ 103 520A(2).pdf" },
 
   // ─── CBB (cols 5-8) ─────────────────────────────────────────────
   { id:"BIO_I",       cod:"103A", s:1, h:null, n:"Introd. Cs. Biológicas I",  ab:"ICB I",       a:"CBB", cr:5,  pre:[],                                                prow:6, pcol:5, programa:"Archivos/Materias/ICB I (103B) 5 cr.pdf" },
