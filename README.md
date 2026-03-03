@@ -16,10 +16,6 @@ La idea es simple: tener en un solo lugar todas las materias de la carrera, pode
 - **Dos modos de vista**: para poder gestionar las materias en orden según el semestre, o por área usando la vista periódica.
 - **Todo se guarda automáticamente** en el navegador, no necesitás cuenta.
 
-## ¿Para quién sirve?
-
-Para cualquier estudiante de QF de UDELAR que quiera tener una visión clara de su carrera: qué le falta, qué puede cursar ya, cuántos créditos lleva y cuánto le queda. También puede ser útil para orientar a estudiantes nuevos o para planificar semestres.
-
 ---
 
 ## Sobre el desarrollo
