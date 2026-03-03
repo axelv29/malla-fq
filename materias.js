@@ -57,8 +57,8 @@ const OPT = {
 const materias = [
 
   // ─── CFM (col 1) ────────────────────────────────────────────────
-  { id:"MAT_A",   cod:"01A",  s:1, h:null, n:"Matemática A",              ab:"Mat. A",       a:"CFM", cr:10, pre:[],                                                   prow:6, pcol:1, programa:"https://www.fq.edu.uy/sites/default/files/sites/all/themes/professional_theme/images/Matem%C3%A1tica%20A-An%C3%A1lisis%20I%20%2801A%29.pdf" },
-  { id:"MAT_B",   cod:"02B",  s:2, h:1,    n:"Matemática B",              ab:"Mat. B",       a:"CFM", cr:6,  pre:["MAT_A"],                                        prow:5, pcol:1, programa:"https://www.fq.edu.uy/sites/default/files/sites/all/themes/professional_theme/images/MATEM%C3%81TICA%20B.%20%C3%81lgebra%20Lineal%20y%20Funciones%20de%20Varias%20Variables.pdf" },
+  { id:"MAT_A",   cod:"01A",  s:1, h:null, n:"Matemática A",              ab:"Mat. A",       a:"CFM", cr:10, pre:[],                                                   prow:6, pcol:1, programa:"Archivos/Materias/Archivos/Materias/Matemática A-Análisis I (01A).pdf" },
+  { id:"MAT_B",   cod:"02B",  s:2, h:1,    n:"Matemática B",              ab:"Mat. B",       a:"CFM", cr:6,  pre:["MAT_A"],                                        prow:5, pcol:1, programa:"Archivos/Materias/Archivos/Materias/Archivos/Materias/MATEMÁTICA B. Álgebra Lineal y Funciones de Varias Variables.pdf" },
   { id:"MAT_C",   cod:"02C",  s:2, h:null, n:"Matemática C",              ab:"Mat. C",       a:"CFM", cr:8,  pre:["MAT_A"],                                        prow:4, pcol:1, programa:"Archivos/Materias/Matemática C. Estadística.pdf" } ,
   { id:"FIS101",  cod:"205", s:2, h:null, n:"Física 101",                ab:"Física 101",   a:"CFM", cr:7,  pre:["MAT_A"],                                        prow:3, pcol:1, programa:"Archivos/Materias/205A Física 101 (001).pdf" },
   { id:"FIS102",  cod:"304", s:3, h:null, n:"Física 102",                ab:"Física 102",   a:"CFM", cr:7,  pre:["FIS101"],                                       prow:2, pcol:1, programa:"Archivos/Materias/Física 102 (304).pdf" }, 
